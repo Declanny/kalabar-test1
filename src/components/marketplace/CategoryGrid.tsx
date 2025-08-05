@@ -101,10 +101,11 @@ const categoryGridItems: CategoryGridItem[] = [
 
 interface CategoryGridProps {
   title?: string
+  headerContent?: React.ReactNode
   onCategoryClick?: (categoryId: string) => void
 }
 
-export function CategoryGrid({ title = "Shop by Category", onCategoryClick }: CategoryGridProps) {
+export function CategoryGrid({ title, headerContent, onCategoryClick }: CategoryGridProps) {
   const scrollContainerRef = useRef<HTMLDivElement>(null)
 
   const scroll = (direction: 'left' | 'right') => {
@@ -115,70 +116,67 @@ export function CategoryGrid({ title = "Shop by Category", onCategoryClick }: Ca
   }
 
   return (
-    <div className="w-full h-full flex flex-col">
+    <div className="w-full">
       {/* Header */}
-      {title && (
-        <div className="px-2 py-4 border-b border-gray-100">
-          <h3 className="text-lg sm:text-xl font-semibold text-gray-900">{title}</h3>
-      </div>
+      {headerContent && (
+        <div className="mb-3 sm:mb-4">
+          {headerContent}
+        </div>
       )}
 
       {/* Cards Container */}
-      <div className="flex-1 relative group">
+      <div className="relative group">
         <div 
           ref={scrollContainerRef}
-          className="absolute inset-0 overflow-x-auto overflow-y-hidden scrollbar-hide"
+          className="overflow-x-auto overflow-y-hidden scrollbar-hide"
         >
-          <div className="h-full flex gap-3 px-2 py-4" style={{ width: 'max-content' }}>
+          <div className="flex gap-3 sm:gap-4 lg:gap-6 py-4" style={{ width: 'max-content' }}>
           {categoryGridItems.map((item) => (
             <Card 
               key={item.id}
-                className="cursor-pointer hover:shadow-lg transition-all duration-200 border border-gray-200 group overflow-hidden flex-shrink-0 w-[280px]"
+                className="cursor-pointer hover:shadow-lg transition-all duration-200 border border-gray-200 group overflow-hidden flex-shrink-0 w-[240px] sm:w-[260px] lg:w-[280px]"
               onClick={() => onCategoryClick?.(item.id)}
             >
-                <CardContent className="p-0 h-full flex flex-col">
+                <div className="p-0 h-full flex flex-col">
                   {/* Product Image */}
-                  <div className="relative h-60 bg-gradient-to-br from-gray-50 to-gray-100 overflow-hidden">
+                  <div className="relative h-48 sm:h-52 lg:h-60 bg-gradient-to-br from-gray-50 to-gray-100 overflow-hidden">
                     <img 
                       src={item.image} 
                       alt={item.title}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                     />
                     {/* Product Count Badge */}
-                    <div className="absolute top-3 right-3">
-                      <span className="bg-green-600 text-white px-2.5 py-1 rounded-full text-xs font-medium">
+                    <div className="absolute top-2 sm:top-3 right-2 sm:right-3">
+                      <span className="bg-green-600 text-white px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full text-xs font-medium">
                         {item.productCount.toLocaleString()}+ Products
                       </span>
                     </div>
                 </div>
                   
                   {/* Product Info */}
-                  <div className="p-3 flex-1 flex flex-col bg-white">
-                    <h4 className="font-medium text-gray-900 group-hover:text-green-600 text-base">
+                  <div className="p-2 sm:p-3 flex-1 flex flex-col bg-white">
+                    <h4 className="font-medium text-gray-900 group-hover:text-green-600 text-sm sm:text-base">
                   {item.title}
                 </h4>
-                    <p className="text-sm text-gray-500 mt-1">
-                      Starting from $9.99
-                </p>
                   </div>
-              </CardContent>
+              </div>
             </Card>
           ))}
         </div>
         </div>
 
-        {/* Navigation Arrows - Show on Hover */}
+        {/* Navigation Arrows - Show on Hover (Desktop) and Always (Mobile) */}
         <button 
           onClick={() => scroll('left')}
-          className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-white shadow-lg rounded-full p-2 transition-all opacity-0 group-hover:opacity-100 z-10"
+          className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-white shadow-lg rounded-full p-2 transition-all opacity-100 sm:opacity-0 sm:group-hover:opacity-100 z-10"
         >
-          <ChevronLeft className="w-5 h-5 text-gray-600" />
+          <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5 text-gray-600" />
         </button>
         <button 
           onClick={() => scroll('right')}
-          className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-white shadow-lg rounded-full p-2 transition-all opacity-0 group-hover:opacity-100 z-10"
+          className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-white shadow-lg rounded-full p-2 transition-all opacity-100 sm:opacity-0 sm:group-hover:opacity-100 z-10"
         >
-          <ChevronRight className="w-5 h-5 text-gray-600" />
+          <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 text-gray-600" />
         </button>
       </div>
     </div>

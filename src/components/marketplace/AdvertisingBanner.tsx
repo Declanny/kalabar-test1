@@ -60,7 +60,7 @@ const AdvertisingBanner: React.FC<AdvertisingBannerProps> = ({ variant = 'defaul
   }, [])
 
   return (
-    <div className={`relative rounded-lg sm:rounded-xl overflow-hidden shadow-sm sm:shadow-xl group ${variant === 'large' ? 'h-32 sm:h-80' : 'h-32 sm:h-56 lg:h-64'}`}>
+    <div className={`relative rounded-lg sm:rounded-xl overflow-hidden shadow-sm sm:shadow-xl group ${variant === 'large' ? 'h-32 sm:h-80' : 'h-40 sm:h-64 lg:h-80'}`}>
       <div className="flex transition-transform duration-500 ease-in-out h-full" style={{ transform: `translateX(-${currentSlide * 100}%)` }}>
         {bannerSlides.map((slide) => (
           <div key={slide.id} className={`min-w-full h-full ${slide.bgColor} relative flex items-center`}>

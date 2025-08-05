@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState } from 'react'
-import { ChevronRight, ChevronDown, ChevronLeft } from 'lucide-react'
+import { ChevronRight, ChevronDown, ChevronLeft, Grid, Home, Dumbbell, Sparkles, Factory, Building2, Shirt, Headphones, Gem, Footprints, Briefcase, Apple, Package, Heart, Sofa, Printer, Leaf, Car, Droplets, Utensils, BookOpen, Coffee, Baby, Zap } from 'lucide-react'
 import { Card, CardContent } from '@/components/ui/card'
 
 import { CategoryGrid } from './CategoryGrid'
@@ -12,67 +12,81 @@ import Link from 'next/link'
 interface Category {
   id: string
   name: string
-  icon: string
+  icon: React.ReactNode
   productCount: number
   subcategories?: string[]
 }
 
 const categories: Category[] = [
   {
-    id: 'electronics',
-    name: 'Electronics & Electrical',
-    icon: '⚡',
+    id: 'food-agricultural',
+    name: 'Food & Agricultural Produce',
+    icon: <Apple className="w-5 h-5" />,
     productCount: 45234,
-    subcategories: ['LED Lighting', 'Consumer Electronics', 'Industrial Electronics', 'Power Equipment']
+    subcategories: ['Fresh Fruits & Vegetables', 'Grains & Cereals', 'Dairy Products', 'Meat & Poultry', 'Seafood & Fish']
   },
   {
-    id: 'machinery',
-    name: 'Machinery & Industrial Equipment',
-    icon: '⚙️',
+    id: 'building-materials',
+    name: 'Building Materials',
+    icon: <Building2 className="w-5 h-5" />,
     productCount: 32156,
-    subcategories: ['Industrial Pumps', 'Agricultural Equipment', 'Construction Machinery', 'Processing Equipment']
+    subcategories: ['Cement & Concrete', 'Steel & Metal Products', 'Wood & Timber', 'Plumbing Materials', 'Electrical Supplies']
   },
   {
-    id: 'textiles',
-    name: 'Textiles & Apparel',
-    icon: '🧵',
+    id: 'packaged-consumer-goods',
+    name: 'Packaged Consumer Goods (FMCG)',
+    icon: <Package className="w-5 h-5" />,
     productCount: 28973,
-    subcategories: ['Cotton Fabric', 'Garments', 'Home Textiles', 'Technical Textiles']
+    subcategories: ['Beverages & Drinks', 'Snacks & Confectionery', 'Personal Care Products', 'Household Items', 'Baby Products']
   },
   {
-    id: 'food',
-    name: 'Food & Beverage',
-    icon: '🍯',
+    id: 'fashion-apparel',
+    name: 'Fashion & Apparel',
+    icon: <Shirt className="w-5 h-5" />,
     productCount: 35421,
-    subcategories: ['Honey Products', 'Cocoa & Coffee', 'Spices', 'Processed Foods']
+    subcategories: ['Men\'s Clothing', 'Women\'s Clothing', 'Children\'s Wear', 'Fashion Accessories', 'Footwear']
   },
   {
-    id: 'construction',
-    name: 'Construction & Building Materials',
-    icon: '🏗️',
+    id: 'beauty-skincare',
+    name: 'Beauty & Skincare Products',
+    icon: <Sparkles className="w-5 h-5" />,
     productCount: 22847,
-    subcategories: ['Building Materials', 'Tools', 'Safety Equipment', 'Hardware']
+    subcategories: ['Skincare Products', 'Makeup & Cosmetics', 'Hair Care Products', 'Fragrances & Perfumes', 'Beauty Tools']
   },
   {
-    id: 'automotive',
-    name: 'Automotive & Transportation',
-    icon: '🚛',
+    id: 'electronics-gadgets',
+    name: 'Electronics & Gadgets',
+    icon: <Headphones className="w-5 h-5" />,
     productCount: 15632,
-    subcategories: ['Auto Parts', 'Commercial Vehicles', 'Accessories', 'Services']
+    subcategories: ['Mobile Phones & Tablets', 'Computers & Laptops', 'Audio Equipment', 'Cameras & Photography', 'Smart Devices']
   },
   {
-    id: 'health',
-    name: 'Health & Medical',
-    icon: '🏥',
+    id: 'health-medical',
+    name: 'Health & Medical Supplies',
+    icon: <Heart className="w-5 h-5" />,
     productCount: 12458,
-    subcategories: ['Medical Equipment', 'Pharmaceuticals', 'Health Supplements', 'Medical Supplies']
+    subcategories: ['Pharmaceuticals & Medicines', 'Medical Equipment', 'First Aid Supplies', 'Health Supplements', 'Medical Devices']
   },
   {
-    id: 'chemicals',
-    name: 'Chemicals & Materials',
-    icon: '🧪',
+    id: 'furniture-home',
+    name: 'Furniture & Home Essentials',
+    icon: <Sofa className="w-5 h-5" />,
     productCount: 18965,
-    subcategories: ['Industrial Chemicals', 'Packaging Materials', 'Raw Materials', 'Specialty Chemicals']
+    subcategories: ['Living Room Furniture', 'Bedroom Furniture', 'Kitchen & Dining Furniture', 'Office Furniture', 'Home Decor']
+  },
+  {
+    id: 'printing-office',
+    name: 'Printing & Office Supplies',
+    icon: <Printer className="w-5 h-5" />,
+    productCount: 15632,
+    subcategories: ['Paper Products', 'Writing Supplies', 'Office Equipment', 'Printing Services', 'Stationery Items']
+  },
+  {
+    id: 'raw-materials-agro',
+    name: 'Raw Materials & Agro Inputs',
+    icon: <Leaf className="w-5 h-5" />,
+    productCount: 12458,
+    subcategories: ['Fertilizers & Soil Nutrients', 'Pesticides & Herbicides', 'Seeds & Seedlings', 'Animal Feed', 'Agricultural Tools']
   }
 ]
 
@@ -126,87 +140,145 @@ interface CategorySectionProps {
 }
 
 export function CategorySection({ onCategorySelect }: CategorySectionProps) {
-  const [hoveredCategory, setHoveredCategory] = useState<string | null>(null)
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
+  const [showModal, setShowModal] = useState(false)
 
   const handleCategoryClick = (categoryId: string) => {
-    window.location.href = '/waiting-list?action=true'
+    setSelectedCategory(categoryId)
+    setShowModal(true)
+  }
+
+  const closeModal = () => {
+    setShowModal(false)
+    setSelectedCategory(null)
   }
 
   return (
-    <div className="flex flex-col lg:flex-row bg-white">
-      {/* Left Navigation - Full width on mobile, 20% on desktop */}
-      <div className="w-full lg:w-[20%] border-b lg:border-b-0 lg:border-r border-gray-200 p-1.5 sm:p-3 lg:p-4">
-        <h3 className="font-semibold text-sm sm:text-base lg:text-lg text-gray-900 mb-1.5 sm:mb-3 lg:mb-4">All Categories</h3>
-        {/* Mobile: Horizontal scroll, Desktop: Vertical list */}
-        <div className="lg:space-y-1">
-          <div className="flex lg:flex-col gap-1 sm:gap-2 lg:gap-0 overflow-x-auto lg:overflow-x-visible pb-0.5 sm:pb-2 lg:pb-0 scrollbar-hide">
-          {categories.map((category) => (
-            <div
-              key={category.id}
-                className="relative flex-shrink-0 lg:flex-shrink"
-              onMouseEnter={() => setHoveredCategory(category.id)}
-              onMouseLeave={() => setHoveredCategory(null)}
-            >
-                <Link href="/waiting-list?action=true">
-              <button
-                    className="w-full min-w-[120px] lg:min-w-0 flex items-center justify-between p-1 sm:p-2 lg:p-4 text-left hover:bg-gray-50 rounded-lg transition-colors group"
-              >
-                    <div className="flex items-center gap-1.5 sm:gap-2 lg:gap-3">
-                      <span className="text-sm sm:text-base lg:text-lg">{category.icon}</span>
-                      <div className="hidden lg:block">
-                        <div className="font-medium text-xs sm:text-sm text-gray-900 group-hover:text-green-600 py-1">
-                      {category.name}
-                    </div>
-                      </div>
-                      <div className="lg:hidden">
-                        <div className="font-medium text-xs text-gray-900 group-hover:text-green-600">
-                          {category.name}
-                    </div>
-                  </div>
-                </div>
-                    <ChevronRight className="h-3 w-3 sm:h-4 sm:w-4 text-gray-400 group-hover:text-green-600 hidden lg:block" />
-              </button>
-                </Link>
-
-                {/* Subcategories Dropdown - Only on desktop */}
-              {hoveredCategory === category.id && category.subcategories && (
-                  <div className="hidden lg:block absolute left-full top-0 z-10 w-64 bg-white border border-gray-200 rounded-lg shadow-lg p-3 ml-2">
-                  <div className="space-y-2">
-                    {category.subcategories.map((sub, index) => (
-                        <Link href="/waiting-list?action=true" key={index}>
-                      <button
-                        className="block w-full text-left p-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-green-600 rounded transition-colors"
-                      >
-                        {sub}
-                      </button>
-                        </Link>
-                    ))}
-                  </div>
-                </div>
-              )}
+    <div className="w-full px-2 sm:px-6 lg:px-10">
+      <div className="flex flex-col lg:flex-row bg-gray-50 rounded-lg">
+        {/* Left Sidebar - Hidden on mobile, 25% width on desktop */}
+        <div className="hidden lg:flex w-full lg:w-[25%] border-b lg:border-b-0 lg:border-r border-gray-200 bg-white flex-col rounded-l-lg">
+          {/* All Categories Header */}
+          <div className="flex items-center justify-between p-4 border-b border-gray-100">
+            <div className="flex items-center gap-3">
+              <Grid className="w-5 h-5 text-gray-600" />
+              <span className="font-semibold text-gray-900 text-lg">All Categories</span>
             </div>
-          ))}
+            <ChevronDown className="w-4 h-4 text-gray-400" />
+          </div>
+
+          {/* Categories List */}
+          <div className="flex-1 overflow-y-auto">
+            {categories.map((category) => (
+              <div
+                key={category.id}
+                className="border-b border-gray-100 last:border-b-0"
+              >
+                <button
+                  onClick={() => handleCategoryClick(category.id)}
+                  className="w-full flex items-center justify-between p-4 text-left hover:bg-gray-50 transition-colors group"
+                >
+                  <div className="flex items-center gap-3">
+                    <span className="text-gray-600">{category.icon}</span>
+                    <span className="font-medium text-gray-900 group-hover:text-green-600">
+                      {category.name}
+                    </span>
+                  </div>
+                  <ChevronRight className="w-4 h-4 text-gray-400 group-hover:text-green-600" />
+                </button>
+              </div>
+            ))}
+          </div>
+
+          {/* View All Link */}
+          <div className="p-4 border-t border-gray-200">
+            <button className="w-full text-center text-sm text-gray-500 hover:text-green-600 transition-colors font-medium">
+              View all
+            </button>
+          </div>
+        </div>
+
+        {/* Right Content Area - Full width on mobile, 75% on desktop */}
+        <div className="w-full lg:w-[75%] flex flex-col rounded-lg lg:rounded-r-lg lg:rounded-l-none">
+          {/* Main Banner - Top section */}
+          <div className="p-3 sm:p-6 pb-2 sm:pb-4">
+            <AdvertisingBanner variant="default" />
+          </div>
+
+          {/* Two Banners - Bottom section */}
+          <div className="flex-1 p-3 sm:p-6 pt-1 sm:pt-2">
+            <div className="grid grid-cols-2 gap-4 sm:gap-6 h-full">
+              <div>
+                <AdvertisingBanner variant="large" />
+              </div>
+              <div>
+                <AdvertisingBanner variant="large" />
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-                    </div>
 
-      {/* Right Side - Full width on mobile, 80% on desktop */}
-      <div className="w-full lg:w-[80%] p-2 sm:p-4 lg:p-6">
-        {/* Main Banner */}
-        <div className="mb-2 sm:mb-6">
-          <AdvertisingBanner variant="default" />
-        </div>
+      {/* Category Modal */}
+      {showModal && selectedCategory && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+          <div className="bg-white rounded-lg shadow-xl w-full max-w-6xl max-h-[90vh] overflow-hidden">
+            {/* Modal Header */}
+            <div className="flex items-center justify-between p-6 border-b border-gray-200">
+              <h2 className="text-2xl font-bold text-gray-900">Categories for you</h2>
+              <button
+                onClick={closeModal}
+                className="text-gray-400 hover:text-gray-600 text-2xl font-bold"
+              >
+                ×
+              </button>
+            </div>
 
-        {/* Two Banners - Bottom */}
-        <div className="grid grid-cols-2 gap-2 sm:gap-4 lg:gap-6">
-          <div>
-            <AdvertisingBanner variant="large" />
-          </div>
-          <div>
-            <AdvertisingBanner variant="large" />
+            {/* Modal Content - Two Panel Layout */}
+            <div className="flex h-[calc(90vh-120px)]">
+              {/* Left Sidebar - Subcategories List */}
+              <div className="w-64 border-r border-gray-200 p-4 overflow-y-auto">
+                <div className="space-y-2">
+                  {categories.find(cat => cat.id === selectedCategory)?.subcategories?.map((sub, index) => (
+                    <Link href="/waiting-list?action=true" key={index}>
+                      <div className="flex items-center justify-between p-3 hover:bg-gray-50 rounded-lg cursor-pointer group">
+                        <span className="text-sm font-medium text-gray-700 group-hover:text-green-600">
+                          {sub}
+                        </span>
+                        <ChevronRight className="w-4 h-4 text-gray-400 group-hover:text-green-600" />
+                      </div>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+
+              {/* Right Side - Product Images Grid */}
+              <div className="flex-1 p-6 overflow-y-auto">
+                <div className="grid grid-cols-6 gap-6">
+                  {categories.find(cat => cat.id === selectedCategory)?.subcategories?.map((sub, index) => (
+                    <Link href="/waiting-list?action=true" key={index}>
+                      <div className="group cursor-pointer">
+                        <div className="bg-white rounded-lg border border-gray-200 hover:border-green-300 hover:shadow-md transition-all duration-200 p-4 h-40 flex flex-col">
+                          <div className="flex-1 flex items-center justify-center mb-2">
+                            <img 
+                              src={`https://res.cloudinary.com/dqbbm0guw/image/upload/v1753604888/traditional-african-souvenir-and-craft-items-for-sale-at-flee-market-MT842D_u2lngt.jpg`}
+                              alt={sub}
+                              className="w-20 h-20 rounded-lg object-cover"
+                            />
+                          </div>
+                          <span className="text-xs font-medium text-gray-700 group-hover:text-green-600 text-center leading-tight">
+                            {sub}
+                          </span>
+                        </div>
+                      </div>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
+      )}
     </div>
   )
 } 

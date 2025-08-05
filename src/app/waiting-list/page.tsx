@@ -25,7 +25,7 @@ export default function WaitingListPage() {
             </h1>
             
             <p className="text-sm sm:text-base lg:text-xl text-gray-600 mb-6 sm:mb-8 max-w-xl mx-auto">
-              Be among the first to access Africa's most innovative B2B marketplace. 
+              Be among the first to access Africa&apos;s most innovative B2B marketplace. 
               Join our waiting list to get early access and exclusive benefits.
             </p>
             

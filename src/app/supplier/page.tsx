@@ -24,13 +24,13 @@ import AdvertisingBanner from '@/components/marketplace/AdvertisingBanner'
 // Hero Banner Component
 const SupplierHeroBanner = () => (
   <div className="py-16 bg-white">
-    <div className="container mx-auto px-4">
+    <div className="w-full px-10">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
         {/* Left Side - Content */}
         <div>
           <div className="inline-flex items-center space-x-2 bg-gray-100 rounded-full px-3 sm:px-4 py-1.5 sm:py-2 mb-4 sm:mb-6">
             <div className="w-2 h-2 rounded-full" style={{backgroundColor: 'rgba(46, 125, 50, 1)'}}></div>
-            <span className="text-sm font-medium text-gray-700">Africa's Leading B2B Platform</span>
+            <span className="text-sm font-medium text-gray-700">Africa&apos;s Leading B2B Platform</span>
           </div>
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6 leading-tight text-gray-900">
             Scale Your Business
@@ -128,11 +128,11 @@ const SupplierHeroBanner = () => (
 const StatsSection = () => {
   return (
     <div className="py-8 bg-gray-100">
-      <div className="container mx-auto px-4">
+      <div className="w-full px-4 sm:px-6 lg:px-10">
         {/* Very Small Stats Content */}
         <div className="mb-6">
           <h2 className="text-sm font-medium text-center text-gray-700 mb-3">
-            Join Africa's Fastest Growing B2B Marketplace
+            Join Africa&apos;s Fastest Growing B2B Marketplace
           </h2>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
             <div className="text-center">
@@ -190,7 +190,7 @@ const TopSuppliersShowcase = () => {
       name: "Botswana Diamond Corporation",
       country: "Botswana",
       category: "Mining & Precious Stones",
-      description: "Africa's premier diamond supplier with direct mining operations and international certification. Serving luxury brands and jewelry manufacturers across 25 countries with ethically sourced diamonds.",
+      description: "Africa&apos;s premier diamond supplier with direct mining operations and international certification. Serving luxury brands and jewelry manufacturers across 25 countries with ethically sourced diamonds.",
       image: "https://res.cloudinary.com/dqbbm0guw/image/upload/v1753604888/traditional-african-souvenir-and-craft-items-for-sale-at-flee-market-MT842D_u2lngt.jpg",
       products: [
         { name: "Raw Diamonds", image: "https://res.cloudinary.com/dqbbm0guw/image/upload/v1753604888/traditional-african-souvenir-and-craft-items-for-sale-at-flee-market-MT842D_u2lngt.jpg" },
@@ -381,7 +381,7 @@ const TopSuppliersShowcase = () => {
   
   return (
     <div className="py-16 bg-white">
-      <div className="container mx-auto px-4">
+      <div className="w-full px-4 sm:px-6 lg:px-10">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
             Supplier Profiles
@@ -574,7 +574,7 @@ const BlogSection = () => {
 
   return (
     <div className="py-16 bg-gray-100">
-      <div className="container mx-auto px-4">
+      <div className="w-full px-4 sm:px-6 lg:px-10">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
             Supplier Success Resources
@@ -605,23 +605,9 @@ const BlogSection = () => {
                 <p className="text-gray-600 mb-4 line-clamp-3">
                   {post.excerpt}
                 </p>
-                <div className="flex items-center justify-between text-sm text-gray-500 mb-4">
-                  <div className="flex items-center space-x-4">
-                    <div className="flex items-center space-x-1">
-                      <Calendar className="w-4 h-4" />
-                      <span>{post.date}</span>
-                    </div>
-                    <div className="flex items-center space-x-1">
-                      <Eye className="w-4 h-4" />
-                      <span>{post.views}</span>
-                    </div>
-                  </div>
-                  <span className="text-gray-400">{post.readTime}</span>
-                </div>
-                <div className="flex items-center justify-between">
-                  <span className="text-sm font-medium text-gray-700">By {post.author}</span>
+                <div className="flex justify-end">
                   <Button variant="ghost" size="sm" className="text-green-600 hover:text-green-700 p-0">
-                    Read More <ArrowRight className="ml-1 w-4 h-4" />
+                    Read More <ArrowRight className="ml-1 w-3 h-3 sm:w-4 sm:h-4" />
                   </Button>
                 </div>
               </CardContent>
@@ -656,44 +642,89 @@ const BlogSection = () => {
 
 // Call to Action Section
 const CtaSection = () => (
-  <div className="py-16 bg-gradient-to-br from-green-50 to-emerald-50">
-          <div className="container mx-auto px-4 sm:px-6 text-center max-w-4xl">
-      <h2 className="text-3xl md:text-4xl font-bold mb-6" style={{color: 'rgba(46, 125, 50, 1)'}}>
-        Ready to Start Your Success Story?
-      </h2>
-      <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
-        Join thousands of successful suppliers who are already growing their business with Kalabah. 
-        Your journey to African market expansion starts here.
-      </p>
-      <div className="flex flex-col sm:flex-row gap-4 justify-center">
-        <Link href="/waiting-list?action=true">
-          <Button 
-            className="text-white px-8 py-4 rounded-xl font-bold hover:shadow-lg hover:scale-105 transition-all duration-300 text-lg"
-            style={{backgroundColor: 'rgba(245, 124, 0, 1)'}}
-          >
-            Start Selling Today
-            <ArrowRight className="ml-2 w-5 h-5" />
-          </Button>
-        </Link>
-                 <Button 
-           variant="outline" 
-           className="px-8 py-4 rounded-xl font-medium text-lg bg-white hover:bg-gray-50 transition-colors"
-           style={{
-             borderColor: 'rgba(46, 125, 50, 1)',
-             color: 'rgba(46, 125, 50, 1)'
-           }}
-         >
-          Schedule a Demo
-        </Button>
-      </div>
-      <div className="mt-8 text-gray-600 text-sm">
-        ✓ No setup fees ✓ Free for first 3 months ✓ 24/7 support included
+  <div className="py-20 bg-gradient-to-br from-gray-50 via-green-50 to-emerald-100 relative overflow-hidden">
+    {/* Background Pattern */}
+    <div className="absolute inset-0 opacity-10">
+      <div className="absolute inset-0" style={{
+        backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='4'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+        backgroundSize: '60px 60px'
+      }}></div>
+    </div>
+    
+    <div className="w-full px-10 text-center relative z-10">
+      <div className="max-w-4xl mx-auto">
+                 {/* Badge */}
+         <div className="inline-flex items-center space-x-2 bg-green-100 rounded-full px-4 py-2 mb-6">
+           <div className="w-2 h-2 rounded-full bg-green-600"></div>
+           <span className="text-green-800 font-medium text-sm">Join Africa&apos;s Premier B2B Platform</span>
+         </div>
+         
+         <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-gray-900 leading-tight">
+           Ready to Start Your
+           <span className="block" style={{color: 'rgba(245, 124, 0, 1)'}}>
+             Success Story?
+           </span>
+         </h2>
+         
+         <p className="text-xl md:text-2xl text-gray-700 mb-10 max-w-3xl mx-auto leading-relaxed">
+          Join thousands of successful suppliers who are already growing their business with Kalabah. 
+          Your journey to African market expansion starts here.
+        </p>
+        
+                 {/* CTA Buttons */}
+         <div className="flex flex-col sm:flex-row gap-6 justify-center mb-12">
+           <Link href="/waiting-list?action=true">
+             <Button 
+               className="text-white px-10 py-5 rounded-2xl font-bold hover:shadow-2xl hover:scale-105 transition-all duration-300 text-lg"
+               style={{backgroundColor: 'rgba(245, 124, 0, 1)'}}
+             >
+               Start Selling Today
+               <ArrowRight className="ml-3 w-6 h-6" />
+             </Button>
+           </Link>
+           
+           <Button 
+             variant="outline" 
+             className="px-10 py-5 rounded-2xl font-bold text-lg bg-white hover:bg-gray-50 transition-all duration-300 border-2"
+             style={{
+               borderColor: 'rgba(46, 125, 50, 1)',
+               color: 'rgba(46, 125, 50, 1)'
+             }}
+           >
+             Schedule a Demo
+             <ArrowRight className="ml-3 w-6 h-6" />
+           </Button>
+         </div>
+         
+         {/* Benefits */}
+         <div className="bg-white rounded-2xl p-8 border border-gray-200 shadow-lg">
+           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+             <div className="flex items-center justify-center space-x-3">
+               <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
+                 <span className="text-green-600 font-bold text-sm">✓</span>
+               </div>
+               <span className="text-gray-800 font-semibold">No Setup Fees</span>
+             </div>
+             <div className="flex items-center justify-center space-x-3">
+               <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
+                 <span className="text-green-600 font-bold text-sm">✓</span>
+               </div>
+               <span className="text-gray-800 font-semibold">Free for 3 Months</span>
+             </div>
+             <div className="flex items-center justify-center space-x-3">
+               <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
+                 <span className="text-green-600 font-bold text-sm">✓</span>
+               </div>
+               <span className="text-gray-800 font-semibold">24/7 Support</span>
+             </div>
+           </div>
+         </div>
       </div>
     </div>
   </div>
 )
 
-export default function SupplierLandingPage() {
+export default function SuppliersLandingPage() {
   return (
     <div className="min-h-screen bg-background">
       <Header />
@@ -703,7 +734,6 @@ export default function SupplierLandingPage() {
         <StatsSection />
         <TopSuppliersShowcase />
         <BlogSection />
-        <CtaSection />
         
         {/* Footer */}
         <footer 
@@ -726,7 +756,7 @@ export default function SupplierLandingPage() {
                 <div className="space-y-2 text-sm text-gray-300">
                   <a href="/about" className="block hover:text-white transition-colors">About us</a>
                   <a href="/careers" className="block hover:text-white transition-colors">Careers</a>
-                  <a href="/blog" className="block hover:text-white transition-colors">Our Blog</a>
+                  <Link href="/blog" className="block hover:text-white transition-colors">Our Blog</Link>
                 </div>
               </div>
               

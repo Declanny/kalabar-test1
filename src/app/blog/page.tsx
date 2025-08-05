@@ -3,6 +3,7 @@
 import React, { useState } from 'react'
 import Link from 'next/link'
 import { Header } from "@/components/layout/header"
+import { Footer } from "@/components/layout/Footer"
 import { Card, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -166,7 +167,7 @@ export default function BlogPage() {
             <div className="mb-8">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 sm:gap-6 mb-6">
                 <div>
-                  <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">Blog</h1>
+                  <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">The Kalabah Chronicles</h1>
                 </div>
                 
                 {/* Search Bar */}
@@ -321,7 +322,7 @@ export default function BlogPage() {
           <div className="container mx-auto px-4">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 sm:gap-6 mb-6">
               <div>
-                <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">Blog</h1>
+                <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">The Kalabah Chronicles</h1>
               </div>
               
               {/* Search Bar */}
@@ -399,27 +400,13 @@ export default function BlogPage() {
                       <p className="text-gray-600 mb-4 line-clamp-3">
                         {post.excerpt}
                       </p>
-                      <div className="flex items-center justify-between text-sm text-gray-500 mb-4">
-                        <div className="flex items-center space-x-4">
-                          <div className="flex items-center space-x-1">
-                            <Calendar className="w-4 h-4" />
-                            <span>{post.date}</span>
-                          </div>
-                          <div className="flex items-center space-x-1">
-                            <Eye className="w-4 h-4" />
-                            <span>{post.views}</span>
-                          </div>
-                        </div>
-                        <span className="text-gray-400">{post.readTime}</span>
-                      </div>
-                      <div className="flex items-center justify-between">
-                        <span className="text-sm font-medium text-gray-700">By {post.author}</span>
-                        <Link href={`/blog/${post.slug}`}>
-                          <Button variant="ghost" size="sm" className="text-green-600 hover:text-green-700 p-0">
-                            Read More <ArrowRight className="ml-1 w-4 h-4" />
-                          </Button>
-                        </Link>
-                      </div>
+                                      <div className="flex justify-end">
+                  <Link href={`/blog/${post.slug}`}>
+                    <Button variant="ghost" size="sm" className="text-green-600 hover:text-green-700 p-0">
+                      Read More <ArrowRight className="ml-1 w-4 h-4" />
+                    </Button>
+                  </Link>
+                </div>
                     </CardContent>
                   </Card>
                 ))}
@@ -478,22 +465,7 @@ export default function BlogPage() {
       </div>
 
       {/* Footer */}
-      <footer
-        className="py-8 text-white relative overflow-hidden"
-        style={{
-          backgroundImage: 'url(https://res.cloudinary.com/dqbbm0guw/image/upload/v1753426506/b659b8647d2c02f56acdd7270043e4d7fc37edd6_ovckru.png)',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat'
-        }}
-      >
-        <div className="absolute inset-0 bg-black/70"></div>
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="text-center">
-            <p className="text-gray-300">&copy; 2024 Kalabah. All rights reserved.</p>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   )
 } 

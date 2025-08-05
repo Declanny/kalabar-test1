@@ -553,7 +553,7 @@ export function B2BProductGrid({
 }: B2BProductGridProps) {
   return (
     <div className="py-8 bg-white">
-      <div className="container mx-auto px-4">
+      <div className="w-full px-10">
         {showTitle && (
           <div className="mb-6">
             <h2 className="text-xl font-semibold text-gray-900 mb-2">

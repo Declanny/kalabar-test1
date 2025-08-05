@@ -4,6 +4,7 @@ import React from 'react'
 import Link from 'next/link'
 import { useParams } from 'next/navigation'
 import { Header } from "@/components/layout/header"
+import { Footer } from "@/components/layout/Footer"
 import { Card, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Calendar, Eye, ArrowLeft, Share2, BookmarkPlus, User, ArrowRight } from 'lucide-react'
@@ -338,22 +339,7 @@ export default function BlogDetailPage() {
       </div>
 
       {/* Footer */}
-      <footer
-        className="py-8 text-white relative overflow-hidden"
-        style={{
-          backgroundImage: 'url(https://res.cloudinary.com/dqbbm0guw/image/upload/v1753426506/b659b8647d2c02f56acdd7270043e4d7fc37edd6_ovckru.png)',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat'
-        }}
-      >
-        <div className="absolute inset-0 bg-black/70"></div>
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="text-center">
-            <p className="text-gray-300">&copy; 2024 Kalabah. All rights reserved.</p>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   )
 } 

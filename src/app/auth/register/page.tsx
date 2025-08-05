@@ -125,7 +125,7 @@ export default function RegisterPage() {
                   <Store className="h-6 w-6 text-green-600" />
                 </div>
                 <div className="flex-1">
-                  <h3 className="font-semibold text-gray-900 mb-1">I'm a Supplier</h3>
+                  <h3 className="font-semibold text-gray-900 mb-1">I&apos;m a Supplier</h3>
                   <p className="text-sm text-gray-600 mb-2">
                     Sell products, export goods, and connect with buyers across Africa
                   </p>
@@ -146,7 +146,7 @@ export default function RegisterPage() {
                   <ShoppingCart className="h-6 w-6 text-blue-600" />
         </div>
                 <div className="flex-1">
-                  <h3 className="font-semibold text-gray-900 mb-1">I'm a Buyer</h3>
+                  <h3 className="font-semibold text-gray-900 mb-1">I&apos;m a Buyer</h3>
                   <p className="text-sm text-gray-600 mb-2">
                     Source products, find suppliers, and manage procurement
                   </p>
@@ -199,7 +199,7 @@ export default function RegisterPage() {
 
           <h1 className="text-3xl font-bold text-gray-900 mb-2">Create your account</h1>
           <p className="text-gray-600">
-            {userType === "supplier" ? "Start selling on Africa's leading marketplace" : "Start sourcing from verified suppliers"}
+            {userType === "supplier" ? "Start selling on Africa&apos;s leading marketplace" : "Start sourcing from verified suppliers"}
           </p>
         </div>
 

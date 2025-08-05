@@ -27,7 +27,7 @@ interface RecentSearchesProps {
 export function RecentSearches({ onSearchClick }: RecentSearchesProps) {
   return (
     <div className="bg-gray-50 border-b border-gray-200 py-2 sm:py-3 lg:py-4">
-      <div className="container mx-auto px-4">
+      <div className="w-full px-10">
         {/* Mobile: Stacked layout with header on top */}
         <div className="block sm:hidden">
           <h3 className="text-sm font-medium text-gray-700 mb-2">
