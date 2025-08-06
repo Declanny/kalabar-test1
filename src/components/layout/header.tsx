@@ -94,9 +94,11 @@ export const Header = () => {
               {/* CTA Buttons - Responsive */}
               <div className="flex items-center space-x-2 sm:space-x-3">
                 {/* Join Wait List button - full text on all screens */}
-                <button className="bg-orange-500 text-white px-3 sm:px-4 lg:px-6 py-2.5 sm:py-3 rounded-lg hover:bg-orange-600 transition-colors font-bold text-xs sm:text-sm lg:text-base">
-                  Join Wait List
-                </button>
+                <Link href="/waiting-list">
+                  <button className="bg-orange-500 text-white px-3 sm:px-4 lg:px-6 py-2.5 sm:py-3 rounded-lg hover:bg-orange-600 transition-colors font-bold text-xs sm:text-sm lg:text-base">
+                    Join Wait List
+                  </button>
+                </Link>
                 
                 {/* Desktop: Show Supplier Feature button */}
                 <Link href="/supplier" className="hidden lg:block">
@@ -229,9 +231,11 @@ export const Header = () => {
               {/* CTA Buttons - Responsive */}
               <div className="flex items-center space-x-2 sm:space-x-3">
                 {/* Join Wait List button - full text on all screens */}
-                <button className="bg-orange-500 text-white px-3 sm:px-4 lg:px-6 py-2.5 sm:py-3 rounded-lg hover:bg-orange-600 transition-colors font-bold text-xs sm:text-sm lg:text-base">
-                  Join Wait List
-                </button>
+                <Link href="/waiting-list">
+                  <button className="bg-orange-500 text-white px-3 sm:px-4 lg:px-6 py-2.5 sm:py-3 rounded-lg hover:bg-orange-600 transition-colors font-bold text-xs sm:text-sm lg:text-base">
+                    Join Wait List
+                  </button>
+                </Link>
                 
                 {/* Desktop: Show Supplier Feature button */}
                 <Link href="/supplier" className="hidden lg:block">

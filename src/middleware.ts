@@ -4,33 +4,33 @@ import type { NextRequest } from 'next/server'
 export function middleware(request: NextRequest) {
   const path = request.nextUrl.pathname
 
-  // Only these paths are allowed to be viewed
+  // Define allowed paths
   const ALLOWED_PATHS = [
-    '/',                // Main landing page
-    '/supplier',        // Supplier landing page
-    '/blog',           // Blog listing
-    '/waiting-list',   // Waiting list page itself
-    '/_next',          // Next.js assets
-    '/api',            // API routes
-    '/public'          // Public assets
+    '/',
+    '/supplier',
+    '/about',
+    '/contact',
+    '/blog',
+    '/waiting-list'
   ]
+
+  // Allow Next.js internal paths
+  if (path.startsWith('/_next') || path.startsWith('/api') || path.startsWith('/public')) {
+    return NextResponse.next()
+  }
 
   // Allow blog detail pages
   if (path.startsWith('/blog/')) {
     return NextResponse.next()
   }
 
-  // Check if the current path is allowed
-  const isAllowedPath = ALLOWED_PATHS.some(allowedPath => 
-    path === allowedPath || path.startsWith(allowedPath)
-  )
-
-  // If it's not an allowed path, redirect to waiting list
-  if (!isAllowedPath) {
-    return NextResponse.redirect(new URL('/waiting-list', request.url))
+  // Check if path is exactly in allowed paths
+  if (ALLOWED_PATHS.includes(path)) {
+    return NextResponse.next()
   }
 
-  return NextResponse.next()
+  // Redirect everything else to waiting list
+  return NextResponse.redirect(new URL('/waiting-list', request.url))
 }
 
 // Configure which paths the middleware should run on

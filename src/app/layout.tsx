@@ -18,7 +18,7 @@ export default function RootLayout({
 
   useEffect(() => {
     // Paths that are allowed to be viewed
-    const allowedPaths = ['/', '/supplier', '/blog', '/waiting-list', '/contact']
+    const allowedPaths = ['/', '/supplier', '/about', '/blog', '/waiting-list', '/contact']
 
     // Check if current path is allowed
     const isAllowedPath = allowedPaths.some(path => pathname === path) || 
