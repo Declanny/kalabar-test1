@@ -11,6 +11,18 @@ const nextConfig: NextConfig = {
     // your project has TypeScript errors.
     ignoreBuildErrors: true,
   },
+  // Suppress hydration warnings caused by browser extensions
+  reactStrictMode: false,
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'res.cloudinary.com',
+        port: '',
+        pathname: '/dqbbm0guw/image/upload/**',
+      },
+    ],
+  },
 };
 
 export default nextConfig;

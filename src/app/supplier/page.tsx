@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react'
 import { Header } from '@/components/layout/header'
+import { Footer } from '@/components/layout/Footer'
 import { 
   Star, 
   Users, 
@@ -23,8 +24,8 @@ import AdvertisingBanner from '@/components/marketplace/AdvertisingBanner'
 
 // Hero Banner Component
 const SupplierHeroBanner = () => (
-  <div className="py-16 bg-white">
-    <div className="w-full px-10">
+  <div className="pt-8 pb-8 sm:pt-12 sm:pb-12 lg:pt-16 lg:pb-16 bg-white">
+    <div className="w-full px-4 sm:px-6 lg:px-10">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
         {/* Left Side - Content */}
         <div>
@@ -33,36 +34,20 @@ const SupplierHeroBanner = () => (
             <span className="text-sm font-medium text-gray-700">Africa&apos;s Leading B2B Platform</span>
           </div>
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6 leading-tight text-gray-900">
-            Scale Your Business
+            Scale Your African Business.
             <span className="block" style={{color: 'rgba(245, 124, 0, 1)'}}>
-              Across 54 Countries
+              Reach Buyers Worldwide.
             </span>
           </h1>
           <p className="text-lg sm:text-xl text-gray-600 mb-6 sm:mb-8 leading-relaxed">
-            Connect with verified buyers across Africa through our professional B2B marketplace. 
-            Join 50,000+ established suppliers who have expanded their reach and increased revenue by up to 300%.
+            Join thousands of verified suppliers already expanding their reach through Kalabah&apos;s secure B2B marketplace. Sell to buyers across 54 countries, access secure payments, and simplify your exports.
           </p>
           
-          {/* Key Benefits */}
-          <div className="space-y-4 mb-8">
-            <div className="flex items-center space-x-3">
-              <div className="w-5 h-5 rounded-full flex items-center justify-center" style={{backgroundColor: 'rgba(46, 125, 50, 1)'}}>
-                <CheckCircle className="w-3 h-3 text-white" />
-              </div>
-              <span className="text-gray-700 font-medium">Access to 2M+ verified buyers</span>
-            </div>
-            <div className="flex items-center space-x-3">
-              <div className="w-5 h-5 rounded-full flex items-center justify-center" style={{backgroundColor: 'rgba(46, 125, 50, 1)'}}>
-                <CheckCircle className="w-3 h-3 text-white" />
-              </div>
-              <span className="text-gray-700 font-medium">Secure payment & escrow protection</span>
-            </div>
-            <div className="flex items-center space-x-3">
-              <div className="w-5 h-5 rounded-full flex items-center justify-center" style={{backgroundColor: 'rgba(46, 125, 50, 1)'}}>
-                <CheckCircle className="w-3 h-3 text-white" />
-              </div>
-              <span className="text-gray-700 font-medium">Professional trade documentation support</span>
-            </div>
+          {/* Urgency Message */}
+          <div className="bg-gradient-to-r from-orange-50 to-amber-50 border border-orange-200 rounded-lg p-4 mb-8">
+            <p className="text-orange-800 font-semibold text-center">
+              Start today and get listed in front of verified buyers before launch. Early suppliers get priority access.
+            </p>
           </div>
 
           <div className="flex flex-col sm:flex-row gap-4">
@@ -84,37 +69,76 @@ const SupplierHeroBanner = () => (
                   color: 'rgba(46, 125, 50, 1)'
                 }}
               >
-                Register as Buyer
+                Browse Buyer Interests
               </Button>
             </Link>
           </div>
         </div>
 
-        {/* Right Side - Video Section */}
+        {/* Right Side - Trust Signals & Platform Preview */}
         <div className="relative">
-          <div className="bg-gray-900 rounded-2xl overflow-hidden shadow-2xl">
-            <div className="relative aspect-video bg-black flex items-center justify-center">
-              <img 
-                src="https://res.cloudinary.com/dqbbm0guw/image/upload/v1753604887/images_1_ocivfd.jpg"
-                alt="Supplier Success Stories"
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
-                <button className="w-16 h-16 sm:w-20 sm:h-20 bg-white rounded-full flex items-center justify-center hover:scale-110 transition-transform duration-300 shadow-lg">
-                  <div className="w-0 h-0 border-l-[20px] border-l-gray-900 border-t-[12px] border-t-transparent border-b-[12px] border-b-transparent ml-1"></div>
-                </button>
+          <div className="bg-gradient-to-br from-gray-50 to-white rounded-2xl p-8 shadow-xl border border-gray-100">
+            {/* Platform Preview */}
+            <div className="mb-8">
+              <h3 className="text-xl font-bold text-gray-900 mb-4 text-center">
+                Platform Preview
+              </h3>
+              <div className="bg-white rounded-xl p-4 border border-gray-200 shadow-sm">
+                <div className="flex items-center space-x-3 mb-3">
+                  <div className="w-10 h-10 bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center">
+                    <Globe className="w-5 h-5 text-white" />
+                  </div>
+                  <div>
+                    <div className="font-semibold text-gray-900">Kalabah Marketplace</div>
+                    <div className="text-sm text-gray-600">Coming Soon - 2025</div>
+                  </div>
+                </div>
+                <p className="text-sm text-gray-600 mb-4">
+                  Professional B2B platform connecting African suppliers with global buyers. Secure payments, verified partners, and simplified trade.
+                </p>
+                <div className="flex items-center justify-between text-xs text-gray-500">
+                  <span>Launch: Q1 2025</span>
+                  <span>Early Access</span>
+                </div>
               </div>
             </div>
-            <div className="p-6 bg-white">
-              <h3 className="text-xl font-bold text-gray-900 mb-2">
-                How West Africa Exports Scaled to $2M Revenue
-              </h3>
-              <p className="text-gray-600 text-sm mb-4">
-                Watch how our top-performing supplier expanded from local sales to serving buyers across 15 African countries.
-              </p>
-              <div className="flex items-center justify-between text-sm text-gray-500">
-                <span>Duration: 4:32 min</span>
-                <span>Case Study</span>
+
+            {/* Trust Badges */}
+            <div className="grid grid-cols-2 gap-4 mb-6">
+              <div className="flex items-center space-x-2">
+                <Shield className="w-5 h-5" style={{color: 'rgba(46, 125, 50, 1)'}} />
+                <span className="text-sm font-medium text-gray-700">Secure Payments</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <CheckCircle className="w-5 h-5" style={{color: 'rgba(46, 125, 50, 1)'}} />
+                <span className="text-sm font-medium text-gray-700">Verified Partners</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <Globe className="w-5 h-5" style={{color: 'rgba(46, 125, 50, 1)'}} />
+                <span className="text-sm font-medium text-gray-700">54 Countries</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <TrendingUp className="w-5 h-5" style={{color: 'rgba(46, 125, 50, 1)'}} />
+                <span className="text-sm font-medium text-gray-700">Growth Tools</span>
+              </div>
+            </div>
+
+            {/* Early Access CTA */}
+            <div className="bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl p-4 border border-green-200">
+              <div className="text-center">
+                <h4 className="font-semibold text-gray-900 mb-2">Be Among the First</h4>
+                <p className="text-sm text-gray-600 mb-3">
+                  Join our waitlist for early access and exclusive benefits
+                </p>
+                <Link href="/waiting-list?action=true">
+                  <Button 
+                    className="text-white px-4 py-2 rounded-lg font-medium text-sm"
+                    style={{backgroundColor: 'rgba(46, 125, 50, 1)'}}
+                  >
+                    Join Waitlist
+                    <ArrowRight className="ml-2 w-4 h-4" />
+                  </Button>
+                </Link>
               </div>
             </div>
           </div>
@@ -124,36 +148,81 @@ const SupplierHeroBanner = () => (
   </div>
 )
 
-// Stats Section with Banner - Very Small Stats
+// Features Grid Section
+const FeaturesGrid = () => {
+  const features = [
+    {
+      icon: <Users className="w-8 h-8 text-white" />,
+      title: "Verified Buyer Access",
+      description: "Connect with high-volume, serious buyers across Africa and beyond."
+    },
+    {
+      icon: <Shield className="w-8 h-8 text-white" />,
+      title: "Secure Payments",
+      description: "Escrow protection and automated invoice tracking."
+    },
+    {
+      icon: <Globe className="w-8 h-8 text-white" />,
+      title: "Simplified Exports",
+      description: "Assistance with documentation, customs, and delivery."
+    },
+    {
+      icon: <TrendingUp className="w-8 h-8 text-white" />,
+      title: "Professional Tools",
+      description: "Insights, messaging, and pricing tools."
+    }
+  ]
+
+  return (
+    <div className="py-12 sm:py-16 lg:py-20 bg-gray-50">
+      <div className="w-full px-4 sm:px-6 lg:px-10">
+        <div className="text-center mb-12">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            Everything You Need to Scale Your Business
+          </h2>
+          <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
+            Join our comprehensive B2B platform designed specifically for African suppliers
+          </p>
+        </div>
+        
+        {/* B2B Banner */}
+        <div className="mb-12">
+          <AdvertisingBanner />
+        </div>
+        
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+          {features.map((feature, index) => (
+            <div key={index} className="bg-white rounded-xl p-6 shadow-lg border border-gray-200 hover:shadow-xl transition-all duration-300">
+              <div className="w-12 h-12 rounded-lg flex items-center justify-center mb-4" style={{backgroundColor: 'rgba(46, 125, 50, 1)'}}>
+                {feature.icon}
+              </div>
+              <h3 className="text-lg font-bold text-gray-900 mb-3">{feature.title}</h3>
+              <p className="text-gray-600 leading-relaxed">{feature.description}</p>
+            </div>
+          ))}
+        </div>
+        
+        <div className="text-center mt-12">
+          <Link href="/waiting-list?action=true">
+            <Button 
+              className="text-white px-8 py-4 rounded-lg font-bold hover:shadow-lg transition-all duration-300 text-lg"
+              style={{backgroundColor: 'rgba(245, 124, 0, 1)'}}
+            >
+              Register as Supplier
+              <ArrowRight className="ml-2 w-5 h-5" />
+            </Button>
+          </Link>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+// Stats Section with Banner - Banner Only
 const StatsSection = () => {
   return (
-    <div className="py-8 bg-gray-100">
+    <div className="py-8">
       <div className="w-full px-4 sm:px-6 lg:px-10">
-        {/* Very Small Stats Content */}
-        <div className="mb-6">
-          <h2 className="text-sm font-medium text-center text-gray-700 mb-3">
-            Join Africa&apos;s Fastest Growing B2B Marketplace
-          </h2>
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
-            <div className="text-center">
-              <div className="text-lg font-bold mb-1" style={{color: 'rgba(46, 125, 50, 1)'}}>50K+</div>
-              <div className="text-gray-600 text-xs">Active Suppliers</div>
-            </div>
-            <div className="text-center">
-              <div className="text-lg font-bold mb-1" style={{color: 'rgba(245, 124, 0, 1)'}}>2M+</div>
-              <div className="text-gray-600 text-xs">Monthly Buyers</div>
-            </div>
-            <div className="text-center">
-              <div className="text-lg font-bold mb-1" style={{color: 'rgba(46, 125, 50, 1)'}}>54</div>
-              <div className="text-gray-600 text-xs">African Countries</div>
-            </div>
-            <div className="text-center">
-              <div className="text-lg font-bold mb-1" style={{color: 'rgba(245, 124, 0, 1)'}}>$2B+</div>
-              <div className="text-gray-600 text-xs">Trade Volume</div>
-            </div>
-          </div>
-        </div>
-
         {/* B2B Banner */}
         <AdvertisingBanner />
       </div>
@@ -162,6 +231,61 @@ const StatsSection = () => {
 }
 
 
+
+// Video Section (Full-width, after supplier profiles)
+const VideoSection = () => (
+  <div className="py-8 sm:py-12 lg:py-16 bg-white">
+    <div className="w-full px-4 sm:px-6 lg:px-10">
+      <div className="text-center mb-6">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+          See how African suppliers are already winning with Kalabah
+        </h2>
+        <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+          Watch real success stories from suppliers who have transformed their businesses through our platform and discover how you can achieve similar growth.
+        </p>
+      </div>
+      
+      <div className="relative">
+        <div className="relative aspect-video bg-black rounded-2xl overflow-hidden shadow-2xl">
+          <img 
+            src="https://res.cloudinary.com/dqbbm0guw/image/upload/v1753604887/images_1_ocivfd.jpg"
+            alt="Supplier Success Stories"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
+            <button className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 bg-white rounded-full flex items-center justify-center hover:scale-110 transition-transform duration-300 shadow-2xl">
+              <div className="w-0 h-0 border-l-[20px] sm:border-l-[24px] lg:border-l-[28px] border-l-gray-900 border-t-[12px] sm:border-t-[14px] lg:border-t-[16px] border-t-transparent border-b-[12px] sm:border-b-[14px] lg:border-b-[16px] border-b-transparent ml-1"></div>
+            </button>
+          </div>
+          
+          {/* Video Overlay Info - Hidden on mobile, shown on larger screens */}
+          <div className="hidden sm:block absolute bottom-8 left-8 right-8 text-white">
+            <div className="bg-black/70 backdrop-blur-sm rounded-xl p-6">
+              <h3 className="text-2xl font-bold mb-2">
+                How West Africa Exports Scaled to $2M Revenue
+              </h3>
+              <p className="text-gray-200">
+                Watch how our top-performing supplier expanded from local sales to serving buyers across 15 African countries.
+              </p>
+            </div>
+          </div>
+        </div>
+        
+        {/* Video Info - Shown below video on mobile */}
+        <div className="sm:hidden mt-4">
+          <div className="bg-white rounded-xl p-4 shadow-lg border border-gray-200">
+            <h3 className="text-lg font-bold text-gray-900 mb-2">
+              How West Africa Exports Scaled to $2M Revenue
+            </h3>
+            <p className="text-gray-600 text-sm">
+              Watch how our top-performing supplier expanded from local sales to serving buyers across 15 African countries.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+)
 
 // Top Suppliers Showcase
 const TopSuppliersShowcase = () => {
@@ -380,13 +504,13 @@ const TopSuppliersShowcase = () => {
   ]
   
   return (
-    <div className="py-16 bg-white">
+    <div className="py-8 sm:py-12 lg:py-16 bg-white">
       <div className="w-full px-4 sm:px-6 lg:px-10">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4">
             Supplier Profiles
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
             Explore detailed profiles of our verified suppliers and their premium products across African markets
           </p>
         </div>
@@ -573,13 +697,13 @@ const BlogSection = () => {
   ]
 
   return (
-    <div className="py-16 bg-gray-100">
+    <div className="py-8 sm:py-12 lg:py-16 bg-gray-100">
       <div className="w-full px-4 sm:px-6 lg:px-10">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4">
             Supplier Success Resources
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
             Expert insights, tips, and strategies to help you succeed as a supplier on our platform
           </p>
         </div>
@@ -607,7 +731,7 @@ const BlogSection = () => {
                 </p>
                 <div className="flex justify-end">
                   <Button variant="ghost" size="sm" className="text-green-600 hover:text-green-700 p-0">
-                    Read More <ArrowRight className="ml-1 w-3 h-3 sm:w-4 sm:h-4" />
+                      Read More <ArrowRight className="ml-1 w-3 h-3 sm:w-4 sm:h-4" />
                   </Button>
                 </div>
               </CardContent>
@@ -642,7 +766,7 @@ const BlogSection = () => {
 
 // Call to Action Section
 const CtaSection = () => (
-  <div className="py-20 bg-gradient-to-br from-gray-50 via-green-50 to-emerald-100 relative overflow-hidden">
+  <div className="py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-gray-50 via-green-50 to-emerald-100 relative overflow-hidden">
     {/* Background Pattern */}
     <div className="absolute inset-0 opacity-10">
       <div className="absolute inset-0" style={{
@@ -651,7 +775,7 @@ const CtaSection = () => (
       }}></div>
     </div>
     
-    <div className="w-full px-10 text-center relative z-10">
+    <div className="w-full px-4 sm:px-6 lg:px-10 text-center relative z-10">
       <div className="max-w-4xl mx-auto">
                  {/* Badge */}
          <div className="inline-flex items-center space-x-2 bg-green-100 rounded-full px-4 py-2 mb-6">
@@ -659,42 +783,42 @@ const CtaSection = () => (
            <span className="text-green-800 font-medium text-sm">Join Africa&apos;s Premier B2B Platform</span>
          </div>
          
-         <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-gray-900 leading-tight">
+         <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-gray-900 leading-tight">
            Ready to Start Your
            <span className="block" style={{color: 'rgba(245, 124, 0, 1)'}}>
              Success Story?
            </span>
-         </h2>
+      </h2>
          
-         <p className="text-xl md:text-2xl text-gray-700 mb-10 max-w-3xl mx-auto leading-relaxed">
-          Join thousands of successful suppliers who are already growing their business with Kalabah. 
-          Your journey to African market expansion starts here.
-        </p>
+         <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-700 mb-10 max-w-3xl mx-auto leading-relaxed">
+        Join thousands of successful suppliers who are already growing their business with Kalabah. 
+        Your journey to African market expansion starts here.
+      </p>
         
                  {/* CTA Buttons */}
          <div className="flex flex-col sm:flex-row gap-6 justify-center mb-12">
-           <Link href="/waiting-list?action=true">
-             <Button 
+        <Link href="/waiting-list?action=true">
+          <Button 
                className="text-white px-10 py-5 rounded-2xl font-bold hover:shadow-2xl hover:scale-105 transition-all duration-300 text-lg"
-               style={{backgroundColor: 'rgba(245, 124, 0, 1)'}}
-             >
-               Start Selling Today
+            style={{backgroundColor: 'rgba(245, 124, 0, 1)'}}
+          >
+            Start Selling Today
                <ArrowRight className="ml-3 w-6 h-6" />
-             </Button>
-           </Link>
+          </Button>
+        </Link>
            
-           <Button 
-             variant="outline" 
+                 <Button 
+           variant="outline" 
              className="px-10 py-5 rounded-2xl font-bold text-lg bg-white hover:bg-gray-50 transition-all duration-300 border-2"
-             style={{
-               borderColor: 'rgba(46, 125, 50, 1)',
-               color: 'rgba(46, 125, 50, 1)'
-             }}
-           >
-             Schedule a Demo
+           style={{
+             borderColor: 'rgba(46, 125, 50, 1)',
+             color: 'rgba(46, 125, 50, 1)'
+           }}
+         >
+          Schedule a Demo
              <ArrowRight className="ml-3 w-6 h-6" />
-           </Button>
-         </div>
+        </Button>
+      </div>
          
          {/* Benefits */}
          <div className="bg-white rounded-2xl p-8 border border-gray-200 shadow-lg">
@@ -731,134 +855,14 @@ export default function SuppliersLandingPage() {
       
       <div className="bg-gray-50">
         <SupplierHeroBanner />
-        <StatsSection />
+        <FeaturesGrid />
+        <VideoSection />
         <TopSuppliersShowcase />
         <BlogSection />
+        <CtaSection />
         
         {/* Footer */}
-        <footer 
-          className="py-8 text-white relative overflow-hidden"
-          style={{
-            backgroundImage: 'url(https://res.cloudinary.com/dqbbm0guw/image/upload/v1753426506/b659b8647d2c02f56acdd7270043e4d7fc37edd6_ovckru.png)',
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            backgroundRepeat: 'no-repeat'
-          }}
-        >
-          {/* Semi-transparent overlay */}
-          <div className="absolute inset-0 bg-black/70"></div>
-          
-          {/* Content above overlay */}
-          <div className="container mx-auto px-4 relative z-10">
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6 mb-8">
-              <div>
-                <h3 className="font-semibold mb-3 text-white">Company</h3>
-                <div className="space-y-2 text-sm text-gray-300">
-                  <a href="/about" className="block hover:text-white transition-colors">About us</a>
-                  <a href="/careers" className="block hover:text-white transition-colors">Careers</a>
-                  <Link href="/blog" className="block hover:text-white transition-colors">Our Blog</Link>
-                </div>
-              </div>
-              
-              <div>
-                <h3 className="font-semibold mb-3 text-white">Customer Service</h3>
-                <div className="space-y-2 text-sm text-gray-300">
-                  <a href="/returns" className="block hover:text-white transition-colors">Return and refund policy</a>
-                  <a href="/shipping" className="block hover:text-white transition-colors">Shipping info</a>
-                  <a href="/reports" className="block hover:text-white transition-colors">Report suspicious activity</a>
-                  <a href="/why-kalabah" className="block hover:text-white transition-colors">Why Kalabah</a>
-                  <a href="/faq" className="block hover:text-white transition-colors">FAQ</a>
-                </div>
-              </div>
-              
-              <div>
-                <h3 className="font-semibold mb-3 text-white">Help</h3>
-                <div className="space-y-2 text-sm text-gray-300">
-                  <a href="/contact" className="block hover:text-white transition-colors">Contact us</a>
-                  <a href="/support" className="block hover:text-white transition-colors">Support center</a>
-                  <a href="/safety" className="block hover:text-white transition-colors">Safety center</a>
-                </div>
-              </div>
-              
-              <div>
-                <h3 className="font-semibold mb-3 text-white">Work with Kalabah</h3>
-                <div className="space-y-2 text-sm text-gray-300">
-                  <a href="/supplier" className="block hover:text-white transition-colors">Become a Supplier</a>
-                  <a href="/bulk" className="block hover:text-white transition-colors">Buy in Bulk</a>
-                  <a href="/partner" className="block hover:text-white transition-colors">Partner with Kalabah</a>
-                </div>
-              </div>
-              
-              <div>
-                <h3 className="font-semibold mb-3 text-white">Kalabah International</h3>
-                <div className="space-y-2 text-sm text-gray-300">
-                  <a href="/gh" className="block hover:text-white transition-colors">Ghana</a>
-                  <a href="/eg" className="block hover:text-white transition-colors">Egypt</a>
-                  <a href="/ke" className="block hover:text-white transition-colors">Kenya</a>
-                  <a href="/ug" className="block hover:text-white transition-colors">Uganda</a>
-                </div>
-              </div>
-            </div>
-            
-            {/* Newsletter Section */}
-            <div className="text-center mb-8">
-              <h3 className="text-lg font-semibold mb-4">Sign up to our Newsletter to get VIP updates</h3>
-              <div className="flex justify-center max-w-[280px] sm:max-w-md mx-auto">
-                <div className="flex w-full bg-white rounded-full overflow-hidden">
-                  <input
-                    type="email"
-                    placeholder="Enter Email Address"
-                    className="flex-1 px-4 py-2 text-gray-800 outline-none"
-                  />
-                  <button 
-                    className="px-6 py-2 text-white font-medium"
-                    style={{backgroundColor: 'rgba(245, 124, 0, 1)'}}
-                  >
-                    Sign Up
-                  </button>
-                </div>
-              </div>
-            </div>
-            
-            {/* Artistic Logo */}
-            <div className="text-center mb-8">
-              <div className="text-6xl font-bold text-gray-600 tracking-wider">
-                <span className="inline-block" style={{
-                  background: 'linear-gradient(45deg, #8B4513, #D2691E, #CD853F, #DEB887)',
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                  backgroundClip: 'text'
-                }}>
-                  kalabah
-                </span>
-              </div>
-            </div>
-            
-            {/* Bottom Section */}
-            <div className="flex flex-col md:flex-row items-center justify-between pt-6 border-t border-gray-700">
-              <div className="flex items-center space-x-4 mb-4 md:mb-0">
-                <span className="text-sm text-gray-400">Follow us on:</span>
-                <div className="flex space-x-3">
-                  <a href="#" className="w-6 h-6 bg-gray-700 rounded hover:bg-gray-600 transition-colors flex items-center justify-center">
-                    <span className="text-xs">f</span>
-                  </a>
-                  <a href="#" className="w-6 h-6 bg-gray-700 rounded hover:bg-gray-600 transition-colors flex items-center justify-center">
-                    <span className="text-xs">in</span>
-                  </a>
-                  <a href="#" className="w-6 h-6 bg-gray-700 rounded hover:bg-gray-600 transition-colors flex items-center justify-center">
-                    <span className="text-xs">ig</span>
-                  </a>
-                  <a href="#" className="w-6 h-6 bg-gray-700 rounded hover:bg-gray-600 transition-colors flex items-center justify-center">
-                    <span className="text-xs">x</span>
-                  </a>
-                </div>
-              </div>
-              <div className="text-sm text-gray-400">
-                Kalabah.com © 2025 All rights reserved
-              </div>
-            </div>
-          </div>
-        </footer>
+        <Footer />
       </div>
     </div>
   )

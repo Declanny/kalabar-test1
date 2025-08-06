@@ -8,6 +8,7 @@ import { CategorySection } from "@/components/marketplace/CategorySection"
 import { RecentSearches } from "@/components/marketplace/RecentSearches"
 import { TopSuppliersCarousel } from "@/components/marketplace/TopSuppliersCarousel"
 import { CategoryGrid } from "@/components/marketplace/CategoryGrid"
+import FAQSection from "@/components/marketplace/FAQSection"
 import { Card, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react'
@@ -164,15 +165,15 @@ export default function LandingPage() {
         <CategorySection onCategorySelect={handleCategorySelect} />
         
         {/* Best Offers Section - Full Width */}
-        <div className="py-4 sm:py-6 lg:py-8 bg-white">
+        <div className="py-4 sm:py-6 lg:py-8" style={{backgroundColor: 'rgba(255, 250, 245, 1)'}}>
           <div className="w-full px-4 sm:px-6 lg:px-10">
             <CategoryGrid 
               headerContent={
                 <>
-                  <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 mb-2">
+                  <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 mb-2 text-center">
                     Here&apos;s a sneak peek of deals coming to Kalabah.
                   </h2>
-                  <p className="text-gray-600 text-sm sm:text-base lg:text-lg">
+                  <p className="text-gray-600 text-sm sm:text-base lg:text-lg text-center">
                     We&apos;re onboarding trusted suppliers for the most in-demand goods.
                   </p>
                 </>
@@ -193,6 +194,9 @@ export default function LandingPage() {
         
         {/* Blog Section */}
         <BlogSection />
+        
+        {/* FAQ Section */}
+        <FAQSection />
         
         {/* Footer */}
         <Footer />
