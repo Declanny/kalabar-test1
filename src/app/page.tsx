@@ -4,7 +4,7 @@ import React from "react"
 import Link from "next/link"
 import { Header } from "@/components/layout/header"
 import { Footer } from "@/components/layout/Footer"
-import { CategorySection } from "@/components/marketplace/CategorySection"
+import { CategoryBannerLayout } from "@/components/marketplace/CategoryBannerLayout"
 import { RecentSearches } from "@/components/marketplace/RecentSearches"
 import { TopSuppliersCarousel } from "@/components/marketplace/TopSuppliersCarousel"
 import { CategoryGrid } from "@/components/marketplace/CategoryGrid"
@@ -73,7 +73,7 @@ const BlogSection = () => {
     <div className="py-8 sm:py-12 lg:py-16 bg-white">
       <div className="w-full px-4 sm:px-6 lg:px-10">
         <div className="text-center mb-8 sm:mb-12">
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-3 sm:mb-4">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-3 sm:mb-4">
             The Kalabah Chronicles
           </h2>
           <p className="text-base sm:text-lg lg:text-xl text-gray-600 max-w-3xl mx-auto px-4">
@@ -158,11 +158,11 @@ export default function LandingPage() {
     <div className="min-h-screen bg-background">
       <Header />
       
-      {/* Main Content - NO HERO BANNER */}
+      {/* Main Content */}
       <div className="bg-gray-50">
         
-        {/* Categories with Side Navigation (now contains Best Offers) */}
-        <CategorySection onCategorySelect={handleCategorySelect} />
+        {/* Category Banner Layout */}
+        <CategoryBannerLayout onCategorySelect={handleCategorySelect} />
         
         {/* Best Offers Section - Full Width */}
         <div className="py-4 sm:py-6 lg:py-8" style={{backgroundColor: 'rgba(255, 250, 245, 1)'}}>
@@ -170,9 +170,8 @@ export default function LandingPage() {
             <CategoryGrid 
               headerContent={
                 <>
-                  <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 mb-2 text-center">
-                    Here&apos;s a sneak peek of deals coming to Kalabah.
-                  </h2>
+                  <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-2 text-center">
+                     Offers Coming Soon From Kalabah                  </h2>
                   <p className="text-gray-600 text-sm sm:text-base lg:text-lg text-center">
                     We&apos;re onboarding trusted suppliers for the most in-demand goods.
                   </p>
@@ -183,8 +182,7 @@ export default function LandingPage() {
           </div>
         </div>
         
-        {/* Recently Searched Section */}
-        <RecentSearches onSearchClick={handleSearchClick} />
+
         
         {/* Top Categories (back to original position) */}
         <TopSuppliersCarousel />

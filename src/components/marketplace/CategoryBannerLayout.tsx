@@ -1,13 +1,9 @@
 'use client'
 
 import React, { useState } from 'react'
-import { ChevronRight, ChevronDown, ChevronLeft, Grid, Home, Dumbbell, Sparkles, Factory, Building2, Shirt, Headphones, Gem, Footprints, Briefcase, Apple, Package, Heart, Sofa, Printer, Leaf, Car, Droplets, Utensils, BookOpen, Coffee, Baby, Zap } from 'lucide-react'
-import { Card, CardContent } from '@/components/ui/card'
-
-import { CategoryGrid } from './CategoryGrid'
-import { Button } from '@/components/ui/button'
-import AdvertisingBanner from './AdvertisingBanner'
+import { ChevronRight, Grid, Apple, Building2, Shirt, Sparkles, Heart, Headphones, Sofa, Printer, Leaf, Package } from 'lucide-react'
 import Link from 'next/link'
+import AdvertisingBanner from './AdvertisingBanner'
 
 interface Category {
   id: string
@@ -87,59 +83,21 @@ const categories: Category[] = [
     icon: <Leaf className="w-5 h-5" />,
     productCount: 12458,
     subcategories: ['Fertilizers & Soil Nutrients', 'Pesticides & Herbicides', 'Seeds & Seedlings', 'Animal Feed', 'Agricultural Tools']
+  },
+  {
+    id: 'automotive-parts',
+    name: 'Automotive & Parts',
+    icon: <Package className="w-5 h-5" />,
+    productCount: 9876,
+    subcategories: ['Car Parts', 'Motorcycle Parts', 'Truck Parts', 'Auto Accessories', 'Maintenance Tools']
   }
 ]
 
-const featuredCategories = [
-  {
-    id: 'agriculture-featured',
-    name: 'Agricultural Products',
-    image: 'https://res.cloudinary.com/dqbbm0guw/image/upload/v1753604887/images_1_ocivfd.jpg',
-    productCount: 2340,
-    bgColor: 'bg-green-50'
-  },
-  {
-    id: 'textiles-featured',
-    name: 'Traditional Textiles',
-    image: 'https://res.cloudinary.com/dqbbm0guw/image/upload/v1753605557/H92a4e6ba6bdc45a18078ef8db4de4eecG_ppdwad.avif',
-    productCount: 1850,
-    bgColor: 'bg-purple-50'
-  },
-  {
-    id: 'herbs-featured',
-    name: 'Herbal Products',
-    image: 'https://res.cloudinary.com/dqbbm0guw/image/upload/v1753605535/Moring-Oleifera-Moring-Seeds-Raw-Herbs-Wholesale-Plant-Extract-at-Best-Price-Available-for-Sale.jpg_300x300_cwuw8u.avif',
-    productCount: 1230,
-    bgColor: 'bg-green-50'
-  },
-  {
-    id: 'spices-featured',
-    name: 'Premium Spices',
-    image: 'https://res.cloudinary.com/dqbbm0guw/image/upload/v1753605547/FREE-SAMPLE-Competitive-Price-Selected-Cloves-Spices-Herbs-Products-Clove-Raw-Material-Medicinal-Plant-Dry-Bud-Clove-Herb_mtplt8.avif',
-    productCount: 980,
-    bgColor: 'bg-orange-50'
-  },
-  {
-    id: 'crafts-featured',
-    name: 'African Crafts',
-    image: 'https://res.cloudinary.com/dqbbm0guw/image/upload/v1753604888/traditional-african-souvenir-and-craft-items-for-sale-at-flee-market-MT842D_u2lngt.jpg',
-    productCount: 650,
-    bgColor: 'bg-amber-50'
-  },
-  {
-    id: 'electronics-featured',
-    name: 'Electronics',
-    image: '💡',
-    productCount: 3420,
-    bgColor: 'bg-blue-50'
-  }
-]
-
-interface CategorySectionProps {
+interface CategoryBannerLayoutProps {
   onCategorySelect?: (categoryId: string) => void
 }
 
-export function CategorySection({ onCategorySelect }: CategorySectionProps) {
+export function CategoryBannerLayout({ onCategorySelect }: CategoryBannerLayoutProps) {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
   const [showModal, setShowModal] = useState(false)
 
@@ -154,12 +112,12 @@ export function CategorySection({ onCategorySelect }: CategorySectionProps) {
   }
 
   return (
-    <div className="w-full px-2 sm:px-6 lg:px-10">
+    <div className="w-full px-4 sm:px-6 lg:px-10">
       <div className="bg-gray-50 rounded-lg overflow-hidden">
-        <div className="flex flex-col lg:flex-row bg-gray-50 p-4">
-          {/* Left Sidebar - Hidden on mobile, 25% width on desktop */}
-          <div className="hidden lg:block w-full lg:w-[25%] bg-white border border-gray-200 rounded-lg" style={{height: 'fit-content'}}>
-            {/* All Categories Header */}
+        <div className="flex flex-col lg:flex-row bg-gray-50">
+          {/* Left Sidebar - Categories with four-sided closed table */}
+          <div className="hidden lg:block w-full lg:w-[25%] bg-white border border-gray-200 rounded-lg mt-4" style={{height: 'fit-content'}}>
+            {/* Header */}
             <div className="flex items-center p-4 border-b border-gray-200 h-16">
               <div className="flex items-center gap-3">
                 <Grid className="w-5 h-5 text-gray-600" />
@@ -167,7 +125,7 @@ export function CategorySection({ onCategorySelect }: CategorySectionProps) {
               </div>
             </div>
 
-            {/* Categories List - Natural height based on content */}
+            {/* Categories List */}
             <div className="py-2">
               {categories.map((category, index) => (
                 <div
@@ -189,7 +147,7 @@ export function CategorySection({ onCategorySelect }: CategorySectionProps) {
                 </div>
               ))}
               
-              {/* View All with proper spacing */}
+              {/* View All Button */}
               <div className="py-4">
                 <button className="w-full flex items-center justify-center text-sm text-gray-500 hover:text-green-600 transition-colors font-medium">
                   View all
@@ -198,15 +156,15 @@ export function CategorySection({ onCategorySelect }: CategorySectionProps) {
             </div>
           </div>
 
-          {/* Right Content Area - Full width on mobile, 75% on desktop */}
-          <div className="w-full lg:w-[75%] lg:pl-4">
-            {/* Main Banner - Top section */}
-            <div className="p-3 sm:p-6 pb-2 sm:pb-4 pt-0">
+          {/* Right Content - Banners */}
+          <div className="w-full lg:w-[75%] lg:pl-4 mt-4">
+            {/* Top Banner */}
+            <div className="pb-2 sm:pb-4 pt-0">
               <AdvertisingBanner variant="default" />
             </div>
 
-            {/* Two Banners - Bottom section */}
-            <div className="p-3 sm:p-6 pt-1 sm:pt-2">
+            {/* Bottom Banners */}
+            <div className="pt-1 sm:pt-2 pb-3 sm:pb-6">
               <div className="grid grid-cols-2 gap-4 sm:gap-6">
                 <div>
                   <AdvertisingBanner variant="large" />
@@ -282,4 +240,4 @@ export function CategorySection({ onCategorySelect }: CategorySectionProps) {
       )}
     </div>
   )
-}
+} 

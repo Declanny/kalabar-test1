@@ -14,7 +14,7 @@ export default function AboutPage() {
       <div className="bg-white">
         {/* Header Section */}
         <div className="bg-white border-b">
-          <div className="w-full px-4 sm:px-6 lg:px-10 py-8">
+          <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-10 py-8">
             <div className="max-w-2xl">
               <h1 className="text-3xl font-bold mb-2">About Us</h1>
               <p className="text-gray-600 text-lg sm:text-xl">
@@ -25,7 +25,7 @@ export default function AboutPage() {
 
         {/* About Section - Two Column Layout */}
         <div className="pt-8 pb-8 sm:pt-12 sm:pb-12 lg:pt-16 lg:pb-16 bg-white">
-          <div className="w-full px-4 sm:px-6 lg:px-10">
+          <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-10">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center relative">
               {/* Left Side - Content */}
               <div className="text-center lg:text-left">
@@ -62,15 +62,16 @@ export default function AboutPage() {
                 </div>
               </div>
 
+
               {/* Vertical Line */}
-              <div className="hidden lg:block absolute left-1/2 top-0 bottom-0 w-px bg-gray-200 transform -translate-x-1/2"></div>
+              <div className="hidden lg:block absolute left-1/2 top-8 bottom-8 w-px bg-gray-300 transform -translate-x-1/2"></div>
 
               {/* Right Side - Image */}
               <div className="relative">
                 <img 
                   src="https://res.cloudinary.com/dqbbm0guw/image/upload/v1754492907/9fcd4da1d24758a1bc6134a87169b72502816c35_s9wuuu.png"
                   alt="Kalabah B2B Marketplace - African Commerce Legacy"
-                  className="w-full sm:w-4/5 lg:w-3/5 h-auto rounded-xl mx-auto"
+                  className="w-full sm:w-4/5 lg:w-4/5 h-auto rounded-xl mx-auto"
                 />
               </div>
             </div>

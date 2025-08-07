@@ -28,7 +28,7 @@ const SupplierHeroBanner = () => (
     <div className="w-full px-4 sm:px-6 lg:px-10">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
         {/* Left Side - Content */}
-        <div>
+        <div className="text-center lg:text-left">
           <div className="inline-flex items-center space-x-2 bg-gray-100 rounded-full px-3 sm:px-4 py-1.5 sm:py-2 mb-4 sm:mb-6">
             <div className="w-2 h-2 rounded-full" style={{backgroundColor: 'rgba(46, 125, 50, 1)'}}></div>
             <span className="text-sm font-medium text-gray-700">Africa&apos;s Leading B2B Platform</span>
@@ -44,22 +44,22 @@ const SupplierHeroBanner = () => (
           </p>
           
           {/* Key Benefits List */}
-          <div className="space-y-3 mb-8">
-            <div className="flex items-center space-x-3">
+          <div className="space-y-3 mb-8 text-center lg:text-left">
+            <div className="flex items-center space-x-3 justify-center lg:justify-start">
               <CheckCircle className="w-5 h-5" style={{color: 'rgba(46, 125, 50, 1)'}} />
               <span className="text-gray-700">Access to 2M+ verified buyers</span>
             </div>
-            <div className="flex items-center space-x-3">
+            <div className="flex items-center space-x-3 justify-center lg:justify-start">
               <CheckCircle className="w-5 h-5" style={{color: 'rgba(46, 125, 50, 1)'}} />
               <span className="text-gray-700">Secure payment & escrow protection</span>
             </div>
-            <div className="flex items-center space-x-3">
+            <div className="flex items-center space-x-3 justify-center lg:justify-start">
               <CheckCircle className="w-5 h-5" style={{color: 'rgba(46, 125, 50, 1)'}} />
               <span className="text-gray-700">Professional trade documentation support</span>
             </div>
           </div>
 
-          <div className="flex flex-col sm:flex-row gap-4">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
             <Link href="/waiting-list?action=true">
               <Button 
                 className="text-white px-8 py-4 rounded-lg font-bold hover:shadow-lg transition-all duration-300 text-lg"
@@ -113,7 +113,7 @@ const SupplierHeroBanner = () => (
             </div>
 
             {/* Trust Badges */}
-            <div className="grid grid-cols-2 gap-4 mb-6">
+            <div className="grid grid-cols-2 gap-4 mb-6 justify-items-center">
               <div className="flex items-center space-x-2">
                 <Shield className="w-5 h-5" style={{color: 'rgba(46, 125, 50, 1)'}} />
                 <span className="text-sm font-medium text-gray-700">Secure Payments</span>
@@ -166,7 +166,7 @@ const StatsSection = () => {
       <div className="w-full px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 2xl:px-16">
         {/* Centered Header */}
         <div className="text-center mb-8 sm:mb-12 md:mb-16 lg:mb-20">
-          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-black mb-3 sm:mb-4 md:mb-6">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-black mb-3 sm:mb-4 md:mb-6">
             Offers Coming to Suppliers
           </h2>
           <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-600 max-w-4xl mx-auto">
@@ -292,7 +292,7 @@ const BlogSection = () => {
     <div className="py-8 sm:py-12 lg:py-16 bg-gray-100">
       <div className="w-full px-4 sm:px-6 lg:px-10">
         <div className="text-center mb-12">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
             Supplier Success Resources
           </h2>
           <p className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">

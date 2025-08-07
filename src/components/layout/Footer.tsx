@@ -15,7 +15,7 @@ export const Footer = () => {
       <div className="absolute inset-0 bg-black/70"></div>
       
       {/* Content above overlay */}
-      <div className="w-full px-4 sm:px-6 lg:px-10 relative z-10">
+      <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-10 relative z-10">
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-6 mb-6 sm:mb-8">
           <div>
             <h3 className="font-semibold mb-3 text-white">Company</h3>

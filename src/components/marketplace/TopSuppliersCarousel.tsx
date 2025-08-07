@@ -78,9 +78,8 @@ export function TopSuppliersCarousel() {
       <div className="w-full px-4 sm:px-6 lg:px-10">
         {/* Section Header */}
         <div className="text-center mb-8 sm:mb-12">
-          <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold mb-3" style={{color: 'rgba(10, 10, 10, 1)'}}>
-            Top Nigerian Categories Coming to Kalabah
-          </h2>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-3" style={{color: 'rgba(10, 10, 10, 1)'}}>
+          Explore Top Nigerian Categories <br />Coming to Kalabah          </h2>
           <p className="text-sm sm:text-base lg:text-lg max-w-3xl mx-auto" style={{color: 'rgba(10, 10, 10, 0.7)'}}>
             These are some of the most in-demand categories suppliers are onboarding for. Expect quality local products and seamless sourcing.
           </p>
