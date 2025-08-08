@@ -4,6 +4,7 @@ import React, { useState } from 'react'
 import { ChevronRight, Grid, Apple, Building2, Shirt, Sparkles, Heart, Headphones, Sofa, Printer, Leaf, Package } from 'lucide-react'
 import Link from 'next/link'
 import AdvertisingBanner from './AdvertisingBanner'
+import StandardBanner from './StandardBanner'
 
 interface Category {
   id: string
@@ -160,7 +161,13 @@ export function CategoryBannerLayout({ onCategorySelect }: CategoryBannerLayoutP
           <div className="w-full lg:w-[75%] lg:pl-4 mt-4">
             {/* Top Banner */}
             <div className="pb-2 sm:pb-4 pt-0">
-              <AdvertisingBanner variant="default" />
+              <StandardBanner
+                title="Connect with African Suppliers"
+                subtitle="Discover quality products from verified suppliers across Africa"
+                ctaText="Explore Now"
+                imageUrl="https://res.cloudinary.com/dqbbm0guw/image/upload/v1754638367/happy-women-working-together_uba8hs.png"
+                variant="default"
+              />
             </div>
 
             {/* Bottom Banners */}
