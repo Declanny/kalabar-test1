@@ -106,7 +106,7 @@ export function HeroSection({ onCategorySelect }: HeroSectionProps) {
 
   return (
     <div className="w-full px-2 sm:px-6 lg:px-10">
-      <div className="bg-gray-50 rounded-lg overflow-hidden">
+      <div className="bg-gray-50 overflow-hidden">
         <div className="flex flex-col lg:flex-row">
           {/* Left Sidebar - Categories */}
           <div className="hidden lg:block w-full lg:w-[25%] bg-white border-r border-gray-200">
@@ -131,7 +131,7 @@ export function HeroSection({ onCategorySelect }: HeroSectionProps) {
                   >
                     <div className="flex items-center gap-3">
                       <span className="text-gray-600">{category.icon}</span>
-                      <span className="font-medium text-gray-900 group-hover:text-green-600 text-sm">
+                      <span className="font-medium text-gray-900 group-hover:text-[#00C298] text-sm">
                         {category.name}
                       </span>
                     </div>
@@ -142,7 +142,7 @@ export function HeroSection({ onCategorySelect }: HeroSectionProps) {
               
               {/* View All Button */}
               <div className="py-4">
-                <button className="w-full flex items-center justify-center text-sm text-gray-500 hover:text-green-600 transition-colors font-medium">
+                <button className="w-full flex items-center justify-center text-sm text-gray-500 hover:text-[#00C298] transition-colors font-medium">
                   View all
                 </button>
               </div>
@@ -152,13 +152,13 @@ export function HeroSection({ onCategorySelect }: HeroSectionProps) {
           {/* Right Content - Banners */}
           <div className="w-full lg:w-[75%] bg-white">
             {/* Top Banner */}
-            <div className="p-3 sm:p-6 pb-2 sm:pb-4">
+            <div className="px-2 py-0 sm:p-6">
               <AdvertisingBanner variant="default" />
             </div>
 
             {/* Bottom Banners */}
-            <div className="p-3 sm:p-6 pt-1 sm:pt-2">
-              <div className="grid grid-cols-2 gap-4 sm:gap-6">
+            <div className="px-2 py-0 sm:p-6 mt-0 sm:mt-0 sm:pt-2">
+              <div className="grid grid-cols-2 gap-1 sm:gap-6">
                 <div>
                   <AdvertisingBanner variant="large" />
                 </div>
@@ -194,10 +194,10 @@ export function HeroSection({ onCategorySelect }: HeroSectionProps) {
                   {categories.find(cat => cat.id === selectedCategory)?.subcategories?.map((sub, index) => (
                     <Link href="/waiting-list?action=true" key={index}>
                       <div className="flex items-center justify-between p-3 hover:bg-gray-50 rounded-lg cursor-pointer group">
-                        <span className="text-sm font-medium text-gray-700 group-hover:text-green-600">
+                        <span className="text-sm font-medium text-gray-700 group-hover:text-[#00C298]">
                           {sub}
                         </span>
-                        <ChevronRight className="w-4 h-4 text-gray-400 group-hover:text-green-600" />
+                        <ChevronRight className="w-4 h-4 text-gray-400 group-hover:text-[#00C298]" />
                       </div>
                     </Link>
                   ))}
@@ -210,15 +210,16 @@ export function HeroSection({ onCategorySelect }: HeroSectionProps) {
                   {categories.find(cat => cat.id === selectedCategory)?.subcategories?.map((sub, index) => (
                     <Link href="/waiting-list?action=true" key={index}>
                       <div className="group cursor-pointer">
-                        <div className="bg-white rounded-lg border border-gray-200 hover:border-green-300 hover:shadow-md transition-all duration-200 p-4 h-40 flex flex-col">
+                        <div className="bg-white rounded-lg border border-gray-200 hover:border-[#00C298] hover:shadow-md transition-all duration-200 p-4 h-40 flex flex-col">
                           <div className="flex-1 flex items-center justify-center mb-2">
-                            <img 
-                              src={`https://res.cloudinary.com/dqbbm0guw/image/upload/v1753604888/traditional-african-souvenir-and-craft-items-for-sale-at-flee-market-MT842D_u2lngt.jpg`}
-                              alt={sub}
-                              className="w-20 h-20 rounded-lg object-cover"
-                            />
+                            <div className="w-20 h-20 rounded-lg bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center border-2 border-dashed border-gray-300">
+                              <div className="text-center">
+                                <div className="text-xs font-bold text-gray-600 mb-1">COMING</div>
+                                <div className="text-xs font-bold text-gray-600">SOON</div>
+                              </div>
+                            </div>
                           </div>
-                          <span className="text-xs font-medium text-gray-700 group-hover:text-green-600 text-center leading-tight">
+                          <span className="text-xs font-medium text-gray-700 group-hover:text-[#00C298] text-center leading-tight">
                             {sub}
                           </span>
                         </div>

@@ -68,7 +68,7 @@ export default function FAQSection() {
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <div className="text-center mb-8 sm:mb-16">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-2">
+          <h2 className="text-2xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-2">
             Frequently Ask Questions
           </h2>
         </div>
@@ -117,7 +117,7 @@ export default function FAQSection() {
               <button
                 onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
                 disabled={currentPage === 1}
-                className="p-2 rounded-lg border border-gray-300 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                className="p-2 rounded-xl border border-gray-300 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
               >
                 <ChevronLeft className="w-4 h-4" />
               </button>
@@ -127,7 +127,7 @@ export default function FAQSection() {
               <button
                 onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
                 disabled={currentPage === totalPages}
-                className="p-2 rounded-lg border border-gray-300 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                className="p-2 rounded-xl border border-gray-300 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
               >
                 <ChevronRight className="w-4 h-4" />
               </button>
@@ -169,7 +169,7 @@ export default function FAQSection() {
 
             {/* CTA Button */}
             <Button 
-              className="bg-[rgba(46,125,50,1)] hover:bg-[rgba(46,125,50,0.9)] text-white px-6 py-8 font-medium w-full rounded-none"
+              className="bg-[#00C298] hover:bg-[#00C298]/90 text-white px-6 py-8 font-medium w-full rounded-xl"
               onClick={() => window.location.href = '/waiting-list'}
             >
               Join Wait List

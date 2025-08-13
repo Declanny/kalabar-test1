@@ -1,0 +1,263 @@
+// Use local Next.js API routes to avoid CORS issues
+const BASE_URL = ''
+
+// Types for API responses
+export interface BlogPost {
+  id: number
+  title: string
+  slug: string
+  meta_title: string
+  meta_description: string
+  canonical_url: string
+  description: string
+  cover_image: string | null
+  cover_image_alt: string
+  view_count: number
+  read_time: number
+  blogger_name: string
+  blogger_image: string | null
+  published_at: string
+  status: 'active' | 'inactive'
+  category: number | null
+  tags_list: string[]
+}
+
+export interface Category {
+  id: number
+  name: string
+  slug: string
+  description?: string
+}
+
+export interface ApiResponse<T> {
+  success: boolean
+  message: string
+  data: T
+  errors: string[] | null
+}
+
+export interface PaginatedResponse<T> {
+  count: number
+  next: string | null
+  previous: string | null
+  results: T[]
+}
+
+// Helper function to build URL with query parameters
+function buildUrl(endpoint: string, params?: Record<string, any>): string {
+  const baseUrl = typeof window !== 'undefined' ? window.location.origin : 'http://localhost:3000'
+  const url = new URL(baseUrl + '/api' + endpoint)
+  
+  if (params) {
+    Object.entries(params).forEach(([key, value]) => {
+      if (value !== undefined && value !== null && value !== '') {
+        url.searchParams.append(key, value.toString())
+      }
+    })
+  }
+  
+  return url.toString()
+}
+
+// Helper function to format date
+function formatDate(isoDate: string): string {
+  const date = new Date(isoDate)
+  return date.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric'
+  })
+}
+
+// Helper function to format view count
+function formatViewCount(count: number): string {
+  if (count >= 1000) {
+    return (count / 1000).toFixed(1) + 'k'
+  }
+  return count.toString()
+}
+
+// Transform API blog data to UI format
+export function transformBlogData(apiBlog: BlogPost, index: number = 0) {
+  return {
+    id: apiBlog.id,
+    title: apiBlog.title,
+    slug: apiBlog.slug,
+    excerpt: apiBlog.description,
+    content: apiBlog.description, // API doesn't have separate content field
+    image: apiBlog.cover_image || 'https://res.cloudinary.com/dqbbm0guw/image/upload/v1753604888/traditional-african-souvenir-and-craft-items-for-sale-at-flee-market-MT842D_u2lngt.jpg',
+    author: apiBlog.blogger_name,
+    authorAvatar: apiBlog.blogger_image || '/avatars/user.jpg',
+    authorBio: `${apiBlog.blogger_name} is a contributor to Kalabah's B2B marketplace insights.`,
+    date: formatDate(apiBlog.published_at),
+    readTime: `${apiBlog.read_time} min read`,
+    views: formatViewCount(apiBlog.view_count),
+    category: apiBlog.category ? `Category ${apiBlog.category}` : 'General',
+    tags: apiBlog.tags_list,
+    featured: index === 0 // Make the first blog post featured
+  }
+}
+
+// Blog API functions
+export const blogApi = {
+  // Get all blogs with optional filters
+  async getBlogs(params?: {
+    page?: number
+    search?: string
+    category?: number
+    blogger_name?: string
+    status?: 'active' | 'inactive'
+  }): Promise<BlogPost[]> {
+    try {
+      const url = buildUrl('/blogs', params)
+      const response = await fetch(url, {
+        method: 'GET',
+        headers: {
+          'accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        mode: 'cors',
+        credentials: 'omit'
+      })
+      
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`)
+      }
+      
+      const result: ApiResponse<PaginatedResponse<BlogPost>> = await response.json()
+      
+      if (!result.success) {
+        throw new Error(result.message || 'Failed to fetch blogs')
+      }
+      
+      return result.data.results
+    } catch (error) {
+      console.error('Error fetching blogs:', error)
+      throw error
+    }
+  },
+
+  // Get popular blogs
+  async getPopularBlogs(page: number = 1): Promise<BlogPost[]> {
+    try {
+      const url = buildUrl('/blogs/popular', { page })
+      const response = await fetch(url, {
+        method: 'GET',
+        headers: {
+          'accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        mode: 'cors',
+        credentials: 'omit'
+      })
+      
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`)
+      }
+      
+      const result: ApiResponse<BlogPost[]> = await response.json()
+      
+      if (!result.success) {
+        throw new Error(result.message || 'Failed to fetch popular blogs')
+      }
+      
+      return result.data
+    } catch (error) {
+      console.error('Error fetching popular blogs:', error)
+      throw error
+    }
+  },
+
+  // Get recent blogs
+  async getRecentBlogs(page: number = 1): Promise<BlogPost[]> {
+    try {
+      const url = buildUrl('/blogs/recent', { page })
+      const response = await fetch(url, {
+        method: 'GET',
+        headers: {
+          'accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        mode: 'cors',
+        credentials: 'omit'
+      })
+      
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`)
+      }
+      
+      const result: ApiResponse<BlogPost[]> = await response.json()
+      
+      if (!result.success) {
+        throw new Error(result.message || 'Failed to fetch recent blogs')
+      }
+      
+      return result.data
+    } catch (error) {
+      console.error('Error fetching recent blogs:', error)
+      throw error
+    }
+  },
+
+  // Get single blog by slug
+  async getBlogBySlug(slug: string): Promise<BlogPost> {
+    try {
+      const url = buildUrl(`/blogs/${slug}`)
+      const response = await fetch(url, {
+        method: 'GET',
+        headers: {
+          'accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        mode: 'cors',
+        credentials: 'omit'
+      })
+      
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`)
+      }
+      
+      const result: ApiResponse<BlogPost> = await response.json()
+      
+      if (!result.success) {
+        throw new Error(result.message || 'Failed to fetch blog')
+      }
+      
+      return result.data
+    } catch (error) {
+      console.error('Error fetching blog:', error)
+      throw error
+    }
+  },
+
+  // Get categories
+  async getCategories(page: number = 1): Promise<Category[]> {
+    try {
+      const url = buildUrl('/categories', { page })
+      const response = await fetch(url, {
+        method: 'GET',
+        headers: {
+          'accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        mode: 'cors',
+        credentials: 'omit'
+      })
+      
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`)
+      }
+      
+      const result: ApiResponse<Category[]> = await response.json()
+      
+      if (!result.success) {
+        throw new Error(result.message || 'Failed to fetch categories')
+      }
+      
+      return result.data
+    } catch (error) {
+      console.error('Error fetching categories:', error)
+      throw error
+    }
+  }
+} 

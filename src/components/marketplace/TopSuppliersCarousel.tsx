@@ -7,59 +7,63 @@ import { ChevronLeft, ChevronRight } from 'lucide-react'
 interface CategoryItem {
   id: string
   name: string
-  icon: React.ReactNode
+  imageUrl: string
+  isPng?: boolean
 }
 
 const categoryItems: CategoryItem[] = [
   {
     id: '1',
     name: 'Package Foods',
-    icon: <Image src="https://res.cloudinary.com/dqbbm0guw/image/upload/v1754410148/paper-bag_nvjnuh.png" alt="Paper Bag" width={32} height={32} style={{filter: 'brightness(0) saturate(100%) invert(0%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(0%) contrast(100%)'}} />
+    imageUrl: 'https://res.cloudinary.com/dqbbm0guw/image/upload/v1755097027/a248517ac57d42d7cb87597055251fbd64ca5e41_hjzvc4.jpg'
   },
   {
     id: '2',
     name: 'Fresh Produce',
-    icon: <Image src="https://res.cloudinary.com/dqbbm0guw/image/upload/v1754410148/salad_vsipso.png" alt="Fresh Produce" width={32} height={32} style={{filter: 'brightness(0) saturate(100%) invert(0%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(0%) contrast(100%)'}} />
+    imageUrl: 'https://res.cloudinary.com/dqbbm0guw/image/upload/v1755097027/932802fd03458d93b4c8a1441d79dbdb3e6ffc72_hsj4i4.jpg'
   },
   {
     id: '3',
     name: 'Fashion & Apparel',
-    icon: <Image src="https://res.cloudinary.com/dqbbm0guw/image/upload/v1754411064/Hanger_2_xlrkmw.png" alt="Fashion & Apparel" width={32} height={32} style={{filter: 'brightness(0) saturate(100%) invert(0%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(0%) contrast(100%)'}} />
+    imageUrl: 'https://res.cloudinary.com/dqbbm0guw/image/upload/v1755097027/705713801b454a582c6206b74f7023da8c17b394_hrzitd.jpg'
   },
   {
     id: '4',
     name: 'Beauty & Skincare',
-    icon: <Image src="https://res.cloudinary.com/dqbbm0guw/image/upload/v1754410147/facial-cleanser_ze2h1j.png" alt="Facial Cleanser" width={32} height={32} style={{filter: 'brightness(0) saturate(100%) invert(0%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(0%) contrast(100%)'}} />
+    imageUrl: 'https://res.cloudinary.com/dqbbm0guw/image/upload/v1755097130/1be2af44cc0e5911aace02faf24b3f99cc8c6115_sw8nvo.jpg'
   },
   {
     id: '5',
     name: 'Health & Medical\nSupplies',
-    icon: <Image src="https://res.cloudinary.com/dqbbm0guw/image/upload/v1754409923/first-aid-kit_xqyh3a.png" alt="First Aid Kit" width={32} height={32} style={{filter: 'brightness(0) saturate(100%) invert(0%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(0%) contrast(100%)'}} />
+    imageUrl: 'https://res.cloudinary.com/dqbbm0guw/image/upload/v1755097120/6bac793d5143f8fb4887e3a79710a86dd0f896f6_fakarv.png',
+    isPng: false
   },
   {
     id: '6',
     name: 'Electronics & Gadget',
-    icon: <Image src="https://res.cloudinary.com/dqbbm0guw/image/upload/v1754410967/devices_oz1u8d.png" alt="Electronics" width={32} height={32} style={{filter: 'brightness(0) saturate(100%) invert(0%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(0%) contrast(100%)'}} />
+    imageUrl: 'https://res.cloudinary.com/dqbbm0guw/image/upload/v1755097456/635727b4c13b46865f522b201894b5fb88c62b53_wmw062.jpg'
   },
   {
     id: '7',
     name: 'Furniture & Home\nEssentials',
-    icon: <Image src="https://res.cloudinary.com/dqbbm0guw/image/upload/v1754410905/Armchair_p3xnt3.png" alt="Furniture" width={32} height={32} style={{filter: 'brightness(0) saturate(100%) invert(0%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(0%) contrast(100%)'}} />
+    imageUrl: 'https://res.cloudinary.com/dqbbm0guw/image/upload/v1755097069/9dcb0c0050f9a74d24653322927aa30c8aefc427_zzv1sw.png',
+    isPng: false
   },
   {
     id: '8',
     name: 'Printer & Office\nSupplies',
-    icon: <Image src="https://res.cloudinary.com/dqbbm0guw/image/upload/v1754410148/printer_umordz.png" alt="Printer" width={32} height={32} style={{filter: 'brightness(0) saturate(100%) invert(0%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(0%) contrast(100%)'}} />
+    imageUrl: 'https://res.cloudinary.com/dqbbm0guw/image/upload/v1755097972/3d-icon-with-printer_fxnxua.png',
+    isPng: false
   },
   {
     id: '9',
     name: 'Fish & Seafood',
-    icon: <Image src="https://res.cloudinary.com/dqbbm0guw/image/upload/v1754410148/fish_sfpsaf.png" alt="Fish" width={32} height={32} style={{filter: 'brightness(0) saturate(100%) invert(0%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(0%) contrast(100%)'}} />
+    imageUrl: 'https://res.cloudinary.com/dqbbm0guw/image/upload/v1755097071/4056ae4af584814c355ec61044d7cc5470d0b830_cyensm.jpg'
   },
   {
     id: '10',
     name: 'Local Spices',
-    icon: <Image src="https://res.cloudinary.com/dqbbm0guw/image/upload/v1754410148/salt_nfb76c.png" alt="Local Spices" width={32} height={32} style={{filter: 'brightness(0) saturate(100%) invert(0%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(0%) contrast(100%)'}} />
+    imageUrl: 'https://res.cloudinary.com/dqbbm0guw/image/upload/v1755097791/Local-spice_mskpgv.webp'
   }
 ]
 
@@ -73,13 +77,27 @@ export function TopSuppliersCarousel() {
     }
   }
 
+  const getCircleStyle = (isPng?: boolean) => {
+    if (isPng) {
+      return {
+        background: 'linear-gradient(135deg, #10B981, #3B82F6)',
+        border: 'none'
+      }
+    }
+    return {
+      backgroundColor: '#F5F5F5',
+      border: '2px solid #F5F5F5'
+    }
+  }
+
   return (
     <div className="bg-white py-8 sm:py-12 lg:py-16">
       <div className="w-full px-4 sm:px-6 lg:px-10">
         {/* Section Header */}
         <div className="text-center mb-8 sm:mb-12">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-3" style={{color: 'rgba(10, 10, 10, 1)'}}>
-          Explore Top Nigerian Categories <br />Coming to Kalabah          </h2>
+          <h2 className="text-2xl sm:text-4xl lg:text-5xl font-bold mb-3" style={{color: 'rgba(10, 10, 10, 1)'}}>
+            Explore Top Nigerian Categories <br />Coming to Kalabah          
+          </h2>
           <p className="text-sm sm:text-base lg:text-lg max-w-3xl mx-auto" style={{color: 'rgba(10, 10, 10, 0.7)'}}>
             These are some of the most in-demand categories suppliers are onboarding for. Expect quality local products and seamless sourcing.
           </p>
@@ -93,14 +111,24 @@ export function TopSuppliersCarousel() {
                 key={item.id}
                 className="flex flex-col items-center cursor-pointer group"
               >
-                <div className="w-32 h-32 bg-white border rounded-full flex flex-col items-center justify-center group-hover:border-green-600 transition-all duration-200 p-4" style={{borderColor: 'rgba(10, 10, 10, 1)'}}>
-                  <div className="group-hover:text-green-600 transition-colors mb-2" style={{color: 'rgba(10, 10, 10, 1)'}}>
-                    {item.icon}
-                  </div>
-                  <span className="text-xs text-center leading-tight font-bold whitespace-pre-line" style={{color: 'rgba(10, 10, 10, 1)'}}>
-                    {item.name}
-                  </span>
+                <div 
+                  className="w-40 h-40 rounded-full flex items-center justify-center group-hover:scale-105 transition-all duration-300 overflow-hidden relative"
+                  style={getCircleStyle(item.isPng)}
+                >
+                  <Image 
+                    src={item.imageUrl} 
+                    alt={item.name}
+                    width={160}
+                    height={160}
+                    className={`object-cover transition-transform duration-300 group-hover:scale-110 ${
+                      item.isPng ? 'w-24 h-24' : 'w-full h-full rounded-full'
+                    }`}
+                    style={item.isPng ? {} : {}}
+                  />
                 </div>
+                <span className="text-sm text-center leading-tight font-bold mt-3 whitespace-pre-line" style={{color: 'rgba(10, 10, 10, 1)'}}>
+                  {item.name}
+                </span>
               </div>
             ))}
           </div>
@@ -113,20 +141,29 @@ export function TopSuppliersCarousel() {
               ref={scrollContainerRef}
               className="overflow-x-auto overflow-y-hidden scrollbar-hide"
             >
-              <div className="flex gap-4 py-4" style={{ width: 'max-content' }}>
+              <div className="flex gap-6 py-4" style={{ width: 'max-content' }}>
                 {categoryItems.map((item) => (
                   <div 
                     key={item.id}
-                    className="flex flex-col items-center cursor-pointer group flex-shrink-0 w-20"
+                    className="flex flex-col items-center cursor-pointer group flex-shrink-0"
                   >
-                    <div className="w-20 h-20 bg-white border rounded-full flex flex-col items-center justify-center group-hover:border-green-600 transition-all duration-200 p-2" style={{borderColor: 'rgba(10, 10, 10, 1)'}}>
-                      <div className="group-hover:text-green-600 transition-colors mb-1" style={{color: 'rgba(10, 10, 10, 1)'}}>
-                        {item.icon}
-                      </div>
-                      <span className="text-[8px] text-center leading-tight font-bold whitespace-pre-line" style={{color: 'rgba(10, 10, 10, 1)'}}>
-                        {item.name}
-                      </span>
+                    <div 
+                      className="w-20 h-20 rounded-full flex items-center justify-center group-hover:scale-105 transition-all duration-300 overflow-hidden relative"
+                      style={getCircleStyle(item.isPng)}
+                    >
+                      <Image 
+                        src={item.imageUrl} 
+                        alt={item.name}
+                        width={80}
+                        height={80}
+                        className={`object-cover transition-transform duration-300 group-hover:scale-110 ${
+                          item.isPng ? 'w-12 h-12' : 'w-full h-full rounded-full'
+                        }`}
+                      />
                     </div>
+                    <span className="text-xs text-center leading-tight font-bold mt-2 whitespace-pre-line w-20" style={{color: 'rgba(10, 10, 10, 1)'}}>
+                      {item.name}
+                    </span>
                   </div>
                 ))}
               </div>
@@ -150,4 +187,4 @@ export function TopSuppliersCarousel() {
       </div>
     </div>
   )
-} 
+}

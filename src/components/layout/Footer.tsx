@@ -1,6 +1,14 @@
+'use client'
+
 import Link from 'next/link'
+import { useState } from 'react'
+import { wishlistApi } from '@/lib/wishlist-api'
 
 export const Footer = () => {
+  const [email, setEmail] = useState('')
+  const [loading, setLoading] = useState(false)
+  const [message, setMessage] = useState('')
+  const [isSuccess, setIsSuccess] = useState(false)
   return (
     <footer 
       className="py-8 text-white relative overflow-hidden"
@@ -69,21 +77,65 @@ export const Footer = () => {
         {/* Newsletter Section */}
         <div className="text-center mb-6 sm:mb-8">
           <h3 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4">Sign up to our Newsletter to get VIP updates</h3>
-          <div className="flex justify-center max-w-[280px] sm:max-w-md mx-auto">
-            <div className="flex w-full bg-white rounded-full overflow-hidden">
-              <input
-                type="email"
-                placeholder="Enter Email Address"
-                className="flex-1 px-3 sm:px-4 py-2 text-gray-800 outline-none text-sm sm:text-base"
-              />
-              <button 
-                className="px-4 sm:px-6 py-2 text-white font-medium text-sm sm:text-base"
-                style={{backgroundColor: 'rgba(245, 124, 0, 1)'}}
-              >
-                Sign Up
-              </button>
+          <form onSubmit={async (e) => {
+            e.preventDefault()
+            if (!email.trim()) {
+              setMessage('Please enter a valid email address')
+              setIsSuccess(false)
+              return
+            }
+            
+            setLoading(true)
+            setMessage('')
+            
+            try {
+              const result = await wishlistApi.addToWishlist(email)
+              if (result.success) {
+                setMessage('Successfully subscribed! We\'ll keep you updated.')
+                setIsSuccess(true)
+                setEmail('')
+              } else {
+                setMessage(result.message || 'Failed to subscribe. Please try again.')
+                setIsSuccess(false)
+              }
+            } catch (error) {
+              console.error('Error subscribing:', error)
+              setMessage('Failed to subscribe. Please try again.')
+              setIsSuccess(false)
+            } finally {
+              setLoading(false)
+            }
+          }}>
+            <div className="flex justify-center max-w-[280px] sm:max-w-md mx-auto">
+              <div className="flex w-full bg-white rounded-full overflow-hidden">
+                <input
+                  type="email"
+                  placeholder="Enter Email Address"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="flex-1 px-3 sm:px-4 py-2 text-gray-800 outline-none text-sm sm:text-base"
+                  disabled={loading}
+                />
+                <button 
+                  type="submit"
+                  className="px-4 sm:px-6 py-2 text-white font-medium text-sm sm:text-base"
+                  style={{backgroundColor: 'rgba(245, 124, 0, 1)'}}
+                  disabled={loading}
+                >
+                  {loading ? 'Signing...' : 'Sign Up'}
+                </button>
+              </div>
             </div>
-          </div>
+            {message && (
+              <div className={`text-sm mt-2 p-2 rounded ${
+                isSuccess 
+                  ? 'bg-green-100 text-green-700' 
+                  : 'bg-red-100 text-red-700'
+              }`}>
+                {message}
+              </div>
+            )}
+          </form>
         </div>
         
         {/* Artistic Logo */}

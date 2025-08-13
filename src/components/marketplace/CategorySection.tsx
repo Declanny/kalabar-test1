@@ -19,8 +19,8 @@ interface Category {
 
 const categories: Category[] = [
   {
-    id: 'food-agricultural',
-    name: 'Food & Agricultural Produce',
+    id: 'food-agriculture',
+    name: 'Food & Agriculture',
     icon: <Apple className="w-5 h-5" />,
     productCount: 45234,
     subcategories: ['Fresh Fruits & Vegetables', 'Grains & Cereals', 'Dairy Products', 'Meat & Poultry', 'Seafood & Fish']
@@ -33,13 +33,6 @@ const categories: Category[] = [
     subcategories: ['Cement & Concrete', 'Steel & Metal Products', 'Wood & Timber', 'Plumbing Materials', 'Electrical Supplies']
   },
   {
-    id: 'packaged-consumer-goods',
-    name: 'Packaged Consumer Goods',
-    icon: <Package className="w-5 h-5" />,
-    productCount: 28973,
-    subcategories: ['Beverages & Drinks', 'Snacks & Confectionery', 'Personal Care Products', 'Household Items', 'Baby Products']
-  },
-  {
     id: 'fashion-apparel',
     name: 'Fashion & Apparel',
     icon: <Shirt className="w-5 h-5" />,
@@ -49,16 +42,9 @@ const categories: Category[] = [
   {
     id: 'beauty-skincare',
     name: 'Beauty & Skincare Products',
-    icon: <Sparkles className="w-5 h-5" />,
+    icon: <Droplets className="w-5 h-5" />,
     productCount: 22847,
     subcategories: ['Skincare Products', 'Makeup & Cosmetics', 'Hair Care Products', 'Fragrances & Perfumes', 'Beauty Tools']
-  },
-  {
-    id: 'electronics-gadgets',
-    name: 'Electronics & Gadgets',
-    icon: <Headphones className="w-5 h-5" />,
-    productCount: 15632,
-    subcategories: ['Mobile Phones & Tablets', 'Computers & Laptops', 'Audio Equipment', 'Cameras & Photography', 'Smart Devices']
   },
   {
     id: 'health-medical',
@@ -66,6 +52,13 @@ const categories: Category[] = [
     icon: <Heart className="w-5 h-5" />,
     productCount: 12458,
     subcategories: ['Pharmaceuticals & Medicines', 'Medical Equipment', 'First Aid Supplies', 'Health Supplements', 'Medical Devices']
+  },
+  {
+    id: 'electronics-gadgets',
+    name: 'Electronics & Gadgets',
+    icon: <Headphones className="w-5 h-5" />,
+    productCount: 15632,
+    subcategories: ['Mobile Phones & Tablets', 'Computers & Laptops', 'Audio Equipment', 'Cameras & Photography', 'Smart Devices']
   },
   {
     id: 'furniture-home',
@@ -155,65 +148,63 @@ export function CategorySection({ onCategorySelect }: CategorySectionProps) {
 
   return (
     <div className="w-full px-2 sm:px-6 lg:px-10">
-      <div className="bg-gray-50 rounded-lg overflow-hidden">
-        <div className="flex flex-col lg:flex-row bg-gray-50 p-4">
-          {/* Left Sidebar - Hidden on mobile, 25% width on desktop */}
-          <div className="hidden lg:block w-full lg:w-[25%] bg-white border border-gray-200 rounded-lg" style={{height: 'fit-content'}}>
-            {/* All Categories Header */}
-            <div className="flex items-center p-4 border-b border-gray-200 h-16">
-              <div className="flex items-center gap-3">
-                <Grid className="w-5 h-5 text-gray-600" />
-                <span className="font-semibold text-gray-900 text-base">All Categories</span>
-              </div>
-            </div>
-
-            {/* Categories List - Natural height based on content */}
-            <div className="py-2">
-              {categories.map((category, index) => (
-                <div
-                  key={category.id}
-                  className="border-b border-gray-200 h-12"
-                >
-                  <button
-                    onClick={() => handleCategoryClick(category.id)}
-                    className="w-full h-full flex items-center justify-between px-4 text-left hover:bg-gray-50 transition-colors group"
-                  >
-                    <div className="flex items-center gap-3">
-                      <span className="text-gray-600">{category.icon}</span>
-                      <span className="font-medium text-gray-900 group-hover:text-green-600 text-sm">
-                        {category.name}
-                      </span>
-                    </div>
-                    <ChevronRight className="w-4 h-4 text-gray-400 group-hover:text-green-600" />
-                  </button>
-                </div>
-              ))}
-              
-              {/* View All with proper spacing */}
-              <div className="py-4">
-                <button className="w-full flex items-center justify-center text-sm text-gray-500 hover:text-green-600 transition-colors font-medium">
-                  View all
-                </button>
-              </div>
+      <div className="flex flex-col lg:flex-row bg-gray-50 rounded-lg">
+        {/* Left Sidebar - Hidden on mobile, 25% width on desktop */}
+        <div className="hidden lg:flex w-full lg:w-[25%] border border-gray-200 bg-white flex-col overflow-hidden rounded-l-lg">
+          {/* All Categories Header */}
+          <div className="flex items-center justify-between p-4 border-b border-gray-200 h-16">
+            <div className="flex items-center gap-3">
+              <Grid className="w-5 h-5 text-gray-600" />
+              <span className="font-semibold text-gray-900 text-base">All Categories</span>
             </div>
           </div>
 
-          {/* Right Content Area - Full width on mobile, 75% on desktop */}
-          <div className="w-full lg:w-[75%] lg:pl-4">
-            {/* Main Banner - Top section */}
-            <div className="p-3 sm:p-6 pb-2 sm:pb-4 pt-0">
-              <AdvertisingBanner variant="default" />
+          {/* Categories List - Compact table structure matching Figma design */}
+          <div className="py-1">
+            {categories.map((category, index) => (
+              <div
+                key={category.id}
+                className="border-b border-gray-200 h-11"
+              >
+                <button
+                  onClick={() => handleCategoryClick(category.id)}
+                  className="w-full h-full flex items-center justify-between px-4 text-left hover:bg-gray-50 transition-colors group"
+                >
+                  <div className="flex items-center gap-3">
+                    <span className="text-gray-600">{category.icon}</span>
+                    <span className="font-medium text-gray-900 group-hover:text-[#00C298] text-sm">
+                      {category.name}
+                    </span>
+                  </div>
+                  <ChevronRight className="w-4 h-4 text-gray-400 group-hover:text-[#00C298]" />
+                </button>
+              </div>
+            ))}
+            
+            {/* View All with proper spacing */}
+            <div className="py-3">
+                              <button className="w-full flex items-center justify-center text-sm text-gray-500 hover:text-[#00C298] transition-colors font-medium py-2">
+                  View all
+                </button>
             </div>
+          </div>
+        </div>
 
-            {/* Two Banners - Bottom section */}
-            <div className="p-3 sm:p-6 pt-1 sm:pt-2">
-              <div className="grid grid-cols-2 gap-4 sm:gap-6">
-                <div>
-                  <AdvertisingBanner variant="large" />
-                </div>
-                <div>
-                  <AdvertisingBanner variant="large" />
-                </div>
+        {/* Right Content Area - Full width on mobile, 75% on desktop */}
+        <div className="w-full lg:w-[75%] flex flex-col rounded-lg lg:rounded-r-lg lg:rounded-l-none">
+          {/* Main Banner - Top section */}
+          <div className="p-3 sm:p-6 pb-2 sm:pb-4">
+            <AdvertisingBanner variant="default" />
+          </div>
+
+          {/* Two Banners - Bottom section */}
+          <div className="flex-1 p-3 sm:p-6 pt-1 sm:pt-2">
+            <div className="grid grid-cols-2 gap-4 sm:gap-6 h-full">
+              <div>
+                <AdvertisingBanner variant="large" />
+              </div>
+              <div>
+                <AdvertisingBanner variant="large" />
               </div>
             </div>
           </div>
@@ -243,10 +234,10 @@ export function CategorySection({ onCategorySelect }: CategorySectionProps) {
                   {categories.find(cat => cat.id === selectedCategory)?.subcategories?.map((sub, index) => (
                     <Link href="/waiting-list?action=true" key={index}>
                       <div className="flex items-center justify-between p-3 hover:bg-gray-50 rounded-lg cursor-pointer group">
-                        <span className="text-sm font-medium text-gray-700 group-hover:text-green-600">
+                        <span className="text-sm font-medium text-gray-700 group-hover:text-[#00C298]">
                           {sub}
                         </span>
-                        <ChevronRight className="w-4 h-4 text-gray-400 group-hover:text-green-600" />
+                        <ChevronRight className="w-4 h-4 text-gray-400 group-hover:text-[#00C298]" />
                       </div>
                     </Link>
                   ))}
@@ -259,7 +250,7 @@ export function CategorySection({ onCategorySelect }: CategorySectionProps) {
                   {categories.find(cat => cat.id === selectedCategory)?.subcategories?.map((sub, index) => (
                     <Link href="/waiting-list?action=true" key={index}>
                       <div className="group cursor-pointer">
-                        <div className="bg-white rounded-lg border border-gray-200 hover:border-green-300 hover:shadow-md transition-all duration-200 p-4 h-40 flex flex-col">
+                        <div className="bg-white rounded-lg border border-gray-200 hover:border-[#00C298] hover:shadow-md transition-all duration-200 p-4 h-40 flex flex-col">
                           <div className="flex-1 flex items-center justify-center mb-2">
                             <img 
                               src={`https://res.cloudinary.com/dqbbm0guw/image/upload/v1753604888/traditional-african-souvenir-and-craft-items-for-sale-at-flee-market-MT842D_u2lngt.jpg`}
@@ -267,7 +258,7 @@ export function CategorySection({ onCategorySelect }: CategorySectionProps) {
                               className="w-20 h-20 rounded-lg object-cover"
                             />
                           </div>
-                          <span className="text-xs font-medium text-gray-700 group-hover:text-green-600 text-center leading-tight">
+                          <span className="text-xs font-medium text-gray-700 group-hover:text-[#00C298] text-center leading-tight">
                             {sub}
                           </span>
                         </div>

@@ -15,87 +15,87 @@ interface CategoryGridItem {
 const categoryGridItems: CategoryGridItem[] = [
   {
     id: '1',
-    title: 'Fresh Cola Nuts',
+    title: 'Ofada Rice',
+    image: 'https://res.cloudinary.com/dqbbm0guw/image/upload/v1754870058/OfadaRice_a7yurq.jpg',
+    backgroundColor: 'bg-yellow-50',
+    productCount: 185
+  },
+  {
+    id: '2',
+    title: 'Traditional Soup',
+    image: 'https://res.cloudinary.com/dqbbm0guw/image/upload/v1754869423/soup_uuu66u.webp',
+    backgroundColor: 'bg-amber-50',
+    productCount: 195
+  },
+  {
+    id: '3',
+    title: 'Organic Cloves',
+    image: 'https://res.cloudinary.com/dqbbm0guw/image/upload/v1754869419/text2_uyghjo.webp',
+    backgroundColor: 'bg-purple-50',
+    productCount: 410
+  },
+  {
+    id: '4',
+    title: 'Mixed Beans & Grains',
+    image: 'https://res.cloudinary.com/dqbbm0guw/image/upload/v1754869416/teext_jv3l4t.avif',
+    backgroundColor: 'bg-blue-50',
+    productCount: 230
+  },
+  {
+    id: '5',
+    title: 'Cocoa Pods',
     image: 'https://res.cloudinary.com/dqbbm0guw/image/upload/v1753604887/0755a089-6ca4-4900-92be-11d318d282bf_txefrr.jpg',
     backgroundColor: 'bg-green-50',
     productCount: 340
   },
   {
-    id: '2', 
+    id: '6',
     title: 'Premium Bitter Cola',
     image: 'https://res.cloudinary.com/dqbbm0guw/image/upload/v1753604885/African-Natural-Fresh-Dried-Bitter-Kola-Bitter-Kola-Nuts-for-Sale.jpg_300x300_iqjwvc.avif',
     backgroundColor: 'bg-amber-50',
     productCount: 220
   },
   {
-    id: '3',
+    id: '7',
     title: 'Nigerian Cola Nut',
     image: 'https://res.cloudinary.com/dqbbm0guw/image/upload/v1753604886/green-cola_ug4qyn.jpg',
     backgroundColor: 'bg-emerald-50',
     productCount: 180
   },
   {
-    id: '4',
+    id: '8',
     title: 'Raw Cocoa Beans',
     image: 'https://res.cloudinary.com/dqbbm0guw/image/upload/v1753604887/images_1_ocivfd.jpg',
     backgroundColor: 'bg-orange-50',
     productCount: 450
   },
   {
-    id: '5',
+    id: '9',
     title: 'Aba Fabrics',
     image: 'https://res.cloudinary.com/dqbbm0guw/image/upload/v1753605557/H92a4e6ba6bdc45a18078ef8db4de4eecG_ppdwad.avif',
     backgroundColor: 'bg-purple-50',
     productCount: 290
   },
   {
-    id: '6',
+    id: '10',
     title: 'Moringa Seeds',
     image: 'https://res.cloudinary.com/dqbbm0guw/image/upload/v1753605535/Moring-Oleifera-Moring-Seeds-Raw-Herbs-Wholesale-Plant-Extract-at-Best-Price-Available-for-Sale.jpg_300x300_cwuw8u.avif',
     backgroundColor: 'bg-green-50',
     productCount: 160
   },
   {
-    id: '7',
+    id: '11',
     title: 'Premium Cloves',
     image: 'https://res.cloudinary.com/dqbbm0guw/image/upload/v1753605547/FREE-SAMPLE-Competitive-Price-Selected-Cloves-Spices-Herbs-Products-Clove-Raw-Material-Medicinal-Plant-Dry-Bud-Clove-Herb_mtplt8.avif',
     backgroundColor: 'bg-orange-50',
     productCount: 320
   },
   {
-    id: '8',
-    title: 'African Crafts',
-    image: 'https://res.cloudinary.com/dqbbm0guw/image/upload/v1753604888/traditional-african-souvenir-and-craft-items-for-sale-at-flee-market-MT842D_u2lngt.jpg',
-    backgroundColor: 'bg-amber-50',
-    productCount: 125
-  },
-  {
-    id: '9',
-    title: 'Organic Honey',
-    image: 'https://res.cloudinary.com/dqbbm0guw/image/upload/v1753604887/images_1_ocivfd.jpg',
-    backgroundColor: 'bg-yellow-50',
-    productCount: 280
-  },
-  {
-    id: '10',
-    title: 'Shea Butter',
-    image: 'https://res.cloudinary.com/dqbbm0guw/image/upload/v1753605535/Moring-Oleifera-Moring-Seeds-Raw-Herbs-Wholesale-Plant-Extract-at-Best-Price-Available-for-Sale.jpg_300x300_cwuw8u.avif',
-    backgroundColor: 'bg-amber-50',
-    productCount: 195
-  },
-  {
-    id: '11',
-    title: 'Palm Oil',
-    image: 'https://res.cloudinary.com/dqbbm0guw/image/upload/v1753604888/traditional-african-souvenir-and-craft-items-for-sale-at-flee-market-MT842D_u2lngt.jpg',
-    backgroundColor: 'bg-red-50',
-    productCount: 410
-  },
-  {
     id: '12',
     title: 'African Black Soap',
-    image: 'https://res.cloudinary.com/dqbbm0guw/image/upload/v1753605557/H92a4e6ba6bdc45a18078ef8db4de4eecG_ppdwad.avif',
+    image: 'https://res.cloudinary.com/dqbbm0guw/image/upload/v1754869428/textsoap_o4lddz.avif',
     backgroundColor: 'bg-gray-50',
-    productCount: 230
+    productCount: 280
   }
 ]
 

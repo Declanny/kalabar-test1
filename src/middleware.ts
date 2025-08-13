@@ -14,8 +14,8 @@ export function middleware(request: NextRequest) {
     '/waiting-list'
   ]
 
-  // Allow Next.js internal paths
-  if (path.startsWith('/_next') || path.startsWith('/api') || path.startsWith('/public')) {
+  // Allow Next.js internal paths and static assets
+  if (path.startsWith('/_next') || path.startsWith('/api') || path.startsWith('/public') || path.startsWith('/logos') || path.startsWith('/images') || path.startsWith('/icons') || path.startsWith('/avatars')) {
     return NextResponse.next()
   }
 
@@ -41,7 +41,8 @@ export const config = {
      * 1. _next/static (static files)
      * 2. _next/image (image optimization files)
      * 3. favicon.ico (favicon file)
+     * 4. Static assets (logos, images, icons, avatars)
      */
-    '/((?!_next/static|_next/image|favicon.ico).*)',
+    '/((?!_next/static|_next/image|favicon.ico|logos|images|icons|avatars).*)',
   ],
 } 

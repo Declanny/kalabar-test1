@@ -74,12 +74,12 @@ export default function ContactPage() {
               <div className="space-y-6">
                 <div className="flex items-start gap-4">
                   <div className="p-2 bg-green-50 rounded-lg">
-                    <Mail className="w-5 h-5" style={{color: 'rgba(46, 125, 50, 1)'}} />
+                    <Mail className="w-5 h-5" style={{color: '#00C298'}} />
                   </div>
                   <div>
                     <h3 className="font-medium mb-1">Email Us</h3>
                     <p className="text-gray-600 text-sm">Our team will respond within 24 hours</p>
-                    <a href="mailto:support@kalabah.com" className="text-sm mt-1 inline-block" style={{color: 'rgba(46, 125, 50, 1)'}}>
+                    <a href="mailto:support@kalabah.com" className="text-sm mt-1 inline-block" style={{color: '#00C298'}}>
                       support@kalabah.com
                     </a>
                   </div>
@@ -87,12 +87,12 @@ export default function ContactPage() {
 
                 <div className="flex items-start gap-4">
                   <div className="p-2 bg-green-50 rounded-lg">
-                    <Phone className="w-5 h-5" style={{color: 'rgba(46, 125, 50, 1)'}} />
+                    <Phone className="w-5 h-5" style={{color: '#00C298'}} />
                   </div>
                   <div>
                     <h3 className="font-medium mb-1">Call Us</h3>
                     <p className="text-gray-600 text-sm">Mon-Fri from 8am to 5pm (WAT)</p>
-                    <a href="tel:+2348000000000" className="text-sm mt-1 inline-block" style={{color: 'rgba(46, 125, 50, 1)'}}>
+                    <a href="tel:+2348000000000" className="text-sm mt-1 inline-block" style={{color: '#00C298'}}>
                       +234 800 000 0000
                     </a>
                   </div>
@@ -100,7 +100,7 @@ export default function ContactPage() {
 
                 <div className="flex items-start gap-4">
                   <div className="p-2 bg-green-50 rounded-lg">
-                    <MapPin className="w-5 h-5" style={{color: 'rgba(46, 125, 50, 1)'}} />
+                    <MapPin className="w-5 h-5" style={{color: '#00C298'}} />
                   </div>
                   <div>
                     <h3 className="font-medium mb-1">Visit Us</h3>
@@ -139,7 +139,7 @@ export default function ContactPage() {
                     name="name"
                     value={formData.name}
                     onChange={handleChange}
-                    className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500"
+                    className="w-full px-4 py-2 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#00C298]"
                     placeholder="Enter your full name"
                     required
                   />
@@ -154,7 +154,7 @@ export default function ContactPage() {
                     name="email"
                     value={formData.email}
                     onChange={handleChange}
-                    className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500"
+                    className="w-full px-4 py-2 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#00C298]"
                     placeholder="Enter your email"
                     required
                   />
@@ -169,7 +169,7 @@ export default function ContactPage() {
                     name="subject"
                     value={formData.subject}
                     onChange={handleChange}
-                    className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500"
+                    className="w-full px-4 py-2 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#00C298]"
                     placeholder="What is this about?"
                     required
                   />
@@ -184,7 +184,7 @@ export default function ContactPage() {
                     value={formData.message}
                     onChange={handleChange}
                     rows={4}
-                    className="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500"
+                    className="w-full px-4 py-2 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#00C298]"
                     placeholder="Type your message here..."
                     required
                   />
@@ -205,7 +205,7 @@ export default function ContactPage() {
                 <Button 
                   type="submit"
                   className="w-full text-white"
-                  style={{backgroundColor: 'rgba(46, 125, 50, 1)'}}
+                  style={{backgroundColor: '#00C298'}}
                   disabled={isSubmitting}
                 >
                   {isSubmitting ? 'Sending...' : 'Send Message'}

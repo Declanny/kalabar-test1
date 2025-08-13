@@ -1,0 +1,116 @@
+{
+  "baseUrl": "https://kalabah-backend-220574125906.africa-south1.run.app",
+  "endpoints": {
+    "blogs": {
+      "list": {
+        "url": "/api/v1/blogs/",
+        "method": "GET",
+        "description": "List all blogs with filtering, search, and ordering capabilities",
+        "parameters": {
+          "blogger_name": {
+            "type": "string",
+            "location": "query",
+            "description": "Filter by blogger name"
+          },
+          "category": {
+            "type": "integer",
+            "location": "query", 
+            "description": "Filter by category ID"
+          },
+          "page": {
+            "type": "integer",
+            "location": "query",
+            "description": "A page number within the paginated result set"
+          },
+          "search": {
+            "type": "string",
+            "location": "query",
+            "description": "A search term"
+          },
+          "status": {
+            "type": "string",
+            "location": "query",
+            "description": "Status of the blog post (active/inactive)",
+            "values": ["active", "inactive"]
+          }
+        }
+      },
+      "popular": {
+        "url": "/api/v1/blogs/popular/",
+        "method": "GET",
+        "description": "List recent blogs ordered by published date with caching",
+        "parameters": {
+          "page": {
+            "type": "integer",
+            "location": "query",
+            "description": "A page number within the paginated result set"
+          }
+        }
+      },
+      "recent": {
+        "url": "/api/v1/blogs/recent/",
+        "method": "GET",
+        "description": "List recent blogs ordered by published date with caching",
+        "parameters": {
+          "page": {
+            "type": "integer",
+            "location": "query",
+            "description": "A page number within the paginated result set"
+          }
+        }
+      },
+      "detail": {
+        "url": "/api/v1/blogs/{slug}/",
+        "method": "GET",
+        "description": "Retrieve a single blog post by slug only",
+        "parameters": {
+          "slug": {
+            "type": "string",
+            "location": "path",
+            "required": true,
+            "description": "The slug of the blog post"
+          }
+        }
+      }
+    },
+    "categories": {
+      "list": {
+        "url": "/api/v1/categories/",
+        "method": "GET",
+        "description": "List all blog categories",
+        "parameters": {
+          "page": {
+            "type": "integer",
+            "location": "query",
+            "description": "A page number within the paginated result set"
+          }
+        }
+      }
+    }
+  },
+  "responseFormat": {
+    "success": "boolean",
+    "message": "string",
+    "data": "array|object",
+    "errors": "array|null"
+  },
+  "blogFields": {
+    "id": "integer",
+    "title": "string",
+    "slug": "string",
+    "meta_title": "string",
+    "meta_description": "string",
+    "canonical_url": "string",
+    "description": "string",
+    "cover_image": "string|null",
+    "cover_image_alt": "string",
+    "view_count": "integer",
+    "read_time": "integer",
+    "blogger_name": "string",
+    "blogger_image": "string|null",
+    "published_at": "string (ISO date)",
+    "status": "string (active|inactive)",
+    "category": "integer|null",
+    "tags_list": "array"
+  }
+} 

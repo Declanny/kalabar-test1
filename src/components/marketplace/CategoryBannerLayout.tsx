@@ -4,7 +4,8 @@ import React, { useState } from 'react'
 import { ChevronRight, Grid, Apple, Building2, Shirt, Sparkles, Heart, Headphones, Sofa, Printer, Leaf, Package } from 'lucide-react'
 import Link from 'next/link'
 import AdvertisingBanner from './AdvertisingBanner'
-import StandardBanner from './StandardBanner'
+import StandardBanner, { BannerCarousel } from './StandardBanner'
+import { standardBanners } from './StandardBanner'
 
 interface Category {
   id: string
@@ -113,7 +114,7 @@ export function CategoryBannerLayout({ onCategorySelect }: CategoryBannerLayoutP
   }
 
   return (
-    <div className="w-full px-4 sm:px-6 lg:px-10">
+    <div className="w-full px-2 sm:px-6 lg:px-10">
       <div className="bg-gray-50 rounded-lg overflow-hidden">
         <div className="flex flex-col lg:flex-row bg-gray-50">
           {/* Left Sidebar - Categories with four-sided closed table */}
@@ -139,7 +140,7 @@ export function CategoryBannerLayout({ onCategorySelect }: CategoryBannerLayoutP
                   >
                     <div className="flex items-center gap-3">
                       <span className="text-gray-600">{category.icon}</span>
-                      <span className="font-medium text-gray-900 group-hover:text-green-600 text-sm">
+                      <span className="font-medium text-gray-900 group-hover:text-[#00C298] text-sm">
                         {category.name}
                       </span>
                     </div>
@@ -150,7 +151,7 @@ export function CategoryBannerLayout({ onCategorySelect }: CategoryBannerLayoutP
               
               {/* View All Button */}
               <div className="py-4">
-                <button className="w-full flex items-center justify-center text-sm text-gray-500 hover:text-green-600 transition-colors font-medium">
+                <button className="w-full flex items-center justify-center text-sm text-gray-500 hover:text-[#00C298] transition-colors font-medium">
                   View all
                 </button>
               </div>
@@ -160,24 +161,54 @@ export function CategoryBannerLayout({ onCategorySelect }: CategoryBannerLayoutP
           {/* Right Content - Banners */}
           <div className="w-full lg:w-[75%] lg:pl-4 mt-4">
             {/* Top Banner */}
-            <div className="pb-2 sm:pb-4 pt-0">
-              <StandardBanner
-                title="Connect with African Suppliers"
-                subtitle="Discover quality products from verified suppliers across Africa"
-                ctaText="Explore Now"
-                imageUrl="https://res.cloudinary.com/dqbbm0guw/image/upload/v1754638367/happy-women-working-together_uba8hs.png"
-                variant="default"
-              />
+            <div className="pb-1 sm:pb-4 pt-0">
+              <BannerCarousel variant="default" />
             </div>
 
             {/* Bottom Banners */}
-            <div className="pt-1 sm:pt-2 pb-3 sm:pb-6">
-              <div className="grid grid-cols-2 gap-4 sm:gap-6">
+            <div className="pt-0 sm:pt-2 mt-0 sm:mt-0 pb-0 sm:pb-6">
+              <div className="grid grid-cols-2 gap-1 sm:gap-6">
                 <div>
-                  <AdvertisingBanner variant="large" />
+                  <AdvertisingBanner 
+                    variant="large"
+                    slides={[
+                      {
+                        id: 'left-1',
+                        title: 'Premium Agricultural Product',
+                        subtitle: 'Connect with verified Supplier',
+                        ctaText: 'Join Waitlist',
+                        imageUrl: 'https://res.cloudinary.com/dqbbm0guw/image/upload/v1755106969/f5134be67e74890149720c5ba97af9ad0676faaa_gqsff2.png'
+                      },
+                      {
+                        id: 'left-2',
+                        title: 'Fresh Produce, Trusted Sources',
+                        subtitle: 'Source directly from farms across Africa',
+                        ctaText: 'Join Waitlist',
+                        imageUrl: 'https://res.cloudinary.com/dqbbm0guw/image/upload/v1755106843/23cd7fb61bb7f18f4596de8fd966615a6ba23fe7_n6vvzz.png'
+                      }
+                    ]}
+                  />
                 </div>
                 <div>
-                  <AdvertisingBanner variant="large" />
+                  <AdvertisingBanner 
+                    variant="large"
+                    slides={[
+                      {
+                        id: 'right-1',
+                        title: 'From Farm to Fashion',
+                        subtitle: 'Showcase your products to verified buyers',
+                        ctaText: 'Join Waitlist',
+                        imageUrl: 'https://res.cloudinary.com/dqbbm0guw/image/upload/v1755097027/705713801b454a582c6206b74f7023da8c17b394_hrzitd.jpg'
+                      },
+                      {
+                        id: 'right-2',
+                        title: 'Premium Fashion & Apparel',
+                        subtitle: 'Grow with Africa\'s #1 B2B hub',
+                        ctaText: 'Join Waitlist',
+                        imageUrl: 'https://res.cloudinary.com/dqbbm0guw/image/upload/v1755105520/7bbfcf02cb3c7cd1090dd038ae464d4ef01e196a_vs3sp5.png'
+                      }
+                    ]}
+                  />
                 </div>
               </div>
             </div>
@@ -208,10 +239,10 @@ export function CategoryBannerLayout({ onCategorySelect }: CategoryBannerLayoutP
                   {categories.find(cat => cat.id === selectedCategory)?.subcategories?.map((sub, index) => (
                     <Link href="/waiting-list?action=true" key={index}>
                       <div className="flex items-center justify-between p-3 hover:bg-gray-50 rounded-lg cursor-pointer group">
-                        <span className="text-sm font-medium text-gray-700 group-hover:text-green-600">
+                        <span className="text-sm font-medium text-gray-700 group-hover:text-[#00C298]">
                           {sub}
                         </span>
-                        <ChevronRight className="w-4 h-4 text-gray-400 group-hover:text-green-600" />
+                        <ChevronRight className="w-4 h-4 text-gray-400 group-hover:text-[#00C298]" />
                       </div>
                     </Link>
                   ))}
@@ -224,15 +255,16 @@ export function CategoryBannerLayout({ onCategorySelect }: CategoryBannerLayoutP
                   {categories.find(cat => cat.id === selectedCategory)?.subcategories?.map((sub, index) => (
                     <Link href="/waiting-list?action=true" key={index}>
                       <div className="group cursor-pointer">
-                        <div className="bg-white rounded-lg border border-gray-200 hover:border-green-300 hover:shadow-md transition-all duration-200 p-4 h-40 flex flex-col">
+                        <div className="bg-white rounded-lg border border-gray-200 hover:border-[#00C298] hover:shadow-md transition-all duration-200 p-4 h-40 flex flex-col">
                           <div className="flex-1 flex items-center justify-center mb-2">
-                            <img 
-                              src={`https://res.cloudinary.com/dqbbm0guw/image/upload/v1753604888/traditional-african-souvenir-and-craft-items-for-sale-at-flee-market-MT842D_u2lngt.jpg`}
-                              alt={sub}
-                              className="w-20 h-20 rounded-lg object-cover"
-                            />
+                            <div className="w-20 h-20 rounded-lg bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center border-2 border-dashed border-gray-300">
+                              <div className="text-center">
+                                <div className="text-xs font-bold text-gray-600 mb-1">COMING</div>
+                                <div className="text-xs font-bold text-gray-600">SOON</div>
+                              </div>
+                            </div>
                           </div>
-                          <span className="text-xs font-medium text-gray-700 group-hover:text-green-600 text-center leading-tight">
+                          <span className="text-xs font-medium text-gray-700 group-hover:text-[#00C298] text-center leading-tight">
                             {sub}
                           </span>
                         </div>
