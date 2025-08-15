@@ -1,11 +1,16 @@
 import React from 'react'
 import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
+import Link from 'next/link'
 import { Header } from "@/components/layout/header"
 import { Footer } from "@/components/layout/Footer"
 import { blogApi, transformBlogData } from '@/lib/blog-api'
 import BlogContent from '@/components/blog/BlogContent'
 import { BlogErrorBoundary } from '@/components/blog/BlogErrorBoundary'
+
+// Force dynamic rendering to ensure the page works even when static generation fails
+export const dynamic = 'force-dynamic'
+export const revalidate = 0
 
 // Generate dynamic metadata for each blog post
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
@@ -83,6 +88,7 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ slu
   // Fetch blog data server-side
   let post: ReturnType<typeof transformBlogData> | null = null
   let relatedPosts: ReturnType<typeof transformBlogData>[] = []
+  let error: string | null = null
   
   try {
     const { slug } = await params
@@ -99,18 +105,59 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ slu
       .filter(blog => blog.slug !== slug)
       .map((blog, index) => transformBlogData(blog, index))
       .slice(0, 3)
-  } catch (error) {
-    console.error('Error fetching blog:', error)
+  } catch (err) {
+    console.error('Error fetching blog:', err)
     console.error('Error details:', {
-      message: error instanceof Error ? error.message : 'Unknown error',
-      stack: error instanceof Error ? error.stack : undefined
+      message: err instanceof Error ? err.message : 'Unknown error',
+      stack: err instanceof Error ? err.stack : undefined
     })
-    notFound()
+    error = err instanceof Error ? err.message : 'Failed to load blog post'
   }
 
-  if (!post) {
-    console.error('No post found for slug')
-    notFound()
+  // If there's an error or no post, show fallback instead of 404
+  if (error || !post) {
+    return (
+      <BlogErrorBoundary>
+        <Header />
+        <div className="min-h-screen flex items-center justify-center bg-gray-50">
+          <div className="max-w-md w-full bg-white shadow-lg rounded-lg p-6">
+            <div className="text-center">
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">
+                Blog Post Unavailable
+              </h2>
+              <p className="text-gray-600 mb-4">
+                We&apos;re having trouble loading this blog post. This might be due to a temporary issue with our servers.
+              </p>
+              {error && (
+                <details className="mb-4 text-left">
+                  <summary className="cursor-pointer text-sm text-gray-500">
+                    Error Details
+                  </summary>
+                  <pre className="mt-2 text-xs text-red-600 bg-red-50 p-2 rounded overflow-auto">
+                    {error}
+                  </pre>
+                </details>
+              )}
+              <div className="space-y-2">
+                <button
+                  onClick={() => window.location.reload()}
+                  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-full"
+                >
+                  Try Again
+                </button>
+                <Link
+                  href="/blog"
+                  className="block bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded w-full"
+                >
+                  Back to Blog
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+        <Footer />
+      </BlogErrorBoundary>
+    )
   }
 
   return (
