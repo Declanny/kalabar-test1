@@ -5,6 +5,7 @@ import { Header } from "@/components/layout/header"
 import { Footer } from "@/components/layout/Footer"
 import { blogApi, transformBlogData } from '@/lib/blog-api'
 import BlogContent from '@/components/blog/BlogContent'
+import { BlogErrorBoundary } from '@/components/blog/BlogErrorBoundary'
 
 // Generate dynamic metadata for each blog post
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
@@ -113,10 +114,10 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ slu
   }
 
   return (
-    <>
+    <BlogErrorBoundary>
       <Header />
       <BlogContent post={post} relatedPosts={relatedPosts} />
       <Footer />
-    </>
+    </BlogErrorBoundary>
   )
 }
