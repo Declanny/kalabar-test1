@@ -73,10 +73,8 @@ export async function generateStaticParams() {
     }))
   } catch (error) {
     console.error('Error generating static params:', error)
-    // Return fallback data to ensure at least known blog posts are generated
-    return [
-      { slug: 'test-blog' }
-    ]
+    // Return empty array to allow dynamic rendering for all routes
+    return []
   }
 }
 
@@ -87,23 +85,30 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ slu
   
   try {
     const { slug } = await params
+    console.log('Fetching blog with slug:', slug)
         
-        // Fetch the specific blog by slug
-          const apiBlog = await blogApi.getBlogBySlug(slug)
+    // Fetch the specific blog by slug
+    const apiBlog = await blogApi.getBlogBySlug(slug)
+    console.log('API blog response:', apiBlog)
     post = transformBlogData(apiBlog, 0)
         
-        // Fetch related posts (all blogs except current one)
-        const allBlogs = await blogApi.getBlogs()
+    // Fetch related posts (all blogs except current one)
+    const allBlogs = await blogApi.getBlogs()
     relatedPosts = allBlogs
-          .filter(blog => blog.slug !== slug)
-          .map((blog, index) => transformBlogData(blog, index))
-          .slice(0, 3)
-      } catch (error) {
-        console.error('Error fetching blog:', error)
+      .filter(blog => blog.slug !== slug)
+      .map((blog, index) => transformBlogData(blog, index))
+      .slice(0, 3)
+  } catch (error) {
+    console.error('Error fetching blog:', error)
+    console.error('Error details:', {
+      message: error instanceof Error ? error.message : 'Unknown error',
+      stack: error instanceof Error ? error.stack : undefined
+    })
     notFound()
   }
 
   if (!post) {
+    console.error('No post found for slug')
     notFound()
   }
 

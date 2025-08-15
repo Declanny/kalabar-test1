@@ -45,6 +45,10 @@ const nextConfig: NextConfig = {
       },
     ];
   },
+  // Enable experimental features for better Vercel compatibility
+  experimental: {
+    serverComponentsExternalPackages: [],
+  },
 };
 
 export default nextConfig;

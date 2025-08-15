@@ -52,7 +52,11 @@ export interface PaginatedResponse<T> {
 
 // Helper function to build URL with query parameters
 function buildUrl(endpoint: string, params?: Record<string, any>): string {
-  const baseUrl = typeof window !== 'undefined' ? window.location.origin : 'http://localhost:3000'
+  // Use environment variable for base URL, fallback to localhost for development
+  const baseUrl = process.env.NEXT_PUBLIC_VERCEL_URL 
+    ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}` 
+    : process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'
+  
   const url = new URL(baseUrl + '/api' + endpoint)
   
   if (params) {
@@ -224,6 +228,8 @@ export const blogApi = {
   async getBlogBySlug(slug: string): Promise<BlogPost> {
     try {
       const url = buildUrl(`/blogs/${slug}`)
+      console.log('Blog API: Fetching blog by slug:', slug, 'URL:', url)
+      
       const response = await fetch(url, {
         method: 'GET',
         headers: {
@@ -231,14 +237,20 @@ export const blogApi = {
           'Content-Type': 'application/json'
         },
         mode: 'cors',
-        credentials: 'omit'
+        credentials: 'omit',
+        cache: 'no-cache'
       })
       
+      console.log('Blog API: Response status:', response.status)
+      
       if (!response.ok) {
+        const errorText = await response.text()
+        console.error('Blog API: Error response:', errorText)
         throw new Error(`HTTP error! status: ${response.status}`)
       }
       
       const result: ApiResponse<BlogPost> = await response.json()
+      console.log('Blog API: Success response:', result)
       
       if (!result.success) {
         throw new Error(result.message || 'Failed to fetch blog')
@@ -247,6 +259,10 @@ export const blogApi = {
       return result.data
     } catch (error) {
       console.error('Error fetching blog:', error)
+      console.error('Error details:', {
+        message: error instanceof Error ? error.message : 'Unknown error',
+        stack: error instanceof Error ? error.stack : undefined
+      })
       throw error
     }
   },

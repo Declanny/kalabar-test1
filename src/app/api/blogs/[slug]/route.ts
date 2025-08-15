@@ -8,21 +8,31 @@ export async function GET(
 ) {
   try {
     const { slug } = await params
+    console.log('API: Fetching blog with slug:', slug)
+    console.log('API: BASE_URL:', BASE_URL)
 
     const apiUrl = `${BASE_URL}/v1/blogs/${slug}/`
+    console.log('API: Making request to:', apiUrl)
 
     const response = await fetch(apiUrl, {
       headers: {
         'accept': 'application/json',
-        'Content-Type': 'application/json'
-      }
+        'Content-Type': 'application/json',
+        'User-Agent': 'Kalabah-Frontend/1.0'
+      },
+      cache: 'no-cache'
     })
 
+    console.log('API: Response status:', response.status)
+
     if (!response.ok) {
+      const errorText = await response.text()
+      console.error('API: Error response:', errorText)
       throw new Error(`API responded with status: ${response.status}`)
     }
 
     const data = await response.json()
+    console.log('API: Success response:', data)
 
     return NextResponse.json(data, {
       headers: {
@@ -33,8 +43,15 @@ export async function GET(
     })
   } catch (error) {
     console.error('Error fetching blog:', error)
+    console.error('Error details:', {
+      message: error instanceof Error ? error.message : 'Unknown error',
+      stack: error instanceof Error ? error.stack : undefined
+    })
     return NextResponse.json(
-      { error: 'Failed to fetch blog' },
+      { 
+        error: 'Failed to fetch blog',
+        details: error instanceof Error ? error.message : 'Unknown error'
+      },
       { status: 500 }
     )
   }
