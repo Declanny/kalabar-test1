@@ -9,6 +9,7 @@ import { RecentSearches } from "@/components/marketplace/RecentSearches"
 import { TopSuppliersCarousel } from "@/components/marketplace/TopSuppliersCarousel"
 import { CategoryGrid } from "@/components/marketplace/CategoryGrid"
 import FAQSection from "@/components/marketplace/FAQSection"
+import { FeaturedCategoriesSection } from "@/components/marketplace/FeaturedCategoriesSection"
 import { Card, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react'
@@ -214,8 +215,11 @@ export default function LandingPage() {
         {/* Category Banner Layout */}
         <CategoryBannerLayout onCategorySelect={handleCategorySelect} />
         
+        {/* Featured Categories Section */}
+        <FeaturedCategoriesSection />
+        
         {/* Best Offers Section - Full Width */}
-        <div className="py-4 sm:py-6 lg:py-8" style={{backgroundColor: 'rgba(255, 250, 245, 1)'}}>
+        <div className="py-1 sm:py-2 lg:py-4" style={{backgroundColor: 'rgba(255, 250, 245, 1)'}}>
           <div className="w-full px-4 sm:px-6 lg:px-10">
             <CategoryGrid 
               headerContent={

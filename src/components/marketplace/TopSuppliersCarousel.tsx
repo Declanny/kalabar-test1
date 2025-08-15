@@ -2,7 +2,9 @@
 
 import React, { useState, useRef } from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
+import { imagePresets } from '@/lib/image-utils'
 
 interface CategoryItem {
   id: string
@@ -15,7 +17,7 @@ const categoryItems: CategoryItem[] = [
   {
     id: '1',
     name: 'Package Foods',
-    imageUrl: 'https://res.cloudinary.com/dqbbm0guw/image/upload/v1755097027/a248517ac57d42d7cb87597055251fbd64ca5e41_hjzvc4.jpg'
+    imageUrl: imagePresets.card('https://res.cloudinary.com/dqbbm0guw/image/upload/v1755097027/a248517ac57d42d7cb87597055251fbd64ca5e41_hjzvc4.jpg')
   },
   {
     id: '2',
@@ -107,8 +109,9 @@ export function TopSuppliersCarousel() {
         <div className="hidden lg:block max-w-6xl mx-auto">
           <div className="grid grid-cols-5 gap-12">
             {categoryItems.map((item) => (
-              <div 
+              <Link 
                 key={item.id}
+                href="/waiting-list"
                 className="flex flex-col items-center cursor-pointer group"
               >
                 <div 
@@ -129,7 +132,7 @@ export function TopSuppliersCarousel() {
                 <span className="text-sm text-center leading-tight font-bold mt-3 whitespace-pre-line" style={{color: 'rgba(10, 10, 10, 1)'}}>
                   {item.name}
                 </span>
-              </div>
+              </Link>
             ))}
           </div>
         </div>
@@ -143,8 +146,9 @@ export function TopSuppliersCarousel() {
             >
               <div className="flex gap-6 py-4" style={{ width: 'max-content' }}>
                 {categoryItems.map((item) => (
-                  <div 
+                  <Link 
                     key={item.id}
+                    href="/waiting-list"
                     className="flex flex-col items-center cursor-pointer group flex-shrink-0"
                   >
                     <div 
@@ -164,7 +168,7 @@ export function TopSuppliersCarousel() {
                     <span className="text-xs text-center leading-tight font-bold mt-2 whitespace-pre-line w-20" style={{color: 'rgba(10, 10, 10, 1)'}}>
                       {item.name}
                     </span>
-                  </div>
+                  </Link>
                 ))}
               </div>
             </div>

@@ -180,7 +180,7 @@ const StatsSection = () => {
   ];
 
   return (
-    <div className="py-8 sm:py-12 md:py-16 lg:py-20 xl:py-24" style={{backgroundColor: 'rgba(255, 250, 245, 1)'}}>
+    <div className="py-8 sm:py-12 md:py-16 lg:py-20 xl:py-24" style={{backgroundColor: '#fbe7d9'}}>
       <div className="w-full px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 2xl:px-16">
         {/* Centered Header */}
         <div className="text-center mb-8 sm:mb-12 md:mb-16 lg:mb-20">

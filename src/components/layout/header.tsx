@@ -10,7 +10,8 @@ import {
   Linkedin,
   Instagram,
   Twitter,
-  X
+  X,
+  Globe
 } from 'lucide-react';
 
 export const Header = () => {
@@ -18,6 +19,20 @@ export const Header = () => {
   const [isStickyMenuOpen, setIsStickyMenuOpen] = useState(false);
   const [showStickyHeader, setShowStickyHeader] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const [isLanguageOpen, setIsLanguageOpen] = useState(false);
+  const [isMainLanguageOpen, setIsMainLanguageOpen] = useState(false);
+  const [isStickyLanguageOpen, setIsStickyLanguageOpen] = useState(false);
+  const [isMobileLanguageOpen, setIsMobileLanguageOpen] = useState(false);
+  const [selectedLanguage, setSelectedLanguage] = useState({ code: 'en', name: 'English' });
+
+  const languages = [
+    { code: 'en', name: 'English' },
+    { code: 'fr', name: 'Français' },
+    { code: 'es', name: 'Español' },
+    { code: 'ar', name: 'العربية' },
+    { code: 'sw', name: 'Kiswahili' },
+    { code: 'ha', name: 'Hausa' }
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -43,23 +58,135 @@ export const Header = () => {
   useEffect(() => {
     if (showStickyHeader) {
       setIsMobileMenuOpen(false);
+    } else {
+      // Close sticky language dropdown when sticky header disappears
+      setIsStickyLanguageOpen(false);
     }
   }, [showStickyHeader]);
+
+  // Close language dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as HTMLElement;
+      if (!target.closest('.language-dropdown')) {
+        setIsMainLanguageOpen(false);
+        setIsStickyLanguageOpen(false);
+        setIsMobileLanguageOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  const handleLanguageSelect = (language: { code: string; name: string }) => {
+    setSelectedLanguage(language);
+    setIsMainLanguageOpen(false);
+    setIsStickyLanguageOpen(false);
+    setIsMobileLanguageOpen(false);
+  };
+
+    // Language Dropdown Component
+  const LanguageDropdown = ({ isMobile = false, dropdownId }: { isMobile?: boolean; dropdownId: 'main' | 'sticky' | 'mobile' }) => {
+    const isOpen = dropdownId === 'main' ? isMainLanguageOpen : 
+                   dropdownId === 'sticky' ? isStickyLanguageOpen : 
+                   isMobileLanguageOpen;
+    
+    const setIsOpen = dropdownId === 'main' ? setIsMainLanguageOpen : 
+                       dropdownId === 'sticky' ? setIsStickyLanguageOpen : 
+                       setIsMobileLanguageOpen;
+
+    const handleToggle = () => {
+      // Close all other dropdowns first
+      if (dropdownId === 'main') {
+        setIsStickyLanguageOpen(false);
+        setIsMobileLanguageOpen(false);
+      } else if (dropdownId === 'sticky') {
+        setIsMainLanguageOpen(false);
+        setIsMobileLanguageOpen(false);
+      } else {
+        setIsMainLanguageOpen(false);
+        setIsStickyLanguageOpen(false);
+      }
+      // Then toggle this one
+      setIsOpen(!isOpen);
+    };
+
+    return (
+      <div className={`language-dropdown relative ${isMobile ? 'w-full' : ''}`}>
+        <button
+          onClick={handleToggle}
+          className={`flex items-center space-x-2 group ${
+            isMobile 
+              ? 'w-full justify-between px-4 py-3 text-[#424242] hover:bg-gray-50 rounded-[20px] border border-gray-200'
+              : 'text-[#424242] hover:text-[#424242] transition-colors'
+          } transition-all duration-200`}
+        >
+          <div className="flex items-center space-x-2">
+            <div className="relative">
+              <Globe className="w-5 h-5 text-[#424242] group-hover:scale-110 transition-transform" />
+            </div>
+            <span className="text-sm font-semibold text-[#424242] group-hover:text-[#424242] transition-colors">
+              {isMobile ? selectedLanguage.name : selectedLanguage.code.toUpperCase()}
+            </span>
+          </div>
+          <ChevronDown className={`w-4 h-4 text-[#424242] group-hover:text-[#424242] transition-all duration-200 ${isOpen ? 'rotate-180' : ''}`} />
+        </button>
+
+        {isOpen && (
+          <div className={`absolute ${isMobile ? 'top-full left-0 mt-2' : 'top-full mt-2 right-0'} bg-white rounded-[20px] shadow-xl border border-gray-200 overflow-hidden z-50 ${isMobile ? 'w-full' : 'min-w-[220px]'} backdrop-blur-sm`}>
+            <div className="p-2">
+              {languages.map((language) => (
+                <button
+                  key={language.code}
+                  onClick={() => handleLanguageSelect(language)}
+                  className={`w-full px-4 py-3 text-left hover:bg-gray-50 transition-all duration-200 flex items-center space-x-3 rounded-[15px] group ${
+                    selectedLanguage.code === language.code ? 'bg-gray-100 text-[#424242]' : 'text-[#424242] hover:text-[#424242]'
+                  }`}
+                >
+                  <span className="font-medium flex-1">{language.name}</span>
+                  <span className="text-xs text-gray-400 font-mono">{language.code.toUpperCase()}</span>
+                  {selectedLanguage.code === language.code && (
+                    <div className="w-2 h-2 bg-[#424242] rounded-full"></div>
+                  )}
+                </button>
+              ))}
+            </div>
+            <div className="px-4 py-2 bg-gray-50 border-t border-gray-200">
+              <p className="text-xs text-gray-500 text-center">More languages coming soon</p>
+            </div>
+          </div>
+        )}
+      </div>
+    );
+  };
+
+  // Enhanced Search Bar Component
+  const SearchBar = ({ className = '' }: { className?: string }) => (
+    <div className={`relative ${className}`}>
+      <div className="relative">
+        <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
+        <input 
+          type="text" 
+          placeholder="Search for Product or Supplier..."
+          className="w-full pl-11 pr-4 py-2.5 rounded-[20px] focus:outline-none focus:ring-2 focus:ring-[#00C298] bg-white border border-[#424242]/20 transition-all duration-200"
+        />
+      </div>
+    </div>
+  );
 
   // Common mobile menu content component
   const MobileMenuContent = ({ onClose }: { onClose: () => void }) => (
     <div className="bg-white shadow-xl border-t border-gray-100">
-      {/* Mobile Search Bar */}
+      {/* Mobile Search Bar and Language Selector - Same Row */}
       <div className="px-4 sm:px-6 pt-6 pb-4">
-        <div className="flex w-full">
-          <input 
-            type="text" 
-            placeholder="Search for Product or Supplier..."
-            className="flex-1 px-4 py-2.5 rounded-l-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 bg-gray-50 text-gray-800 placeholder-gray-500"
-          />
-          <button className="bg-gradient-to-r from-orange-500 to-orange-600 text-white px-5 py-2.5 rounded-r-xl hover:from-orange-600 hover:to-orange-700 transition-all duration-200 shadow-md">
-            <Search className="w-4 h-4" />
-          </button>
+        <div className="flex items-start gap-3">
+          <div className="flex-1">
+            <SearchBar />
+          </div>
+          <div className="flex-shrink-0 relative">
+            <LanguageDropdown isMobile={true} dropdownId="mobile" />
+          </div>
         </div>
       </div>
       
@@ -117,12 +244,12 @@ export const Header = () => {
         <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-4">Quick Actions</h3>
         <div className="grid grid-cols-2 gap-3">
           <Link href="/waiting-list" onClick={onClose}>
-            <button className="w-full bg-[#00C298] text-white px-4 py-3 rounded-xl font-semibold text-sm hover:bg-[#00C298]/90 transition-all duration-200 shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
+            <button className="w-full bg-[#00C298] text-white px-4 py-3 rounded-[20px] font-semibold text-sm hover:bg-[#00C298]/90 transition-all duration-200 shadow-md hover:shadow-lg transform hover:-translate-y-0.5">
               Join Wait List
             </button>
           </Link>
           <Link href="/supplier" onClick={onClose}>
-            <button className="w-full bg-[#FF6501] text-white px-4 py-3 rounded-xl font-semibold text-sm transition-all duration-200 shadow-md hover:shadow-lg transform hover:-translate-y-0.5 hover:bg-[#FF6501]/90">
+            <button className="w-full bg-[#FF6501] text-white px-4 py-3 rounded-[20px] font-semibold text-sm transition-all duration-200 shadow-md hover:shadow-lg transform hover:-translate-y-0.5 hover:bg-[#FF6501]/90">
               See Supplier Feature
             </button>
           </Link>
@@ -166,11 +293,10 @@ export const Header = () => {
       <header className="w-full relative">
         {/* Main Header */}
         <div style={{ backgroundColor: '#F5F5F5' }}>
-          <div className="w-full px-4 sm:px-6 lg:px-8 py-3 sm:py-4">
-            <div className="max-w-7xl mx-auto">
-            <div className="flex items-center justify-between">
+          <div className="w-full px-4 sm:px-6 lg:px-10 py-3 sm:py-4">
+            <div className="flex items-center justify-between gap-4">
               {/* Logo */}
-              <Link href="/" className="flex items-center">
+              <Link href="/" className="flex items-center flex-shrink-0">
                 <img 
                   src="/logos/kalabah-logo.png"
                   alt="Kalabah Logo"
@@ -178,85 +304,49 @@ export const Header = () => {
                 />
               </Link>
 
-              {/* Search Bar - Hidden on mobile, visible on tablet+ */}
-              <div className="hidden md:flex flex-1 max-w-xl mx-4 lg:mx-8">
-                <div className="flex w-full">
-                  <input 
-                    type="text" 
-                    placeholder="Search for Product or Supplier..."
-                    className="flex-1 px-4 py-2.5 rounded-l-xl border-0 focus:outline-none focus:ring-2 focus:ring-[#00C298]"
-                  />
-                  <button className="bg-[#00C298] text-white px-5 py-2.5 rounded-r-xl hover:bg-[#00C298]/90 transition-colors">
-                    <Search className="w-4 h-4" />
-                  </button>
+                              {/* Search Bar - Hidden on mobile, visible on tablet+ */}
+                <div className="hidden md:flex flex-1 max-w-lg mx-4 lg:mx-8">
+                  <SearchBar className="w-full" />
                 </div>
-              </div>
 
-              {/* CTA Buttons - Responsive */}
-              <div className="flex items-center space-x-2 sm:space-x-3">
-                {/* Join Wait List button - full text on all screens */}
-                <Link href="/waiting-list">
-                  <button className="bg-[#00C298] text-white px-3 sm:px-4 lg:px-6 py-2.5 rounded-xl hover:bg-[#00C298]/90 transition-colors font-bold text-xs sm:text-sm lg:text-base">
-                    Join Wait List
-                  </button>
-                </Link>
-                
-                {/* Desktop: Show Supplier Feature button */}
-                <Link href="/supplier" className="hidden lg:block">
-                  <button className="bg-[#FF6501] text-white px-6 py-2.5 rounded-xl transition-colors font-medium hover:bg-[#FF6501]/90">
-                    See Supplier Feature
-                  </button>
-                </Link>
-              </div>
+                {/* Right Side Items */}
+                <div className="flex items-center space-x-3 lg:space-x-4">
+                  {/* Language Selector - Desktop */}
+                  <div className="hidden lg:block">
+                    <LanguageDropdown dropdownId="main" />
+                  </div>
 
-              {/* Mobile Menu Button - Only show when sticky header is NOT visible */}
-              <button 
-                className={`md:hidden p-2 ${showStickyHeader ? 'invisible' : 'visible'}`}
-                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              >
-                {isMobileMenuOpen ? (
-                  <X className="w-6 h-6 text-gray-800" />
-                ) : (
-                  <Menu className="w-6 h-6 text-gray-800" />
-                )}
-              </button>
-            </div>
-          </div>
-        </div>
-              
-        {/* Bottom Navigation Bar - White */}
-        <div className="bg-white border-b border-gray-200">
-          <div className="w-full px-4 sm:px-6 lg:px-8 py-3">
-            <div className="max-w-7xl mx-auto">
-            <div className="flex items-center justify-between">
-              {/* Left side - Navigation links */}
-              <div className="hidden lg:flex items-center space-x-6">
-                <Link href="/about" className="text-gray-700 hover:text-[#00C298] transition-colors font-medium">
-                  About Us
-                </Link>
-                <div className="w-px h-4 bg-gray-300"></div>
-                <Link href="/contact" className="text-gray-700 hover:text-[#00C298] transition-colors font-medium">
-                  Contact Us
-                </Link>
-                <div className="w-px h-4 bg-gray-300"></div>
-                <Link href="/waiting-list" className="text-gray-700 hover:text-[#00C298] transition-colors font-medium">
-                  Join Wait List
-                </Link>
-              </div>
+                {/* CTA Buttons - Responsive */}
+                <div className="flex items-center space-x-2 sm:space-x-3">
+                  {/* Join Wait List button */}
+                  <Link href="/waiting-list">
+                    <button className="border border-[#424242] text-[#424242] bg-transparent px-3 sm:px-4 lg:px-6 py-2.5 rounded-[20px] transition-colors font-bold text-xs sm:text-sm lg:text-base">
+                      Join Wait List
+                    </button>
+                  </Link>
+                  
+                  {/* Desktop: Show Supplier Feature button */}
+                  <Link href="/supplier" className="hidden lg:block">
+                    <button className="bg-[#FF6501] text-white px-6 py-2.5 rounded-[20px] transition-colors font-medium hover:bg-[#FF6501]/90">
+                      See Supplier Feature
+                    </button>
+                  </Link>
+                </div>
 
-              {/* Right side - Contact info */}
-              <div className="hidden sm:block text-gray-700 font-medium">
-                Contact: (808) 555-0111
-              </div>
-              
-              {/* Mobile: Show contact info */}
-              <div className="lg:hidden text-gray-700 font-medium text-sm">
-                (808) 555-0111
+                {/* Mobile Menu Button - Only show when sticky header is NOT visible */}
+                <button 
+                  className={`md:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors ${showStickyHeader ? 'invisible' : 'visible'}`}
+                  onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                >
+                  {isMobileMenuOpen ? (
+                    <X className="w-6 h-6 text-gray-800" />
+                  ) : (
+                    <Menu className="w-6 h-6 text-gray-800" />
+                  )}
+                </button>
               </div>
             </div>
           </div>
-        </div>
-        </div>
         </div>
 
         {/* Main Header Mobile Menu - Only show when sticky header is NOT visible */}
@@ -269,13 +359,11 @@ export const Header = () => {
 
       {/* Sticky Header - Only Middle Section */}
       <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${showStickyHeader ? 'translate-y-0' : '-translate-y-full'}`}>
-        {/* Only the Middle Section */}
-        <div style={{ backgroundColor: '#F5F5F5' }} className="shadow-lg">
-          <div className="w-full px-4 sm:px-6 lg:px-8 py-3 sm:py-4">
-            <div className="max-w-7xl mx-auto">
-            <div className="flex items-center justify-between">
+        <div style={{ backgroundColor: '#F5F5F5' }} className="shadow-lg backdrop-blur-sm">
+          <div className="w-full px-4 sm:px-6 lg:px-10 py-3 sm:py-4">
+            <div className="flex items-center justify-between gap-4">
               {/* Logo */}
-              <Link href="/" className="flex items-center">
+              <Link href="/" className="flex items-center flex-shrink-0">
                 <img 
                   src="/logos/kalabah-logo.png"
                   alt="Kalabah Logo"
@@ -284,50 +372,48 @@ export const Header = () => {
               </Link>
 
               {/* Search Bar - Hidden on mobile, visible on tablet+ */}
-              <div className="hidden md:flex flex-1 max-w-xl mx-4 lg:mx-8">
-                <div className="flex w-full">
-                  <input 
-                    type="text" 
-                    placeholder="Search for Product or Supplier..."
-                    className="flex-1 px-4 py-2.5 rounded-l-xl border-0 focus:outline-none focus:ring-2 focus:ring-[#00C298]"
-                  />
-                  <button className="bg-[#00C298] text-white px-5 py-2.5 rounded-r-xl hover:bg-[#00C298]/90 transition-colors">
-                    <Search className="w-4 h-4" />
-                  </button>
+              <div className="hidden md:flex flex-1 max-w-lg mx-4 lg:mx-8">
+                <SearchBar className="w-full" />
+              </div>
+
+              {/* Right Side Items */}
+              <div className="flex items-center space-x-3 lg:space-x-4">
+                {/* Language Selector - Desktop */}
+                <div className="hidden lg:block">
+                  <LanguageDropdown dropdownId="sticky" />
                 </div>
-              </div>
 
-              {/* CTA Buttons - Responsive */}
-              <div className="flex items-center space-x-2 sm:space-x-3">
-                {/* Join Wait List button - full text on all screens */}
-                <Link href="/waiting-list">
-                  <button className="bg-[#00C298] text-white px-3 sm:px-4 lg:px-6 py-2.5 rounded-xl hover:bg-[#00C298]/90 transition-colors font-bold text-xs sm:text-sm lg:text-base">
-                    Join Wait List
-                  </button>
-                </Link>
-                
-                {/* Desktop: Show Supplier Feature button */}
-                <Link href="/supplier" className="hidden lg:block">
-                  <button className="bg-[#FF6501] text-white px-6 py-2.5 rounded-xl transition-colors font-medium hover:bg-[#FF6501]/90">
-                    See Supplier Feature
-                  </button>
-                </Link>
-              </div>
+                {/* CTA Buttons - Responsive */}
+                <div className="flex items-center space-x-2 sm:space-x-3">
+                  {/* Join Wait List button */}
+                  <Link href="/waiting-list">
+                    <button className="border border-[#424242] text-[#424242] bg-transparent px-3 sm:px-4 lg:px-6 py-2.5 rounded-[20px] transition-colors font-bold text-xs sm:text-sm lg:text-base">
+                      Join Wait List
+                    </button>
+                  </Link>
+                  
+                  {/* Desktop: Show Supplier Feature button */}
+                  <Link href="/supplier" className="hidden lg:block">
+                    <button className="bg-[#FF6501] text-white px-6 py-2.5 rounded-[20px] transition-colors font-medium hover:bg-[#FF6501]/90">
+                      See Supplier Feature
+                    </button>
+                  </Link>
+                </div>
 
-              {/* Mobile Menu Button for Sticky Header */}
-              <button 
-                className="md:hidden p-2"
-                onClick={() => setIsStickyMenuOpen(!isStickyMenuOpen)}
-              >
-                {isStickyMenuOpen ? (
-                  <X className="w-6 h-6 text-gray-800" />
-                ) : (
-                  <Menu className="w-6 h-6 text-gray-800" />
-                )}
-              </button>
+                {/* Mobile Menu Button for Sticky Header */}
+                <button 
+                  className="md:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors"
+                  onClick={() => setIsStickyMenuOpen(!isStickyMenuOpen)}
+                >
+                  {isStickyMenuOpen ? (
+                    <X className="w-6 h-6 text-gray-800" />
+                  ) : (
+                    <Menu className="w-6 h-6 text-gray-800" />
+                  )}
+                </button>
+              </div>
             </div>
           </div>
-        </div>
         </div>
 
         {/* Sticky Header Mobile Menu */}

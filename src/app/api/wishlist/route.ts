@@ -1,10 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 
-const BASE_URL = process.env.NEXT_PUBLIC_BACKEND_URL
-
-if (!BASE_URL) {
-  throw new Error('NEXT_PUBLIC_BACKEND_URL environment variable is not set')
-}
+const BASE_URL = 'https://api.kalabah.com'
 
 export async function POST(request: NextRequest) {
   try {
@@ -19,6 +15,9 @@ export async function POST(request: NextRequest) {
     }
 
     const apiUrl = `${BASE_URL}/api/v1/wishlist/`
+    console.log('Wishlist API URL:', apiUrl)
+    console.log('Wishlist request body:', { email })
+    
     const response = await fetch(apiUrl, {
       method: 'POST',
       headers: {
@@ -29,6 +28,8 @@ export async function POST(request: NextRequest) {
     })
 
     if (!response.ok) {
+      console.error('Wishlist API Error Status:', response.status)
+      console.error('Wishlist API Error Text:', await response.text())
       throw new Error(`API responded with status: ${response.status}`)
     }
 
@@ -63,6 +64,8 @@ export async function GET(request: NextRequest) {
     }
 
     const apiUrl = `${BASE_URL}/api/v1/wishlist/?email=${encodeURIComponent(email)}`
+    console.log('Wishlist GET API URL:', apiUrl)
+    
     const response = await fetch(apiUrl, {
       headers: {
         'accept': 'application/json',
@@ -71,6 +74,8 @@ export async function GET(request: NextRequest) {
     })
 
     if (!response.ok) {
+      console.error('Wishlist GET API Error Status:', response.status)
+      console.error('Wishlist GET API Error Text:', await response.text())
       throw new Error(`API responded with status: ${response.status}`)
     }
 

@@ -10,15 +10,22 @@ export interface BlogPost {
   meta_description: string
   canonical_url: string
   description: string
+  content?: string
   cover_image: string | null
   cover_image_alt: string
   view_count: number
   read_time: number
   blogger_name: string
   blogger_image: string | null
+  blogger_info?: string
   published_at: string
   status: 'active' | 'inactive'
-  category: number | null
+  category: {
+    id: number
+    name: string
+    created_at: string
+    updated_at: string
+  } | null
   tags_list: string[]
 }
 
@@ -84,15 +91,15 @@ export function transformBlogData(apiBlog: BlogPost, index: number = 0) {
     title: apiBlog.title,
     slug: apiBlog.slug,
     excerpt: apiBlog.description,
-    content: apiBlog.description, // API doesn't have separate content field
+    content: apiBlog.content || apiBlog.description, // Use content field if available, fallback to description
     image: apiBlog.cover_image || 'https://res.cloudinary.com/dqbbm0guw/image/upload/v1753604888/traditional-african-souvenir-and-craft-items-for-sale-at-flee-market-MT842D_u2lngt.jpg',
     author: apiBlog.blogger_name,
     authorAvatar: apiBlog.blogger_image || '/avatars/user.jpg',
-    authorBio: `${apiBlog.blogger_name} is a contributor to Kalabah's B2B marketplace insights.`,
+    authorBio: apiBlog.blogger_info || `${apiBlog.blogger_name} is a contributor to Kalabah's B2B marketplace insights.`,
     date: formatDate(apiBlog.published_at),
     readTime: `${apiBlog.read_time} min read`,
     views: formatViewCount(apiBlog.view_count),
-    category: apiBlog.category ? `Category ${apiBlog.category}` : 'General',
+    category: apiBlog.category?.name || 'General',
     tags: apiBlog.tags_list,
     featured: index === 0 // Make the first blog post featured
   }
@@ -155,13 +162,20 @@ export const blogApi = {
         throw new Error(`HTTP error! status: ${response.status}`)
       }
       
-      const result: ApiResponse<BlogPost[]> = await response.json()
+      const result: ApiResponse<PaginatedResponse<BlogPost> | BlogPost[]> = await response.json()
       
       if (!result.success) {
         throw new Error(result.message || 'Failed to fetch popular blogs')
       }
       
-      return result.data
+      // Handle both paginated and non-paginated responses
+      if (result.data && 'results' in result.data) {
+        // Paginated response
+        return (result.data as PaginatedResponse<BlogPost>).results
+      } else {
+        // Non-paginated response (direct array)
+        return result.data as BlogPost[]
+      }
     } catch (error) {
       console.error('Error fetching popular blogs:', error)
       throw error
@@ -186,13 +200,20 @@ export const blogApi = {
         throw new Error(`HTTP error! status: ${response.status}`)
       }
       
-      const result: ApiResponse<BlogPost[]> = await response.json()
+      const result: ApiResponse<PaginatedResponse<BlogPost> | BlogPost[]> = await response.json()
       
       if (!result.success) {
         throw new Error(result.message || 'Failed to fetch recent blogs')
       }
       
-      return result.data
+      // Handle both paginated and non-paginated responses
+      if (result.data && 'results' in result.data) {
+        // Paginated response
+        return (result.data as PaginatedResponse<BlogPost>).results
+      } else {
+        // Non-paginated response (direct array)
+        return result.data as BlogPost[]
+      }
     } catch (error) {
       console.error('Error fetching recent blogs:', error)
       throw error
@@ -248,13 +269,20 @@ export const blogApi = {
         throw new Error(`HTTP error! status: ${response.status}`)
       }
       
-      const result: ApiResponse<Category[]> = await response.json()
+      const result: ApiResponse<PaginatedResponse<Category> | Category[]> = await response.json()
       
       if (!result.success) {
         throw new Error(result.message || 'Failed to fetch categories')
       }
       
-      return result.data
+      // Handle both paginated and non-paginated responses
+      if (result.data && 'results' in result.data) {
+        // Paginated response
+        return (result.data as PaginatedResponse<Category>).results
+      } else {
+        // Non-paginated response (direct array)
+        return result.data as Category[]
+      }
     } catch (error) {
       console.error('Error fetching categories:', error)
       throw error

@@ -3,6 +3,7 @@
 import React, { useState, useRef } from 'react'
 import { Card, CardContent } from '@/components/ui/card'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
+import { imagePresets } from '@/lib/image-utils'
 
 interface CategoryGridItem {
   id: string
@@ -16,84 +17,84 @@ const categoryGridItems: CategoryGridItem[] = [
   {
     id: '1',
     title: 'Ofada Rice',
-    image: 'https://res.cloudinary.com/dqbbm0guw/image/upload/v1754870058/OfadaRice_a7yurq.jpg',
+    image: imagePresets.card('https://res.cloudinary.com/dqbbm0guw/image/upload/v1754870058/OfadaRice_a7yurq.jpg'),
     backgroundColor: 'bg-yellow-50',
     productCount: 185
   },
   {
     id: '2',
     title: 'Traditional Soup',
-    image: 'https://res.cloudinary.com/dqbbm0guw/image/upload/v1754869423/soup_uuu66u.webp',
+    image: imagePresets.card('https://res.cloudinary.com/dqbbm0guw/image/upload/v1754869423/soup_uuu66u.webp'),
     backgroundColor: 'bg-amber-50',
     productCount: 195
   },
   {
     id: '3',
     title: 'Organic Cloves',
-    image: 'https://res.cloudinary.com/dqbbm0guw/image/upload/v1754869419/text2_uyghjo.webp',
+    image: imagePresets.card('https://res.cloudinary.com/dqbbm0guw/image/upload/v1754869419/text2_uyghjo.webp'),
     backgroundColor: 'bg-purple-50',
     productCount: 410
   },
   {
     id: '4',
     title: 'Mixed Beans & Grains',
-    image: 'https://res.cloudinary.com/dqbbm0guw/image/upload/v1754869416/teext_jv3l4t.avif',
+    image: imagePresets.card('https://res.cloudinary.com/dqbbm0guw/image/upload/v1754869416/teext_jv3l4t.avif'),
     backgroundColor: 'bg-blue-50',
     productCount: 230
   },
   {
     id: '5',
     title: 'Cocoa Pods',
-    image: 'https://res.cloudinary.com/dqbbm0guw/image/upload/v1753604887/0755a089-6ca4-4900-92be-11d318d282bf_txefrr.jpg',
+    image: imagePresets.card('https://res.cloudinary.com/dqbbm0guw/image/upload/v1753604887/0755a089-6ca4-4900-92be-11d318d282bf_txefrr.jpg'),
     backgroundColor: 'bg-green-50',
     productCount: 340
   },
   {
     id: '6',
     title: 'Premium Bitter Cola',
-    image: 'https://res.cloudinary.com/dqbbm0guw/image/upload/v1753604885/African-Natural-Fresh-Dried-Bitter-Kola-Bitter-Kola-Nuts-for-Sale.jpg_300x300_iqjwvc.avif',
+    image: imagePresets.card('https://res.cloudinary.com/dqbbm0guw/image/upload/v1753604885/African-Natural-Fresh-Dried-Bitter-Kola-Bitter-Kola-Nuts-for-Sale.jpg_300x300_iqjwvc.avif'),
     backgroundColor: 'bg-amber-50',
     productCount: 220
   },
   {
     id: '7',
     title: 'Nigerian Cola Nut',
-    image: 'https://res.cloudinary.com/dqbbm0guw/image/upload/v1753604886/green-cola_ug4qyn.jpg',
+    image: imagePresets.card('https://res.cloudinary.com/dqbbm0guw/image/upload/v1753604886/green-cola_ug4qyn.jpg'),
     backgroundColor: 'bg-emerald-50',
     productCount: 180
   },
   {
     id: '8',
     title: 'Raw Cocoa Beans',
-    image: 'https://res.cloudinary.com/dqbbm0guw/image/upload/v1753604887/images_1_ocivfd.jpg',
+    image: imagePresets.card('https://res.cloudinary.com/dqbbm0guw/image/upload/v1753604887/images_1_ocivfd.jpg'),
     backgroundColor: 'bg-orange-50',
     productCount: 450
   },
   {
     id: '9',
     title: 'Aba Fabrics',
-    image: 'https://res.cloudinary.com/dqbbm0guw/image/upload/v1753605557/H92a4e6ba6bdc45a18078ef8db4de4eecG_ppdwad.avif',
+    image: imagePresets.card('https://res.cloudinary.com/dqbbm0guw/image/upload/v1753605557/H92a4e6ba6bdc45a18078ef8db4de4eecG_ppdwad.avif'),
     backgroundColor: 'bg-purple-50',
     productCount: 290
   },
   {
     id: '10',
     title: 'Moringa Seeds',
-    image: 'https://res.cloudinary.com/dqbbm0guw/image/upload/v1753605535/Moring-Oleifera-Moring-Seeds-Raw-Herbs-Wholesale-Plant-Extract-at-Best-Price-Available-for-Sale.jpg_300x300_cwuw8u.avif',
+    image: imagePresets.card('https://res.cloudinary.com/dqbbm0guw/image/upload/v1753605535/Moring-Oleifera-Moring-Seeds-Raw-Herbs-Wholesale-Plant-Extract-at-Best-Price-Available-for-Sale.jpg_300x300_cwuw8u.avif'),
     backgroundColor: 'bg-green-50',
     productCount: 160
   },
   {
     id: '11',
     title: 'Premium Cloves',
-    image: 'https://res.cloudinary.com/dqbbm0guw/image/upload/v1753605547/FREE-SAMPLE-Competitive-Price-Selected-Cloves-Spices-Herbs-Products-Clove-Raw-Material-Medicinal-Plant-Dry-Bud-Clove-Herb_mtplt8.avif',
+    image: imagePresets.card('https://res.cloudinary.com/dqbbm0guw/image/upload/v1753605547/FREE-SAMPLE-Competitive-Price-Selected-Cloves-Spices-Herbs-Products-Clove-Raw-Material-Medicinal-Plant-Dry-Bud-Clove-Herb_mtplt8.avif'),
     backgroundColor: 'bg-orange-50',
     productCount: 320
   },
   {
     id: '12',
     title: 'African Black Soap',
-    image: 'https://res.cloudinary.com/dqbbm0guw/image/upload/v1754869428/textsoap_o4lddz.avif',
+    image: imagePresets.card('https://res.cloudinary.com/dqbbm0guw/image/upload/v1754869428/textsoap_o4lddz.avif'),
     backgroundColor: 'bg-gray-50',
     productCount: 280
   }
@@ -147,7 +148,7 @@ export function CategoryGrid({ title, headerContent, onCategoryClick }: Category
                     />
                     {/* Product Count Badge */}
                     <div className="absolute top-2 sm:top-3 right-2 sm:right-3">
-                      <span className="bg-green-600 text-white px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full text-xs font-medium">
+                      <span className="bg-gray-800 text-white px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full text-xs font-medium">
                         {item.productCount.toLocaleString()}+ Products
                       </span>
                     </div>
@@ -155,7 +156,7 @@ export function CategoryGrid({ title, headerContent, onCategoryClick }: Category
                   
                   {/* Product Info */}
                   <div className="p-2 sm:p-3 flex-1 flex flex-col bg-white">
-                    <h4 className="font-medium text-gray-900 group-hover:text-green-600 text-sm sm:text-base">
+                    <h4 className="font-medium text-gray-900 group-hover:text-[#00C298] text-sm sm:text-base">
                   {item.title}
                 </h4>
                   </div>

@@ -83,25 +83,21 @@ const AdvertisingBanner: React.FC<AdvertisingBannerProps> = ({ variant = 'defaul
       <div className="flex transition-transform duration-500 ease-in-out h-full w-full" style={{ transform: `translateX(-${currentSlide * 100}%)` }}>
         {bannerSlides.map((slide) => (
           <div key={slide.id} className="w-full flex-none h-full relative flex items-end" style={{ backgroundImage: `url(${slide.imageUrl})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
-            {/* Gradient overlay */}
-            <div 
-              className="absolute inset-y-0 left-0 z-10 w-full sm:w-3/4 md:w-2/3 lg:w-1/2"
-              style={{
-                background: 'linear-gradient(90deg, #4E4E4E 0%, rgba(78, 78, 78, 0.9) 20%, rgba(78, 78, 78, 0.7) 50%, rgba(78, 78, 78, 0.3) 80%, transparent 100%)'
-              }}
-            ></div>
+            {/* Dark overlay for better text readability */}
+            <div className="absolute inset-0 bg-black/30 z-10"></div>
             
-            <div className={`w-full z-20 absolute bottom-0 left-0 pb-5 pr-5 ${variant === 'large' ? 'pl-2' : 'pl-3'} sm:pl-5 md:pl-6 lg:pl-8`}>
-              <div className="grid grid-cols-1 items-center">
-                <div className="text-white px-1 sm:px-0">
-                  <h3 className="text-xs sm:text-xl lg:text-2xl font-bold mb-0.5 sm:mb-3 line-clamp-2 sm:line-clamp-none">{slide.title}</h3>
-                  <p className={`${variant === 'large' ? 'block text-[10px] sm:text-sm mb-1 sm:mb-2 line-clamp-2' : 'hidden sm:block text-sm lg:text-base mb-2 sm:mb-4'} text-white/90 leading-relaxed font-medium`}>{slide.subtitle}</p>
-                  <RedirectToWaitingList>
-                    <Button className="bg-white hover:bg-[#00C298] border-2 border-[#00C298] text-[#00C298] hover:text-white px-2 sm:px-3 md:px-6 lg:px-8 xl:px-10 text-[10px] sm:text-xs md:text-base lg:text-lg font-semibold transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] shadow-md hover:shadow-lg h-6 sm:h-8 md:h-10 lg:h-11 xl:h-12 rounded-md sm:rounded-lg lg:rounded-xl flex items-center justify-center leading-none min-w-[85px] sm:min-w-[140px] md:min-w-[160px]">
-                      <span className="whitespace-nowrap">{slide.ctaText}</span>
-                      <ArrowRight className="ml-1 w-2 h-2 sm:w-3 sm:h-3 md:w-4 md:h-4" />
-                    </Button>
-                  </RedirectToWaitingList>
+            <div className={`w-full z-20 absolute bottom-0 left-0 pb-3 pl-2 pr-2 sm:pb-5 sm:pl-5 sm:pr-5 md:pl-6 md:pr-6 lg:pl-8 lg:pr-8`}>
+              <div className="flex items-end h-full">
+                <div className="text-white max-w-full sm:max-w-[60%]">
+                  <h3 className="text-xs sm:text-xl lg:text-2xl font-bold leading-tight line-clamp-2 sm:line-clamp-none mb-0.5 sm:mb-3">{slide.title}</h3>
+                  <p className={`${variant === 'large' ? 'block text-[10px] sm:text-sm mb-0.5 sm:mb-2 line-clamp-2' : 'hidden sm:block text-sm lg:text-base mb-1 sm:mb-4'} text-white/90 leading-relaxed font-bold`}>{slide.subtitle}</p>
+                  <div className="pt-0 sm:pt-2 md:pt-3">
+                    <RedirectToWaitingList>
+                      <Button className="bg-black/50 hover:bg-black/70 text-white border border-white px-2 sm:px-3 md:px-4 lg:px-6 text-[10px] sm:text-sm font-semibold transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] shadow-md hover:shadow-lg h-5 sm:h-8 md:h-10 rounded-[20px] flex items-center justify-center leading-none min-w-[85px] sm:min-w-[140px] md:min-w-[160px]">
+                        <span className="whitespace-nowrap">Explore Category</span>
+                      </Button>
+                    </RedirectToWaitingList>
+                  </div>
                 </div>
               </div>
             </div>
@@ -109,32 +105,21 @@ const AdvertisingBanner: React.FC<AdvertisingBannerProps> = ({ variant = 'defaul
         ))}
       </div>
 
-      {/* Navigation Arrows - Show on Hover */}
+      {/* Navigation Arrows - Always Visible */}
       <button 
         onClick={prevSlide}
-        className="absolute left-0.5 sm:left-2 top-1/2 transform -translate-y-1/2 bg-white shadow-sm sm:shadow-lg rounded-full p-0.5 sm:p-2 transition-all opacity-0 group-hover:opacity-100"
+        className="absolute left-0.5 top-1/2 transform -translate-y-1/2 z-30 bg-white/10 hover:bg-white/20 rounded-full p-2 sm:p-3 transition-all duration-200 hover:scale-110"
+        aria-label="Previous slide"
       >
-        <ChevronLeft className="w-2 h-2 sm:w-4 sm:h-4 text-gray-600" />
+        <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
       </button>
       <button 
         onClick={nextSlide}
-        className="absolute right-0.5 sm:right-2 top-1/2 transform -translate-y-1/2 bg-white shadow-sm sm:shadow-lg rounded-full p-0.5 sm:p-2 transition-all opacity-0 group-hover:opacity-100"
+        className="absolute right-0.5 top-1/2 transform -translate-y-1/2 z-30 bg-white/10 hover:bg-white/20 rounded-full p-2 sm:p-3 transition-all duration-200 hover:scale-110"
+        aria-label="Next slide"
       >
-        <ChevronRight className="w-2 h-2 sm:w-4 sm:h-4 text-gray-600" />
+        <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
       </button>
-
-      {/* Dots */}
-      <div className="absolute bottom-0.5 sm:bottom-2 left-1/2 transform -translate-x-1/2 flex space-x-0.5 sm:space-x-1">
-        {bannerSlides.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => setCurrentSlide(index)}
-            className={`w-0.5 h-0.5 sm:w-1.5 sm:h-1.5 rounded-full transition-colors ${
-              currentSlide === index ? 'bg-gray-800' : 'bg-gray-400 hover:bg-gray-600'
-            }`}
-          />
-        ))}
-      </div>
     </div>
   )
 }

@@ -114,11 +114,17 @@ export function CategoryBannerLayout({ onCategorySelect }: CategoryBannerLayoutP
   }
 
   return (
-    <div className="w-full px-2 sm:px-6 lg:px-10">
-      <div className="bg-gray-50 rounded-lg overflow-hidden">
-        <div className="flex flex-col lg:flex-row bg-gray-50">
-          {/* Left Sidebar - Categories with four-sided closed table */}
-          <div className="hidden lg:block w-full lg:w-[25%] bg-white border border-gray-200 rounded-lg mt-4" style={{height: 'fit-content'}}>
+    <div className="w-full px-2 sm:px-6 lg:px-10 py-4 space-y-1">
+      {/* Top Banner Container */}
+      <div className="bg-gray-50 rounded-xl overflow-hidden">
+        <BannerCarousel variant="default" />
+      </div>
+      
+      {/* Bottom Container - Sidebar + Banners */}
+      <div className="bg-gray-50 rounded-xl overflow-hidden">
+        <div className="flex flex-col lg:flex-row gap-1">
+          {/* Left Sidebar - Categories (1/4 width) */}
+          <div className="hidden lg:block w-full lg:w-1/4 bg-white border border-gray-200 rounded-xl h-[123px] sm:h-[280px] lg:h-[315px]">
             {/* Header */}
             <div className="flex items-center p-4 border-b border-gray-200 h-16">
               <div className="flex items-center gap-3">
@@ -127,8 +133,8 @@ export function CategoryBannerLayout({ onCategorySelect }: CategoryBannerLayoutP
               </div>
             </div>
 
-            {/* Categories List */}
-            <div className="py-2">
+            {/* Categories List - Scrollable with all items */}
+            <div className="py-2 h-[calc(100%-4rem)] overflow-y-auto">
               {categories.map((category, index) => (
                 <div
                   key={category.id}
@@ -158,58 +164,51 @@ export function CategoryBannerLayout({ onCategorySelect }: CategoryBannerLayoutP
             </div>
           </div>
 
-          {/* Right Content - Banners */}
-          <div className="w-full lg:w-[75%] lg:pl-4 mt-4">
-            {/* Top Banner */}
-            <div className="pb-1 sm:pb-4 pt-0">
-              <BannerCarousel variant="default" />
-            </div>
-
+          {/* Right Content - Small Banners (3/4 width) */}
+          <div className="w-full lg:w-3/4">
             {/* Bottom Banners */}
-            <div className="pt-0 sm:pt-2 mt-0 sm:mt-0 pb-0 sm:pb-6">
-              <div className="grid grid-cols-2 gap-1 sm:gap-6">
-                <div>
-                  <AdvertisingBanner 
-                    variant="large"
-                    slides={[
-                      {
-                        id: 'left-1',
-                        title: 'Premium Agricultural Product',
-                        subtitle: 'Connect with verified Supplier',
-                        ctaText: 'Join Waitlist',
-                        imageUrl: 'https://res.cloudinary.com/dqbbm0guw/image/upload/v1755106969/f5134be67e74890149720c5ba97af9ad0676faaa_gqsff2.png'
-                      },
-                      {
-                        id: 'left-2',
-                        title: 'Fresh Produce, Trusted Sources',
-                        subtitle: 'Source directly from farms across Africa',
-                        ctaText: 'Join Waitlist',
-                        imageUrl: 'https://res.cloudinary.com/dqbbm0guw/image/upload/v1755106843/23cd7fb61bb7f18f4596de8fd966615a6ba23fe7_n6vvzz.png'
-                      }
-                    ]}
-                  />
-                </div>
-                <div>
-                  <AdvertisingBanner 
-                    variant="large"
-                    slides={[
-                      {
-                        id: 'right-1',
-                        title: 'From Farm to Fashion',
-                        subtitle: 'Showcase your products to verified buyers',
-                        ctaText: 'Join Waitlist',
-                        imageUrl: 'https://res.cloudinary.com/dqbbm0guw/image/upload/v1755097027/705713801b454a582c6206b74f7023da8c17b394_hrzitd.jpg'
-                      },
-                      {
-                        id: 'right-2',
-                        title: 'Premium Fashion & Apparel',
-                        subtitle: 'Grow with Africa\'s #1 B2B hub',
-                        ctaText: 'Join Waitlist',
-                        imageUrl: 'https://res.cloudinary.com/dqbbm0guw/image/upload/v1755105520/7bbfcf02cb3c7cd1090dd038ae464d4ef01e196a_vs3sp5.png'
-                      }
-                    ]}
-                  />
-                </div>
+            <div className="grid grid-cols-2 gap-1">
+              <div className="rounded-xl overflow-hidden">
+                <AdvertisingBanner 
+                  variant="large"
+                  slides={[
+                    {
+                      id: 'left-1',
+                      title: 'From Factory to Fashion',
+                      subtitle: 'Preview categories you\'ll find on Kalabah:\nAgriculture, Beauty, Electronics & more.',
+                      ctaText: 'Explore Category',
+                      imageUrl: 'https://res.cloudinary.com/dqbbm0guw/image/upload/v1755265781/machine-that-has-number-4-it_1_ywfo15.png'
+                    },
+                    {
+                      id: 'left-2',
+                      title: '100% Buyer Protection\nFrom Day 1.',
+                      subtitle: 'Your orders are safe with us. Secure payments, trusted suppliers.',
+                      ctaText: 'Explore Category',
+                      imageUrl: 'https://res.cloudinary.com/dqbbm0guw/image/upload/v1755266593/protection_2_vpmujf.png'
+                    }
+                  ]}
+                />
+              </div>
+              <div className="rounded-xl overflow-hidden">
+                <AdvertisingBanner 
+                  variant="large"
+                  slides={[
+                    {
+                      id: 'right-1',
+                      title: 'From Farm to Fashion',
+                      subtitle: 'Showcase your products to verified buyers',
+                      ctaText: 'Join Waitlist',
+                      imageUrl: 'https://res.cloudinary.com/dqbbm0guw/image/upload/v1755265778/Vector_356_s7a9r4.png'
+                    },
+                    {
+                      id: 'right-2',
+                      title: 'Premium Fashion & Apparel',
+                      subtitle: 'Grow with Africa\'s #1 B2B hub',
+                      ctaText: 'Join Waitlist',
+                      imageUrl: 'https://res.cloudinary.com/dqbbm0guw/image/upload/v1755105520/7bbfcf02cb3c7cd1090dd038ae464d4ef01e196a_vs3sp5.png'
+                    }
+                  ]}
+                />
               </div>
             </div>
           </div>
@@ -219,7 +218,7 @@ export function CategoryBannerLayout({ onCategorySelect }: CategoryBannerLayoutP
       {/* Category Modal */}
       {showModal && selectedCategory && (
         <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
-          <div className="bg-white rounded-lg shadow-xl w-full max-w-6xl max-h-[90vh] overflow-hidden">
+          <div className="bg-white rounded-xl shadow-xl w-full max-w-6xl max-h-[90vh] overflow-hidden">
             {/* Modal Header */}
             <div className="flex items-center justify-between p-6 border-b border-gray-200">
               <h2 className="text-2xl font-bold text-gray-900">Categories for you</h2>
@@ -251,13 +250,13 @@ export function CategoryBannerLayout({ onCategorySelect }: CategoryBannerLayoutP
 
               {/* Right Side - Product Images Grid */}
               <div className="flex-1 p-6 overflow-y-auto">
-                <div className="grid grid-cols-6 gap-6">
+                <div className="grid grid-cols-6 gap-4">
                   {categories.find(cat => cat.id === selectedCategory)?.subcategories?.map((sub, index) => (
                     <Link href="/waiting-list?action=true" key={index}>
                       <div className="group cursor-pointer">
-                        <div className="bg-white rounded-lg border border-gray-200 hover:border-[#00C298] hover:shadow-md transition-all duration-200 p-4 h-40 flex flex-col">
+                        <div className="bg-white rounded-xl border border-gray-200 hover:border-[#00C298] hover:shadow-md transition-all duration-200 p-4 h-40 flex flex-col">
                           <div className="flex-1 flex items-center justify-center mb-2">
-                            <div className="w-20 h-20 rounded-lg bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center border-2 border-dashed border-gray-300">
+                            <div className="w-20 h-20 rounded-xl bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center border-2 border-dashed border-gray-300">
                               <div className="text-center">
                                 <div className="text-xs font-bold text-gray-600 mb-1">COMING</div>
                                 <div className="text-xs font-bold text-gray-600">SOON</div>
