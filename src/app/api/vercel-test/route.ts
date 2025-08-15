@@ -12,10 +12,9 @@ export async function GET(request: NextRequest) {
       BACKEND_URL: process.env.NEXT_PUBLIC_BACKEND_URL
     })
 
-    // Handle the case where BASE_URL already includes /api
-    const baseUrl = BASE_URL.endsWith('/api') ? BASE_URL.replace('/api', '') : BASE_URL
+    // Use the BASE_URL as is since it already includes the correct path
     // Test 1: Direct fetch to backend
-    const testUrl = `${baseUrl}/v1/blogs/`
+    const testUrl = `${BASE_URL}/v1/blogs/`
     console.log('Vercel Test: Testing URL:', testUrl)
 
     const response = await fetch(testUrl, {

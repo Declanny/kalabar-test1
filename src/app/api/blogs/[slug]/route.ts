@@ -11,9 +11,9 @@ export async function GET(
     console.log('API: Fetching blog with slug:', slug)
     console.log('API: BASE_URL:', BASE_URL)
 
-    // Handle the case where BASE_URL already includes /api
-    const baseUrl = BASE_URL.endsWith('/api') ? BASE_URL.replace('/api', '') : BASE_URL
-    const apiUrl = `${baseUrl}/v1/blogs/${slug}/`
+    // Use the BASE_URL as is since it already includes the correct path
+    const apiUrl = `${BASE_URL}/v1/blogs/${slug}/`
+    console.log('API: Final URL:', apiUrl)
     console.log('API: Making request to:', apiUrl)
 
     const response = await fetch(apiUrl, {

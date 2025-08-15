@@ -7,10 +7,10 @@ import { Footer } from "@/components/layout/Footer"
 import { blogApi, transformBlogData } from '@/lib/blog-api'
 import BlogContent from '@/components/blog/BlogContent'
 import { BlogErrorBoundary } from '@/components/blog/BlogErrorBoundary'
+import BlogStructuredData from '@/components/blog/BlogStructuredData'
 
-// Force dynamic rendering to ensure the page works even when static generation fails
+// Use dynamic rendering for now to avoid build issues
 export const dynamic = 'force-dynamic'
-export const revalidate = 0
 
 // Generate dynamic metadata for each blog post
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
@@ -70,18 +70,9 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   }
 }
 
-// Generate static params for all blog posts
+// Skip static generation for now to avoid build issues
 export async function generateStaticParams() {
-  try {
-    const apiBlogs = await blogApi.getBlogs()
-    return apiBlogs.map((blog) => ({
-      slug: blog.slug,
-    }))
-  } catch (error) {
-    console.error('Error generating static params:', error)
-    // Return empty array to allow dynamic rendering for all routes
-    return []
-  }
+  return []
 }
 
 export default async function BlogDetailPage({ params }: { params: Promise<{ slug: string }> }) {
@@ -162,6 +153,7 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ slu
 
   return (
     <BlogErrorBoundary>
+      <BlogStructuredData post={post} />
       <Header />
       <BlogContent post={post} relatedPosts={relatedPosts} />
       <Footer />

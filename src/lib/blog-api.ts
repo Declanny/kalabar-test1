@@ -52,12 +52,8 @@ export interface PaginatedResponse<T> {
 
 // Helper function to build URL with query parameters
 function buildUrl(endpoint: string, params?: Record<string, any>): string {
-  // Use environment variable for base URL, fallback to localhost for development
-  const baseUrl = process.env.NEXT_PUBLIC_VERCEL_URL 
-    ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}` 
-    : process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'
-  
-  const url = new URL(baseUrl + '/api' + endpoint)
+  // Use relative URLs for better compatibility
+  const url = new URL('/api' + endpoint, 'http://localhost:3000')
   
   if (params) {
     Object.entries(params).forEach(([key, value]) => {

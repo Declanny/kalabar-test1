@@ -21,11 +21,10 @@ export async function GET(request: NextRequest) {
     if (blogger_name) params.append('blogger_name', blogger_name)
     if (status) params.append('status', status)
 
-    // Handle the case where BASE_URL already includes /api
-    const baseUrl = BASE_URL.endsWith('/api') ? BASE_URL.replace('/api', '') : BASE_URL
+    // Use the BASE_URL as is since it already includes the correct path
     const apiUrl = params.toString() 
-      ? `${baseUrl}/v1/blogs/?${params.toString()}`
-      : `${baseUrl}/v1/blogs/`
+      ? `${BASE_URL}/v1/blogs/?${params.toString()}`
+      : `${BASE_URL}/v1/blogs/`
     console.log('BASE_URL:', BASE_URL)
     console.log('API URL:', apiUrl)
     console.log('Params:', params.toString())
