@@ -8,7 +8,7 @@ export async function GET(request: NextRequest) {
     const page = searchParams.get('page') || '1'
 
     console.log('BASE_URL:', BASE_URL)
-    const apiUrl = `${BASE_URL}/api/v1/blogs/?page=${page}`
+    const apiUrl = `${BASE_URL}/v1/blogs/?page=${page}`
     console.log('API URL:', apiUrl)
 
     const response = await fetch(apiUrl, {

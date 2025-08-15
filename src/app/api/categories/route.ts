@@ -7,7 +7,7 @@ export async function GET(request: NextRequest) {
     const { searchParams } = new URL(request.url)
     const page = searchParams.get('page') || '1'
 
-    const apiUrl = `${BASE_URL}/api/v1/categories/?page=${page}`
+    const apiUrl = `${BASE_URL}/v1/categories/?page=${page}`
 
     const response = await fetch(apiUrl, {
       headers: {

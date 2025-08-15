@@ -8,7 +8,7 @@ export async function GET(request: NextRequest) {
     const page = searchParams.get('page') || '1'
 
     // Use the correct popular blogs endpoint
-    const apiUrl = `${BASE_URL}/api/v1/blogs/popular/?page=${page}`
+    const apiUrl = `${BASE_URL}/v1/blogs/popular/?page=${page}`
 
     console.log('Popular blogs API URL:', apiUrl)
 

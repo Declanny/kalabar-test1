@@ -9,7 +9,7 @@ export async function GET(
   try {
     const { slug } = await params
 
-    const apiUrl = `${BASE_URL}/api/v1/blogs/${slug}/`
+    const apiUrl = `${BASE_URL}/v1/blogs/${slug}/`
 
     const response = await fetch(apiUrl, {
       headers: {

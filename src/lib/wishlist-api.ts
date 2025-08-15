@@ -20,7 +20,7 @@ export const wishlistApi = {
   // Add email to waiting list
   async addToWishlist(email: string): Promise<WishlistResponse> {
     try {
-      const url = buildUrl('/wishlist')
+      const url = buildUrl('/waitlist')
       const response = await fetch(url, {
         method: 'POST',
         headers: {
@@ -45,7 +45,7 @@ export const wishlistApi = {
   // Get wishlist status (if needed)
   async getWishlistStatus(email: string): Promise<WishlistResponse> {
     try {
-      const url = buildUrl(`/wishlist?email=${encodeURIComponent(email)}`)
+      const url = buildUrl(`/waitlist?email=${encodeURIComponent(email)}`)
       const response = await fetch(url, {
         method: 'GET',
         headers: {

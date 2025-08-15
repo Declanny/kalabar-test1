@@ -22,8 +22,8 @@ export async function GET(request: NextRequest) {
     if (status) params.append('status', status)
 
     const apiUrl = params.toString() 
-      ? `${BASE_URL}/api/v1/blogs/?${params.toString()}`
-      : `${BASE_URL}/api/v1/blogs/`
+      ? `${BASE_URL}/v1/blogs/?${params.toString()}`
+      : `${BASE_URL}/v1/blogs/`
     console.log('BASE_URL:', BASE_URL)
     console.log('API URL:', apiUrl)
     console.log('Params:', params.toString())

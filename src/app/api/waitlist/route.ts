@@ -14,7 +14,7 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    const apiUrl = `${BASE_URL}/api/v1/wishlist/`
+    const apiUrl = `${BASE_URL}/v1/waitlist/`
     console.log('Wishlist API URL:', apiUrl)
     console.log('Wishlist request body:', { email })
     
@@ -63,7 +63,7 @@ export async function GET(request: NextRequest) {
       )
     }
 
-    const apiUrl = `${BASE_URL}/api/v1/wishlist/?email=${encodeURIComponent(email)}`
+    const apiUrl = `${BASE_URL}/v1/waitlist/?email=${encodeURIComponent(email)}`
     console.log('Wishlist GET API URL:', apiUrl)
     
     const response = await fetch(apiUrl, {
