@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
         title: blog.title,
         description: blog.excerpt,
         type: 'article',
-        url: `https://kalabah.com/blog/${blog.slug}`,
+        url: `/blog/${blog.slug}`,
         siteName: 'Kalabah',
         images: [
           {
@@ -45,7 +45,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
         creator: '@kalabah'
       },
       alternates: {
-        canonical: `https://kalabah.com/blog/${blog.slug}`
+        canonical: `/blog/${blog.slug}`
       },
       authors: [{ name: blog.author }],
       category: blog.category,
@@ -73,14 +73,17 @@ export async function generateStaticParams() {
     }))
   } catch (error) {
     console.error('Error generating static params:', error)
-    return []
+    // Return fallback data to ensure at least known blog posts are generated
+    return [
+      { slug: 'test-blog' }
+    ]
   }
 }
 
 export default async function BlogDetailPage({ params }: { params: Promise<{ slug: string }> }) {
   // Fetch blog data server-side
-  let post: any = null
-  let relatedPosts: any[] = []
+  let post: ReturnType<typeof transformBlogData> | null = null
+  let relatedPosts: ReturnType<typeof transformBlogData>[] = []
   
   try {
     const { slug } = await params
