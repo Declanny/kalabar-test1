@@ -22,6 +22,12 @@ export async function GET(
     console.log('API: Final URL:', apiUrl)
     console.log('API: Making request to:', apiUrl)
 
+    console.log('API: Making request with headers:', {
+      'accept': 'application/json',
+      'Content-Type': 'application/json',
+      'User-Agent': 'Kalabah-Frontend/1.0'
+    })
+    
     const response = await fetch(apiUrl, {
       headers: {
         'accept': 'application/json',
