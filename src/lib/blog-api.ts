@@ -269,7 +269,8 @@ export const blogApi = {
         method: 'GET',
         headers: {
           'accept': 'application/json',
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
+          'User-Agent': 'Kalabah-Frontend/1.0'
         },
         mode: 'cors',
         credentials: 'omit',
