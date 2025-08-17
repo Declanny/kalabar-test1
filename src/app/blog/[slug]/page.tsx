@@ -16,7 +16,9 @@ export const dynamic = 'force-dynamic'
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   try {
     const { slug } = await params
-    const apiBlog = await blogApi.getBlogBySlug(slug)
+    // Normalize slug to lowercase to avoid case sensitivity issues
+    const normalizedSlug = slug.toLowerCase()
+    const apiBlog = await blogApi.getBlogBySlug(normalizedSlug)
     const blog = transformBlogData(apiBlog, 0)
     
     return {
@@ -84,19 +86,21 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ slu
   
   // Extract slug outside try block so it's available in error fallback
   const { slug } = await params
-  console.log('Fetching blog with slug:', slug)
+  // Normalize slug to lowercase to avoid case sensitivity issues
+  const normalizedSlug = slug.toLowerCase()
+  console.log('Fetching blog with slug:', normalizedSlug)
   
   try {
         
     // Fetch the specific blog by slug
-    const apiBlog = await blogApi.getBlogBySlug(slug)
+    const apiBlog = await blogApi.getBlogBySlug(normalizedSlug)
     console.log('API blog response:', apiBlog)
     post = transformBlogData(apiBlog, 0)
         
     // Fetch related posts (all blogs except current one)
     const allBlogs = await blogApi.getBlogs()
     relatedPosts = allBlogs
-      .filter(blog => blog.slug !== slug)
+      .filter(blog => blog.slug !== normalizedSlug)
       .map((blog, index) => transformBlogData(blog, index))
       .slice(0, 3)
     
@@ -107,6 +111,12 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ slu
       message: err instanceof Error ? err.message : 'Unknown error',
       stack: err instanceof Error ? err.stack : undefined
     })
+    
+    // Check if it's a 404 error (blog not found)
+    if (err instanceof Error && err.message.includes('404')) {
+      notFound() // This will trigger the not-found.tsx page
+    }
+    
     error = err instanceof Error ? err.message : 'Failed to load blog post'
   }
 
@@ -136,7 +146,7 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ slu
               )}
               <div className="space-y-2">
                 <Link
-                  href={`/blog/${slug}`}
+                  href={`/blog/${normalizedSlug}`}
                   className="block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-full text-center"
                 >
                   Try Again
