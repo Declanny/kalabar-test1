@@ -126,7 +126,9 @@ export const blogApi = {
       // Use absolute URL for server-side rendering
       const absoluteUrl = typeof window !== 'undefined' 
         ? url 
-        : `http://localhost:3000${url}`
+        : process.env.VERCEL_URL 
+          ? `https://${process.env.VERCEL_URL}${url}`
+          : `http://localhost:3000${url}`
       
       const response = await fetch(absoluteUrl, {
         method: 'GET',
@@ -163,7 +165,9 @@ export const blogApi = {
       // Use absolute URL for server-side rendering
       const absoluteUrl = typeof window !== 'undefined' 
         ? url 
-        : `http://localhost:3000${url}`
+        : process.env.VERCEL_URL 
+          ? `https://${process.env.VERCEL_URL}${url}`
+          : `http://localhost:3000${url}`
       
       const response = await fetch(absoluteUrl, {
         method: 'GET',
@@ -207,7 +211,9 @@ export const blogApi = {
       // Use absolute URL for server-side rendering
       const absoluteUrl = typeof window !== 'undefined' 
         ? url 
-        : `http://localhost:3000${url}`
+        : process.env.VERCEL_URL 
+          ? `https://${process.env.VERCEL_URL}${url}`
+          : `http://localhost:3000${url}`
       
       const response = await fetch(absoluteUrl, {
         method: 'GET',
@@ -252,7 +258,12 @@ export const blogApi = {
       // Use absolute URL for server-side rendering
       const absoluteUrl = typeof window !== 'undefined' 
         ? url 
-        : `http://localhost:3000${url}`
+        : process.env.VERCEL_URL 
+          ? `https://${process.env.VERCEL_URL}${url}`
+          : `http://localhost:3000${url}`
+      
+      console.log('Blog API: Absolute URL:', absoluteUrl)
+      console.log('Blog API: VERCEL_URL:', process.env.VERCEL_URL)
       
       const response = await fetch(absoluteUrl, {
         method: 'GET',
@@ -299,7 +310,9 @@ export const blogApi = {
       // Use absolute URL for server-side rendering
       const absoluteUrl = typeof window !== 'undefined' 
         ? url 
-        : `http://localhost:3000${url}`
+        : process.env.VERCEL_URL 
+          ? `https://${process.env.VERCEL_URL}${url}`
+          : `http://localhost:3000${url}`
       
       const response = await fetch(absoluteUrl, {
         method: 'GET',
