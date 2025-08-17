@@ -2,10 +2,6 @@ import { NextRequest, NextResponse } from 'next/server'
 
 const BASE_URL = process.env.NEXT_PUBLIC_BACKEND_URL
 
-if (!BASE_URL) {
-  throw new Error('NEXT_PUBLIC_BACKEND_URL environment variable is not set')
-}
-
 export async function GET(
   request: NextRequest,
   { params }: { params: Promise<{ slug: string }> }
@@ -14,6 +10,10 @@ export async function GET(
     const { slug } = await params
     console.log('API: Fetching blog with slug:', slug)
     console.log('API: BASE_URL:', BASE_URL)
+
+    if (!BASE_URL) {
+      throw new Error('NEXT_PUBLIC_BACKEND_URL environment variable is not set')
+    }
 
     // Use the BASE_URL as is since it already includes the correct path
     const apiUrl = `${BASE_URL}/v1/blogs/${slug}/`
