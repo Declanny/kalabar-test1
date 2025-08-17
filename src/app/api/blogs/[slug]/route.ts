@@ -8,7 +8,9 @@ export async function GET(
 ) {
   try {
     const { slug } = await params
-    console.log('API: Fetching blog with slug:', slug)
+    // Normalize slug to lowercase to match the page component
+    const normalizedSlug = slug.toLowerCase()
+    console.log('API: Fetching blog with slug:', normalizedSlug)
     console.log('API: BASE_URL:', BASE_URL)
 
     if (!BASE_URL) {
@@ -16,7 +18,7 @@ export async function GET(
     }
 
     // Use the BASE_URL as is since it already includes the correct path
-    const apiUrl = `${BASE_URL}/v1/blogs/${slug}/`
+    const apiUrl = `${BASE_URL}/v1/blogs/${normalizedSlug}/`
     console.log('API: Final URL:', apiUrl)
     console.log('API: Making request to:', apiUrl)
 
