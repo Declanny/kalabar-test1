@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react'
 import Link from 'next/link'
-import { Header } from '@/components/layout/header'
+import { SupplierNavbar } from '@/components/layout/supplier-navbar'
 import { Footer } from '@/components/layout/Footer'
 import { Button } from '@/components/ui/button'
 import { ArrowRight } from 'lucide-react'
@@ -15,10 +15,10 @@ export default function WaitingListPage() {
   const [isSuccess, setIsSuccess] = useState(false)
   return (
     <div className="min-h-screen bg-background">
-      <Header />
+      <SupplierNavbar />
       
-      <div className="bg-white">
-        <div className="container mx-auto px-4 py-8 sm:py-16">
+              <div className="bg-white pt-20">
+          <div className="container mx-auto px-4 py-8 sm:py-16">
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="text-2xl sm:text-4xl lg:text-5xl font-bold mb-3 sm:mb-6 text-gray-900">
               Join the Future of

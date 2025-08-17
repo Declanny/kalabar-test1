@@ -60,7 +60,7 @@ const StandardBanner: React.FC<StandardBannerProps> = ({
       className={`relative overflow-hidden shadow-2xl transition-all duration-500 hover:shadow-3xl group ${
         variant === 'large' 
           ? 'h-48 sm:h-60 md:h-72 lg:h-80 xl:h-96' 
-          : 'h-40 sm:h-52 md:h-64 lg:h-72 xl:h-80'
+          : 'h-[300px] sm:h-[400px] md:h-[470px] lg:h-[550px] xl:h-[600px]'
       }`}
       style={{
         backgroundImage: `url(${imageUrl})`,
@@ -68,22 +68,30 @@ const StandardBanner: React.FC<StandardBannerProps> = ({
         backgroundPosition: 'center',
       }}
     >
+      {/* Gradient Overlay */}
+      <div 
+        className="absolute inset-0 z-10"
+        style={{
+          background: 'radial-gradient(circle at center, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.6) 50%, rgba(0,0,0,0.4) 100%)'
+        }}
+      ></div>
+      
       {/* Content container - responsive layout */}
       <div className="flex h-full relative z-20">
         {/* Content - responsive width and padding */}
-        <div className="w-full sm:w-4/5 md:w-3/4 lg:w-2/3 flex items-center p-3 sm:p-4 md:p-6 lg:p-8 xl:p-10">
-          <div className="text-white space-y-2 sm:space-y-3 md:space-y-4 lg:space-y-4 max-w-full">
+        <div className="w-full sm:w-4/5 md:w-3/4 lg:w-2/3 flex items-end lg:items-center justify-end p-6 sm:p-8 md:p-10 lg:p-12 xl:p-16 pb-8 sm:pb-10 md:pb-12 lg:pb-0">
+          <div className="text-white space-y-2 sm:space-y-3 md:space-y-4 lg:space-y-4 max-w-full text-left">
             {/* Responsive typography */}
-            <h3 className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-bold leading-tight transform transition-all duration-500 group-hover:translate-x-1 text-white font-montserrat sm:whitespace-nowrap">
+            <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold leading-tight transform transition-all duration-500 group-hover:translate-x-1 text-white font-montserrat sm:whitespace-nowrap">
               {title}
             </h3>
             {subtitle && (
-              <h4 className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl font-bold leading-tight transform transition-all duration-500 delay-75 group-hover:translate-x-1 text-white font-montserrat sm:whitespace-nowrap">
+              <h4 className="text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-bold leading-tight transform transition-all duration-500 delay-75 group-hover:translate-x-1 text-white font-montserrat sm:whitespace-nowrap">
                 {subtitle}
               </h4>
             )}
             {description && (
-              <p className="text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl text-white/90 leading-relaxed transform transition-all duration-500 delay-100 group-hover:translate-x-1 font-medium max-w-[200px] sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl">
+              <p className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-white/90 leading-relaxed transform transition-all duration-500 delay-100 group-hover:translate-x-1 font-medium text-left">
                 {description}
               </p>
             )}

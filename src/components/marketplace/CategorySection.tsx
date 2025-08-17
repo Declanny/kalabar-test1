@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useState } from 'react'
-import { ChevronRight, ChevronDown, ChevronLeft, Grid, Home, Dumbbell, Sparkles, Factory, Building2, Shirt, Headphones, Gem, Footprints, Briefcase, Apple, Package, Heart, Sofa, Printer, Leaf, Car, Droplets, Utensils, BookOpen, Coffee, Baby, Zap } from 'lucide-react'
+import { ChevronRight, ChevronDown, ChevronLeft, Grid, Home, Dumbbell, Sparkles, Factory, Building2, Shirt, Headphones, Gem, Footprints, Briefcase, Apple, Package, Heart, Sofa, Printer, Leaf, Car, Droplets, Utensils, BookOpen, Coffee, Baby, Zap, Users, Truck, Shield } from 'lucide-react'
 import { Card, CardContent } from '@/components/ui/card'
 
 import { CategoryGrid } from './CategoryGrid'
@@ -19,67 +19,39 @@ interface Category {
 
 const categories: Category[] = [
   {
-    id: 'food-agriculture',
-    name: 'Food & Agriculture',
-    icon: <Apple className="w-5 h-5" />,
-    productCount: 45234,
-    subcategories: ['Fresh Fruits & Vegetables', 'Grains & Cereals', 'Dairy Products', 'Meat & Poultry', 'Seafood & Fish']
+    id: 'electronics',
+    name: 'Electronics',
+    icon: <Package className="w-5 h-5" />,
+    productCount: 15632,
+    subcategories: ['Smartphones', 'Laptops', 'Tablets', 'Accessories']
   },
   {
-    id: 'building-materials',
-    name: 'Building Materials',
-    icon: <Building2 className="w-5 h-5" />,
-    productCount: 32156,
-    subcategories: ['Cement & Concrete', 'Steel & Metal Products', 'Wood & Timber', 'Plumbing Materials', 'Electrical Supplies']
-  },
-  {
-    id: 'fashion-apparel',
+    id: 'fashion',
     name: 'Fashion & Apparel',
-    icon: <Shirt className="w-5 h-5" />,
+    icon: <Users className="w-5 h-5" />,
     productCount: 35421,
-    subcategories: ['Men\'s Clothing', 'Women\'s Clothing', 'Children\'s Wear', 'Fashion Accessories', 'Footwear']
+    subcategories: ['Men\'s Clothing', 'Women\'s Clothing', 'Kids & Baby', 'Jewelry']
   },
   {
-    id: 'beauty-skincare',
-    name: 'Beauty & Skincare Products',
-    icon: <Droplets className="w-5 h-5" />,
-    productCount: 22847,
-    subcategories: ['Skincare Products', 'Makeup & Cosmetics', 'Hair Care Products', 'Fragrances & Perfumes', 'Beauty Tools']
+    id: 'automotive',
+    name: 'Automotive',
+    icon: <Truck className="w-5 h-5" />,
+    productCount: 9876,
+    subcategories: ['Car Parts', 'Car Accessories', 'Motorcycle Parts', 'Tools']
   },
   {
-    id: 'health-medical',
-    name: 'Health & Medical Supplies',
-    icon: <Heart className="w-5 h-5" />,
-    productCount: 12458,
-    subcategories: ['Pharmaceuticals & Medicines', 'Medical Equipment', 'First Aid Supplies', 'Health Supplements', 'Medical Devices']
-  },
-  {
-    id: 'electronics-gadgets',
-    name: 'Electronics & Gadgets',
-    icon: <Headphones className="w-5 h-5" />,
-    productCount: 15632,
-    subcategories: ['Mobile Phones & Tablets', 'Computers & Laptops', 'Audio Equipment', 'Cameras & Photography', 'Smart Devices']
-  },
-  {
-    id: 'furniture-home',
-    name: 'Furniture & Home Essentials',
-    icon: <Sofa className="w-5 h-5" />,
+    id: 'home',
+    name: 'Home & Garden',
+    icon: <Shield className="w-5 h-5" />,
     productCount: 18965,
-    subcategories: ['Living Room Furniture', 'Bedroom Furniture', 'Kitchen & Dining Furniture', 'Office Furniture', 'Home Decor']
+    subcategories: ['Furniture', 'Home Decor', 'Kitchen & Dining', 'Garden']
   },
   {
-    id: 'printing-office',
-    name: 'Printing & Office Supplies',
-    icon: <Printer className="w-5 h-5" />,
-    productCount: 15632,
-    subcategories: ['Paper Products', 'Writing Supplies', 'Office Equipment', 'Printing Services', 'Stationery Items']
-  },
-  {
-    id: 'raw-materials-agro',
-    name: 'Raw Materials & Agro Inputs',
-    icon: <Leaf className="w-5 h-5" />,
-    productCount: 12458,
-    subcategories: ['Fertilizers & Soil Nutrients', 'Pesticides & Herbicides', 'Seeds & Seedlings', 'Animal Feed', 'Agricultural Tools']
+    id: 'health',
+    name: 'Health & Beauty',
+    icon: <Users className="w-5 h-5" />,
+    productCount: 22847,
+    subcategories: ['Skincare', 'Makeup', 'Hair Care', 'Personal Care']
   }
 ]
 

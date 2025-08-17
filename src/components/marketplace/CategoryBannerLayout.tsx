@@ -114,104 +114,11 @@ export function CategoryBannerLayout({ onCategorySelect }: CategoryBannerLayoutP
   }
 
   return (
-    <div className="w-full px-2 sm:px-6 lg:px-10 py-4 space-y-1">
-      {/* Top Banner Container */}
-      <div className="bg-gray-50 rounded-xl overflow-hidden">
-        <BannerCarousel variant="default" />
-      </div>
-      
-      {/* Bottom Container - Sidebar + Banners */}
-      <div className="bg-gray-50 rounded-xl overflow-hidden">
-        <div className="flex flex-col lg:flex-row gap-1">
-          {/* Left Sidebar - Categories (1/4 width) */}
-          <div className="hidden lg:block w-full lg:w-1/4 bg-white border border-gray-200 rounded-xl h-[123px] sm:h-[280px] lg:h-[315px]">
-            {/* Header */}
-            <div className="flex items-center p-4 border-b border-gray-200 h-16">
-              <div className="flex items-center gap-3">
-                <Grid className="w-5 h-5 text-gray-600" />
-                <span className="font-semibold text-gray-900 text-base">All Categories</span>
-              </div>
-            </div>
-
-            {/* Categories List - Scrollable with all items */}
-            <div className="py-2 h-[calc(100%-4rem)] overflow-y-auto">
-              {categories.map((category, index) => (
-                <div
-                  key={category.id}
-                  className="border-b border-gray-200 h-12"
-                >
-                  <button
-                    onClick={() => handleCategoryClick(category.id)}
-                    className="w-full h-full flex items-center justify-between px-4 text-left hover:bg-gray-50 transition-colors group"
-                  >
-                    <div className="flex items-center gap-3">
-                      <span className="text-gray-600">{category.icon}</span>
-                      <span className="font-medium text-gray-900 group-hover:text-[#00C298] text-sm">
-                        {category.name}
-                      </span>
-                    </div>
-                    <ChevronRight className="w-4 h-4 text-gray-400 group-hover:text-green-600" />
-                  </button>
-                </div>
-              ))}
-              
-              {/* View All Button */}
-              <div className="py-4">
-                <button className="w-full flex items-center justify-center text-sm text-gray-500 hover:text-[#00C298] transition-colors font-medium">
-                  View all
-                </button>
-              </div>
-            </div>
-          </div>
-
-          {/* Right Content - Small Banners (3/4 width) */}
-          <div className="w-full lg:w-3/4">
-            {/* Bottom Banners */}
-            <div className="grid grid-cols-2 gap-1">
-              <div className="rounded-xl overflow-hidden">
-                <AdvertisingBanner 
-                  variant="large"
-                  slides={[
-                    {
-                      id: 'left-1',
-                      title: 'From Factory to Fashion',
-                      subtitle: 'Preview categories you\'ll find on Kalabah:\nAgriculture, Beauty, Electronics & more.',
-                      ctaText: 'Explore Category',
-                      imageUrl: 'https://res.cloudinary.com/dqbbm0guw/image/upload/v1755265781/machine-that-has-number-4-it_1_ywfo15.png'
-                    },
-                    {
-                      id: 'left-2',
-                      title: '100% Buyer Protection\nFrom Day 1.',
-                      subtitle: 'Your orders are safe with us. Secure payments, trusted suppliers.',
-                      ctaText: 'Explore Category',
-                      imageUrl: 'https://res.cloudinary.com/dqbbm0guw/image/upload/v1755266593/protection_2_vpmujf.png'
-                    }
-                  ]}
-                />
-              </div>
-              <div className="rounded-xl overflow-hidden">
-                <AdvertisingBanner 
-                  variant="large"
-                  slides={[
-                    {
-                      id: 'right-1',
-                      title: 'From Farm to Fashion',
-                      subtitle: 'Showcase your products to verified buyers',
-                      ctaText: 'Join Waitlist',
-                      imageUrl: 'https://res.cloudinary.com/dqbbm0guw/image/upload/v1755265778/Vector_356_s7a9r4.png'
-                    },
-                    {
-                      id: 'right-2',
-                      title: 'Premium Fashion & Apparel',
-                      subtitle: 'Grow with Africa\'s #1 B2B hub',
-                      ctaText: 'Join Waitlist',
-                      imageUrl: 'https://res.cloudinary.com/dqbbm0guw/image/upload/v1755105520/7bbfcf02cb3c7cd1090dd038ae464d4ef01e196a_vs3sp5.png'
-                    }
-                  ]}
-                />
-              </div>
-            </div>
-          </div>
+    <>
+      <div className="w-full pt-0 pb-0">
+        {/* Full Width Top Banner Container */}
+        <div className="bg-gray-50 overflow-hidden">
+          <BannerCarousel variant="default" />
         </div>
       </div>
 
@@ -276,6 +183,6 @@ export function CategoryBannerLayout({ onCategorySelect }: CategoryBannerLayoutP
           </div>
         </div>
       )}
-    </div>
+    </>
   )
 } 

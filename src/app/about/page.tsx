@@ -1,6 +1,6 @@
 'use client'
 import React from 'react'
-import { Header } from '@/components/layout/header'
+import { SupplierNavbar } from '@/components/layout/supplier-navbar'
 import { Footer } from '@/components/layout/Footer'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
@@ -8,11 +8,11 @@ import { Button } from '@/components/ui/button'
 export default function AboutPage() {
   return (
     <div className="min-h-screen bg-background">
-      <Header />
+      <SupplierNavbar />
       
-      <div className="bg-white">
-        {/* Header Section - Mobile: Cover Image with Overlay, Desktop: Regular */}
-        <div className="relative">
+              <div className="bg-white pt-20">
+          {/* Header Section - Mobile: Cover Image with Overlay, Desktop: Regular */}
+          <div className="relative">
           {/* Mobile Background Image with Overlay - Perfect Rectangle */}
           <div 
             className="md:hidden relative bg-cover bg-center bg-no-repeat aspect-[5/2] flex items-center"

@@ -107,66 +107,10 @@ export function HeroSection({ onCategorySelect }: HeroSectionProps) {
   return (
     <div className="w-full px-2 sm:px-6 lg:px-10">
       <div className="bg-gray-50 overflow-hidden">
-        <div className="flex flex-col lg:flex-row">
-          {/* Left Sidebar - Categories */}
-          <div className="hidden lg:block w-full lg:w-[25%] bg-white border-r border-gray-200">
-            {/* Header */}
-            <div className="flex items-center p-4 border-b border-gray-200 h-16">
-              <div className="flex items-center gap-3">
-                <Grid className="w-5 h-5 text-gray-600" />
-                <span className="font-semibold text-gray-900 text-base">All Categories</span>
-              </div>
-            </div>
-
-            {/* Categories List */}
-            <div className="py-2">
-              {categories.map((category, index) => (
-                <div
-                  key={category.id}
-                  className="border-b border-gray-200 h-12"
-                >
-                  <button
-                    onClick={() => handleCategoryClick(category.id)}
-                    className="w-full h-full flex items-center justify-between px-4 text-left hover:bg-gray-50 transition-colors group"
-                  >
-                    <div className="flex items-center gap-3">
-                      <span className="text-gray-600">{category.icon}</span>
-                      <span className="font-medium text-gray-900 group-hover:text-[#00C298] text-sm">
-                        {category.name}
-                      </span>
-                    </div>
-                    <ChevronRight className="w-4 h-4 text-gray-400 group-hover:text-green-600" />
-                  </button>
-                </div>
-              ))}
-              
-              {/* View All Button */}
-              <div className="py-4">
-                <button className="w-full flex items-center justify-center text-sm text-gray-500 hover:text-[#00C298] transition-colors font-medium">
-                  View all
-                </button>
-              </div>
-            </div>
-          </div>
-
-          {/* Right Content - Banners */}
-          <div className="w-full lg:w-[75%] bg-white">
-            {/* Top Banner */}
-            <div className="px-2 py-0 sm:p-6">
-              <AdvertisingBanner variant="default" />
-            </div>
-
-            {/* Bottom Banners */}
-            <div className="px-2 py-0 sm:p-6 mt-0 sm:mt-0 sm:pt-2">
-              <div className="grid grid-cols-2 gap-1 sm:gap-6">
-                <div>
-                  <AdvertisingBanner variant="large" />
-                </div>
-                <div>
-                  <AdvertisingBanner variant="large" />
-                </div>
-              </div>
-            </div>
+        {/* Full Width Top Banner */}
+        <div className="w-full bg-white">
+          <div className="px-2 py-0 sm:p-6">
+            <AdvertisingBanner variant="default" />
           </div>
         </div>
       </div>

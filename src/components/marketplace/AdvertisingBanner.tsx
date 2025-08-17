@@ -79,7 +79,7 @@ const AdvertisingBanner: React.FC<AdvertisingBannerProps> = ({ variant = 'defaul
   }, [nextSlide, bannerSlides.length, variant])
 
   return (
-    <div className={`relative overflow-hidden group rounded-none ${variant === 'large' ? 'h-[123px] sm:h-[280px] lg:h-[315px]' : 'h-[155px] sm:h-[220px] lg:h-[315px]'}`}>
+    <div className={`relative overflow-hidden group rounded-none ${variant === 'large' ? 'h-[123px] sm:h-[280px] lg:h-[315px]' : 'h-[300px] sm:h-[450px] lg:h-[600px]'}`}>
       <div className="flex transition-transform duration-500 ease-in-out h-full w-full" style={{ transform: `translateX(-${currentSlide * 100}%)` }}>
         {bannerSlides.map((slide) => (
           <div key={slide.id} className="w-full flex-none h-full relative flex items-end" style={{ backgroundImage: `url(${slide.imageUrl})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>

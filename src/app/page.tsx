@@ -10,6 +10,7 @@ import { TopSuppliersCarousel } from "@/components/marketplace/TopSuppliersCarou
 import { CategoryGrid } from "@/components/marketplace/CategoryGrid"
 import FAQSection from "@/components/marketplace/FAQSection"
 import { FeaturedCategoriesSection } from "@/components/marketplace/FeaturedCategoriesSection"
+import InteractiveOrderingProcess from "@/components/marketplace/InteractiveOrderingProcess"
 import { Card, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react'
@@ -207,13 +208,18 @@ export default function LandingPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      <Header />
+      {/* Hero Section at the very top */}
+      <div className="relative">
+        <CategoryBannerLayout onCategorySelect={handleCategorySelect} />
+        
+        {/* Header overlaying the hero */}
+        <div className="absolute top-0 left-0 right-0 z-40">
+          <Header />
+        </div>
+      </div>
       
       {/* Main Content */}
       <div className="bg-gray-50">
-        
-        {/* Category Banner Layout */}
-        <CategoryBannerLayout onCategorySelect={handleCategorySelect} />
         
         {/* Featured Categories Section */}
         <FeaturedCategoriesSection />
@@ -246,6 +252,9 @@ export default function LandingPage() {
         
         {/* Blog Section */}
         <BlogSection />
+        
+        {/* Interactive Ordering Process Section */}
+        <InteractiveOrderingProcess />
         
         {/* FAQ Section */}
         <FAQSection />

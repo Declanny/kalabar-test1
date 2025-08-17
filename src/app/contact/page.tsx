@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button"
 import { ArrowRight, Mail, MapPin, Phone } from "lucide-react"
 import Link from "next/link"
 import { useState } from "react"
-import { Header } from "@/components/layout/header"
+import { SupplierNavbar } from "@/components/layout/supplier-navbar"
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -51,10 +51,10 @@ export default function ContactPage() {
 
   return (
     <>
-      <Header />
-      <main className="min-h-screen bg-gray-50">
-        {/* Header Section */}
-        <div className="bg-white border-b">
+      <SupplierNavbar />
+              <main className="min-h-screen bg-gray-50">
+          {/* Header Section */}
+          <div className="bg-white border-b pt-20">
           <div className="container mx-auto px-4 py-8">
             <div className="max-w-2xl">
               <h1 className="text-3xl font-bold mb-2">Contact Us</h1>

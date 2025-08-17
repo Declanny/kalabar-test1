@@ -2,7 +2,7 @@ import React from 'react'
 import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
-import { Header } from "@/components/layout/header"
+import { SupplierNavbar } from "@/components/layout/supplier-navbar"
 import { Footer } from "@/components/layout/Footer"
 import { blogApi, transformBlogData } from '@/lib/blog-api'
 import BlogContent from '@/components/blog/BlogContent'
@@ -80,6 +80,7 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ slu
   let post: ReturnType<typeof transformBlogData> | null = null
   let relatedPosts: ReturnType<typeof transformBlogData>[] = []
   let error: string | null = null
+  let loading = true
   
   try {
     const { slug } = await params
@@ -96,6 +97,8 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ slu
       .filter(blog => blog.slug !== slug)
       .map((blog, index) => transformBlogData(blog, index))
       .slice(0, 3)
+    
+    loading = false
   } catch (err) {
     console.error('Error fetching blog:', err)
     console.error('Error details:', {
@@ -109,8 +112,8 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ slu
   if (error || !post) {
     return (
       <BlogErrorBoundary>
-        <Header />
-        <div className="min-h-screen flex items-center justify-center bg-gray-50">
+        <SupplierNavbar />
+        <div className="min-h-screen flex items-center justify-center bg-gray-50 pt-20">
           <div className="max-w-md w-full bg-white shadow-lg rounded-lg p-6">
             <div className="text-center">
               <h2 className="text-2xl font-bold text-gray-900 mb-4">
@@ -154,8 +157,10 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ slu
   return (
     <BlogErrorBoundary>
       <BlogStructuredData post={post} />
-      <Header />
-      <BlogContent post={post} relatedPosts={relatedPosts} />
+      <SupplierNavbar />
+      <div className="pt-24">
+        <BlogContent post={post} relatedPosts={relatedPosts} loading={loading} />
+      </div>
       <Footer />
     </BlogErrorBoundary>
   )

@@ -53,7 +53,7 @@ export interface PaginatedResponse<T> {
 // Helper function to build URL with query parameters
 function buildUrl(endpoint: string, params?: Record<string, any>): string {
   // Use relative URLs for better compatibility
-  const url = new URL('/api' + endpoint, 'http://localhost:3000')
+  const url = new URL('/api' + endpoint, typeof window !== 'undefined' ? window.location.origin : 'http://localhost:3000')
   
   if (params) {
     Object.entries(params).forEach(([key, value]) => {

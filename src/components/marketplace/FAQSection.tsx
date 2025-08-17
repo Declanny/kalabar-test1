@@ -65,7 +65,7 @@ export default function FAQSection() {
 
   return (
     <div className="bg-white py-16 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-4xl mx-auto">
         {/* Section Header */}
         <div className="text-center mb-8 sm:mb-16">
           <h2 className="text-2xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-2">
@@ -73,107 +73,61 @@ export default function FAQSection() {
           </h2>
         </div>
 
-        {/* Main Content Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          
-          {/* Left Section - FAQ List */}
-          <div className="lg:col-span-2 space-y-4">
-            {currentFaqs.map((faq) => (
-              <div 
-                key={faq.id}
-                className="bg-white border border-gray-200 rounded-lg overflow-hidden"
-              >
-                <div 
-                  className="px-6 py-4 cursor-pointer hover:bg-gray-50 transition-colors duration-200"
-                  onClick={() => toggleFAQ(faq.id)}
-                >
-                  <div className="flex items-start justify-between">
-                    <h3 className="text-lg font-semibold text-gray-900 pr-4 flex-1 leading-tight">
-                      {faq.question}
-                    </h3>
-                    
-                    <div className="flex-shrink-0 mt-0.5">
-                      {faq.isExpanded ? (
-                        <Minus className="w-5 h-5 text-gray-600" />
-                      ) : (
-                        <Plus className="w-5 h-5 text-gray-600" />
-                      )}
-                    </div>
-                  </div>
-                  
-                  {faq.isExpanded && (
-                    <div className="mt-4 pt-4 border-t border-gray-100">
-                      <p className="text-base text-gray-600 leading-relaxed">
-                        → {faq.answer}
-                      </p>
-                    </div>
-                  )}
-                </div>
-              </div>
-            ))}
-
-            {/* Pagination */}
-            <div className="flex items-center justify-center space-x-2 mt-8">
-              <button
-                onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
-                disabled={currentPage === 1}
-                className="p-2 rounded-xl border border-gray-300 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-              >
-                <ChevronLeft className="w-4 h-4" />
-              </button>
-              
-              <span className="text-gray-400">...</span>
-              
-              <button
-                onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
-                disabled={currentPage === totalPages}
-                className="p-2 rounded-xl border border-gray-300 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-              >
-                <ChevronRight className="w-4 h-4" />
-              </button>
-            </div>
-          </div>
-
-          {/* Right Section - Contact CTA */}
-          <div className="lg:col-span-1 bg-white rounded-lg p-6 shadow-sm border border-gray-200 h-[457px] flex flex-col justify-center">
-            {/* Icon */}
-            <div className="flex justify-center mb-4">
-              <Image 
-                src="https://res.cloudinary.com/dqbbm0guw/image/upload/v1754413108/Vector_355_h8djwl.png"
-                alt="Contact icon"
-                width={80}
-                height={80}
-                className="w-20 h-20"
-              />
-            </div>
-
-            {/* Title */}
-            <h3 className="text-xl font-bold text-black mb-3 text-center">
-              Do you have more questions?
-            </h3>
-
-            {/* Description */}
-            <p className="text-base text-black mb-4 text-center">
-              Either on Supply, Purchase, Fulfilment, Payment or Partnership.
-            </p>
-
-            {/* Contact Info */}
-            <div className="mb-6 text-center">
-              <p className="text-base text-black mb-1">
-                Contact us on:
-              </p>
-              <p className="text-base text-black underline">
-                support@kalabah.com
-              </p>
-            </div>
-
-            {/* CTA Button */}
-            <Button 
-              className="bg-[#00C298] hover:bg-[#00C298]/90 text-white px-6 py-8 font-medium w-full rounded-xl"
-              onClick={() => window.location.href = '/waiting-list'}
+        {/* FAQ List - Centered */}
+        <div className="space-y-4">
+          {currentFaqs.map((faq) => (
+            <div 
+              key={faq.id}
+              className="bg-white border border-gray-200 rounded-lg overflow-hidden"
             >
-              Join Wait List
-            </Button>
+              <div 
+                className="px-6 py-4 cursor-pointer hover:bg-gray-50 transition-colors duration-200"
+                onClick={() => toggleFAQ(faq.id)}
+              >
+                <div className="flex items-start justify-between">
+                  <h3 className="text-lg font-semibold text-gray-900 pr-4 flex-1 leading-tight">
+                    {faq.question}
+                  </h3>
+                  
+                  <div className="flex-shrink-0 mt-0.5">
+                    {faq.isExpanded ? (
+                      <Minus className="w-5 h-5 text-gray-600" />
+                    ) : (
+                      <Plus className="w-5 h-5 text-gray-600" />
+                    )}
+                  </div>
+                </div>
+                
+                {faq.isExpanded && (
+                  <div className="mt-4 pt-4 border-t border-gray-100">
+                    <p className="text-base text-gray-600 leading-relaxed">
+                      → {faq.answer}
+                    </p>
+                  </div>
+                )}
+              </div>
+            </div>
+          ))}
+
+          {/* Pagination */}
+          <div className="flex items-center justify-center space-x-2 mt-8">
+            <button
+              onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+              disabled={currentPage === 1}
+              className="p-2 rounded-xl border border-gray-300 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            >
+              <ChevronLeft className="w-4 h-4" />
+            </button>
+            
+            <span className="text-gray-400">...</span>
+            
+            <button
+              onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+              disabled={currentPage === totalPages}
+              className="p-2 rounded-xl border border-gray-300 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            >
+              <ChevronRight className="w-4 h-4" />
+            </button>
           </div>
         </div>
       </div>

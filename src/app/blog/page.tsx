@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { Header } from "@/components/layout/header"
+import { SupplierNavbar } from "@/components/layout/supplier-navbar"
 import { Footer } from "@/components/layout/Footer"
 import { Card, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
@@ -160,8 +160,8 @@ export default function BlogPage() {
   if (loading) {
     return (
       <div className="min-h-screen bg-gray-50">
-        <Header />
-        <div className="py-12 bg-white">
+        <SupplierNavbar />
+        <div className="pt-20 pb-12 bg-white">
           <div className="container mx-auto px-4">
             <div className="text-center">
               <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#00C298] mx-auto"></div>
@@ -176,10 +176,10 @@ export default function BlogPage() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <Header />
+      <SupplierNavbar />
       
       {/* Main Content */}
-      <div className="py-12 bg-white">
+      <div className="pt-20 pb-12 bg-white">
         <div className="container mx-auto px-4">
           {/* Header and Search/Filters */}
           <div className="mb-8">
@@ -224,7 +224,88 @@ export default function BlogPage() {
             </div>
           </div>
           
-          {filteredBlogs.length === 0 ? (
+          {loading ? (
+            // Loading skeleton for main blog page
+            <div className="space-y-8">
+              {/* Featured Article Skeleton */}
+              <div className="lg:flex lg:gap-8">
+                <div className="lg:w-2/3">
+                  <Card className="animate-pulse">
+                    <div className="md:flex h-full">
+                      <div className="md:w-1/2 h-64 md:h-auto bg-gray-200"></div>
+                      <div className="md:w-1/2 p-6 lg:p-8">
+                        <div className="h-8 bg-gray-200 rounded mb-4"></div>
+                        <div className="h-4 bg-gray-200 rounded mb-2"></div>
+                        <div className="h-4 bg-gray-200 rounded mb-2"></div>
+                        <div className="h-4 bg-gray-200 rounded mb-6"></div>
+                        <div className="flex items-center justify-between mb-6">
+                          <div className="flex items-center space-x-4">
+                            <div className="h-4 w-20 bg-gray-200 rounded"></div>
+                            <div className="h-4 w-16 bg-gray-200 rounded"></div>
+                          </div>
+                          <div className="h-4 w-16 bg-gray-200 rounded"></div>
+                        </div>
+                        <div className="flex items-center justify-between">
+                          <div className="h-4 w-24 bg-gray-200 rounded"></div>
+                          <div className="h-8 w-24 bg-gray-200 rounded"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </Card>
+                </div>
+                
+                {/* Sidebar Skeleton */}
+                <div className="lg:w-1/3 mt-8 lg:mt-0">
+                  <div className="space-y-6">
+                    {/* Popular Articles Skeleton */}
+                    <div className="bg-white p-6 rounded-lg shadow-sm">
+                      <div className="h-6 bg-gray-200 rounded mb-4"></div>
+                      <div className="space-y-4">
+                        {Array.from({ length: 3 }).map((_, index) => (
+                          <div key={index} className="flex space-x-3">
+                            <div className="w-16 h-12 bg-gray-200 rounded flex-shrink-0"></div>
+                            <div className="flex-1">
+                              <div className="h-4 bg-gray-200 rounded mb-2"></div>
+                              <div className="h-3 bg-gray-200 rounded"></div>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                    
+                    {/* Categories Skeleton */}
+                    <div className="bg-white p-6 rounded-lg shadow-sm">
+                      <div className="h-6 bg-gray-200 rounded mb-4"></div>
+                      <div className="flex flex-wrap gap-2">
+                        {Array.from({ length: 5 }).map((_, index) => (
+                          <div key={index} className="h-8 w-20 bg-gray-200 rounded-full"></div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Regular Articles Grid Skeleton */}
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {Array.from({ length: 6 }).map((_, index) => (
+                  <Card key={index} className="animate-pulse">
+                    <div className="h-48 bg-gray-200"></div>
+                    <CardContent className="p-6">
+                      <div className="h-5 bg-gray-200 rounded mb-3"></div>
+                      <div className="h-4 bg-gray-200 rounded mb-2"></div>
+                      <div className="h-4 bg-gray-200 rounded mb-2"></div>
+                      <div className="h-4 bg-gray-200 rounded mb-4"></div>
+                      <div className="flex items-center justify-between">
+                        <div className="h-4 w-20 bg-gray-200 rounded"></div>
+                        <div className="h-8 w-20 bg-gray-200 rounded"></div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </div>
+          ) : filteredBlogs.length === 0 ? (
             <div className="text-center py-12">
               <h2 className="text-2xl font-bold text-gray-900 mb-4">No articles found</h2>
               <p className="text-gray-600 mb-6">
