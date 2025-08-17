@@ -82,9 +82,11 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ slu
   let error: string | null = null
   let loading = true
   
+  // Extract slug outside try block so it's available in error fallback
+  const { slug } = await params
+  console.log('Fetching blog with slug:', slug)
+  
   try {
-    const { slug } = await params
-    console.log('Fetching blog with slug:', slug)
         
     // Fetch the specific blog by slug
     const apiBlog = await blogApi.getBlogBySlug(slug)
@@ -133,15 +135,15 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ slu
                 </details>
               )}
               <div className="space-y-2">
-                <button
-                  onClick={() => window.location.reload()}
-                  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-full"
+                <Link
+                  href={`/blog/${slug}`}
+                  className="block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-full text-center"
                 >
                   Try Again
-                </button>
+                </Link>
                 <Link
                   href="/blog"
-                  className="block bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded w-full"
+                  className="block bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded w-full text-center"
                 >
                   Back to Blog
                 </Link>

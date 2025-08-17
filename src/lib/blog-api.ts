@@ -52,18 +52,23 @@ export interface PaginatedResponse<T> {
 
 // Helper function to build URL with query parameters
 function buildUrl(endpoint: string, params?: Record<string, any>): string {
-  // Use relative URLs for better compatibility
-  const url = new URL('/api' + endpoint, typeof window !== 'undefined' ? window.location.origin : 'http://localhost:3000')
+  // Use relative URLs which work on both client and server
+  let url = '/api' + endpoint
   
   if (params) {
+    const searchParams = new URLSearchParams()
     Object.entries(params).forEach(([key, value]) => {
       if (value !== undefined && value !== null && value !== '') {
-        url.searchParams.append(key, value.toString())
+        searchParams.append(key, value.toString())
       }
     })
+    const queryString = searchParams.toString()
+    if (queryString) {
+      url += '?' + queryString
+    }
   }
   
-  return url.toString()
+  return url
 }
 
 // Helper function to format date
@@ -117,7 +122,13 @@ export const blogApi = {
   }): Promise<BlogPost[]> {
     try {
       const url = buildUrl('/blogs', params)
-      const response = await fetch(url, {
+      
+      // Use absolute URL for server-side rendering
+      const absoluteUrl = typeof window !== 'undefined' 
+        ? url 
+        : `http://localhost:3000${url}`
+      
+      const response = await fetch(absoluteUrl, {
         method: 'GET',
         headers: {
           'accept': 'application/json',
@@ -148,7 +159,13 @@ export const blogApi = {
   async getPopularBlogs(page: number = 1): Promise<BlogPost[]> {
     try {
       const url = buildUrl('/blogs/popular', { page })
-      const response = await fetch(url, {
+      
+      // Use absolute URL for server-side rendering
+      const absoluteUrl = typeof window !== 'undefined' 
+        ? url 
+        : `http://localhost:3000${url}`
+      
+      const response = await fetch(absoluteUrl, {
         method: 'GET',
         headers: {
           'accept': 'application/json',
@@ -186,7 +203,13 @@ export const blogApi = {
   async getRecentBlogs(page: number = 1): Promise<BlogPost[]> {
     try {
       const url = buildUrl('/blogs/recent', { page })
-      const response = await fetch(url, {
+      
+      // Use absolute URL for server-side rendering
+      const absoluteUrl = typeof window !== 'undefined' 
+        ? url 
+        : `http://localhost:3000${url}`
+      
+      const response = await fetch(absoluteUrl, {
         method: 'GET',
         headers: {
           'accept': 'application/json',
@@ -226,7 +249,12 @@ export const blogApi = {
       const url = buildUrl(`/blogs/${slug}`)
       console.log('Blog API: Fetching blog by slug:', slug, 'URL:', url)
       
-      const response = await fetch(url, {
+      // Use absolute URL for server-side rendering
+      const absoluteUrl = typeof window !== 'undefined' 
+        ? url 
+        : `http://localhost:3000${url}`
+      
+      const response = await fetch(absoluteUrl, {
         method: 'GET',
         headers: {
           'accept': 'application/json',
@@ -267,7 +295,13 @@ export const blogApi = {
   async getCategories(page: number = 1): Promise<Category[]> {
     try {
       const url = buildUrl('/categories', { page })
-      const response = await fetch(url, {
+      
+      // Use absolute URL for server-side rendering
+      const absoluteUrl = typeof window !== 'undefined' 
+        ? url 
+        : `http://localhost:3000${url}`
+      
+      const response = await fetch(absoluteUrl, {
         method: 'GET',
         headers: {
           'accept': 'application/json',
