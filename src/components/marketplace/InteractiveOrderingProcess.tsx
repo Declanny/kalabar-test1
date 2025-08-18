@@ -84,12 +84,12 @@ export default function InteractiveOrderingProcess() {
                 >
                   <div className="flex items-start py-3 sm:py-4 px-3 sm:px-4 rounded-xl transition-all duration-200">
                     {/* Step Icon */}
-                    <div className={`step-icon w-12 h-12 sm:w-16 sm:h-16 rounded-full flex items-center justify-center mr-4 sm:mr-8 flex-shrink-0 border-2 transition-all duration-200 ${
+                    <div className={`step-icon w-14 h-14 sm:w-16 sm:h-16 rounded-full flex items-center justify-center mr-4 sm:mr-8 flex-shrink-0 border-2 transition-all duration-200 ${
                       activeStep === step.id
-                        ? 'bg-[#8B4513] border-[#8B4513] text-white'
+                        ? 'bg-[#00C298] border-[#00C298] text-white'
                         : 'bg-white/10 border-white/30 text-white backdrop-blur-sm'
                     }`}>
-                      <div className="w-5 h-5 sm:w-7 sm:h-7">
+                      <div className="w-6 h-6 sm:w-7 sm:h-7">
                         {step.icon}
                       </div>
                     </div>
@@ -97,7 +97,7 @@ export default function InteractiveOrderingProcess() {
                    {/* Step Content */}
                    <div className="flex-1">
                      <h3 className={`text-lg sm:text-xl lg:text-2xl font-semibold mb-2 sm:mb-3 transition-colors duration-200 ${
-                       activeStep === step.id ? 'text-[#8B4513]' : 'text-white'
+                       activeStep === step.id ? 'text-[#00C298]' : 'text-white'
                      }`}>
                        {step.title}
                      </h3>
@@ -111,14 +111,16 @@ export default function InteractiveOrderingProcess() {
                  
                  {/* Connecting Line - Centered */}
                  {index < steps.length - 1 && (
-                   <div className="absolute left-6 sm:left-12 top-16 sm:top-20 w-0.5 h-8 sm:h-12 bg-gray-400 z-0"></div>
+                   <div className={`absolute left-7 sm:left-12 top-16 sm:top-20 w-0.5 bg-gray-400 z-0 transition-all duration-300 ${
+                     activeStep === step.id ? 'h-auto min-h-[3rem]' : 'h-8'
+                   }`}></div>
                  )}
               </div>
               ))}
             </div>
 
             {/* Image Section */}
-            <div className="relative h-64 sm:h-80 md:h-96 lg:h-[500px] rounded-xl sm:rounded-2xl overflow-hidden shadow-xl mt-8 lg:mt-0">
+            <div className="relative h-64 sm:h-80 md:h-96 lg:h-[500px] rounded-xl sm:rounded-2xl overflow-hidden shadow-xl mt-8 lg:mt-0 hidden lg:block">
               {steps.map((step) => (
                 <div
                   key={step.id}
@@ -128,7 +130,7 @@ export default function InteractiveOrderingProcess() {
                 >
                   {/* Placeholder for illustration - Replace with actual images */}
                   <div className="text-center p-4 sm:p-6 lg:p-8">
-                    <div className="w-20 h-20 sm:w-24 sm:h-24 lg:w-32 lg:h-32 mx-auto mb-4 sm:mb-6 bg-[#8B4513]/20 rounded-full flex items-center justify-center">
+                    <div className="w-20 h-20 sm:w-24 sm:h-24 lg:w-32 lg:h-32 mx-auto mb-4 sm:mb-6 bg-[#00C298]/20 rounded-full flex items-center justify-center">
                       <div className="text-2xl sm:text-3xl lg:text-4xl">{step.imageText.split(' ')[0]}</div>
                     </div>
                     <div className="text-white text-sm sm:text-base lg:text-lg font-semibold mb-3 sm:mb-4">
@@ -136,8 +138,8 @@ export default function InteractiveOrderingProcess() {
                     </div>
                     <div className="text-xs sm:text-sm text-gray-300">
                       {/* Replace this div with your client's illustration images */}
-                      <div className="w-full h-32 sm:h-40 lg:h-48 bg-gradient-to-br from-[#8B4513]/20 to-[#8B4513]/10 rounded-lg flex items-center justify-center">
-                        <span className="text-[#8B4513] font-medium text-sm sm:text-base">Illustration {step.id}</span>
+                      <div className="w-full h-32 sm:h-40 lg:h-48 bg-gradient-to-br from-[#00C298]/20 to-[#00C298]/10 rounded-lg flex items-center justify-center">
+                        <span className="text-[#00C298] font-medium text-sm sm:text-base">Illustration {step.id}</span>
                       </div>
                     </div>
                   </div>
