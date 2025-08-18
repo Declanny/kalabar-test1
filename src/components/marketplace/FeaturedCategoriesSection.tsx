@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useRef } from 'react'
-import { ChevronLeft, ChevronRight, Grid3X3, Shield, CreditCard } from 'lucide-react'
+import { ChevronLeft, ChevronRight, Grid3X3, Shield, CreditCard, Globe, Lock } from 'lucide-react'
 
 interface ValueCard {
   id: number
@@ -24,6 +24,16 @@ const valueCards: ValueCard[] = [
     id: 3,
     title: "One-stop trading solution",
     description: "Order seamlessly from product/supplier search to order management, payment, and fulfillment."
+  },
+  {
+    id: 4,
+    title: "Global supplier network",
+    description: "Connect with verified suppliers from around the world to expand your business opportunities."
+  },
+  {
+    id: 5,
+    title: "Secure payment processing",
+    description: "Complete transactions safely with our secure payment system and buyer protection guarantees."
   }
 ]
 
@@ -32,69 +42,37 @@ const EnhancedKalabahSection: React.FC = () => {
 
   const scroll = (direction: 'left' | 'right') => {
     if (scrollContainerRef.current) {
-      const scrollAmount = direction === 'left' ? -280 : 280
+      const scrollAmount = direction === 'left' ? -300 : 300
       scrollContainerRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' })
     }
   }
 
   return (
     <div className="w-full py-8 lg:py-10 bg-gradient-to-br from-[#050c05] via-[#030703] to-[#1a3a1a]">
-      <div className="w-full px-4 sm:px-6 lg:px-10">
+      <div className="w-full px-4 sm:px-6 lg:px-0">
         
         {/* Main Rectangle Section */}
-        <div className="flex flex-col lg:flex-row min-h-[200px] lg:min-h-[160px]">
+        <div className="flex flex-col min-h-[200px] lg:min-h-[160px]">
           
-          {/* Left Side - Text Content */}
-          <div className="lg:w-[35%] p-4 lg:p-8 flex flex-col justify-center bg-transparent">
-            <div className="space-y-4 lg:space-y-4 text-center lg:text-left">
-              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white leading-tight">
-                Kalabah is Nigeria&apos;s <br/>
-                <span className="text-white/80">B2B Digital Marketplace</span>
-              </h1>
-              
-              <div className="space-y-3 lg:space-y-3">
-                <p className="text-base lg:text-base text-white font-bold">We connect:</p>
-                <div className="space-y-2 lg:space-y-1">
-                  <div className="flex items-center justify-center lg:justify-start space-x-3 lg:space-x-3">
-                    <div className="w-2 h-2 lg:w-2 lg:h-2 bg-white rounded-full flex-shrink-0"></div>
-                    <p className="text-white text-sm lg:text-sm font-bold">Manufacturers to retailers globally</p>
-                  </div>
-                  <div className="flex items-center justify-center lg:justify-start space-x-3 lg:space-x-3">
-                    <div className="w-2 h-2 lg:w-2 lg:h-2 bg-white rounded-full flex-shrink-0"></div>
-                    <p className="text-white text-sm lg:text-sm font-bold">Farmers to processors and exporters</p>
-                  </div>
-                  <div className="flex items-center justify-center lg:justify-start space-x-3 lg:space-x-3">
-                    <div className="w-2 h-2 lg:w-2 lg:h-2 bg-white rounded-full flex-shrink-0"></div>
-                    <p className="text-white text-sm lg:text-sm font-bold">Producers to distributors nationwide</p>
-                  </div>
-                  <div className="flex items-center justify-center lg:justify-start space-x-3 lg:space-x-3">
-                    <div className="w-2 h-2 lg:w-2 lg:h-2 bg-white rounded-full flex-shrink-0"></div>
-                    <p className="text-white text-sm lg:text-sm font-bold">Suppliers to buyers everywhere</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Right Side - Carousel */}
-          <div className="lg:w-[65%] p-4 lg:p-6 bg-transparent relative overflow-hidden mt-4 lg:mt-0">
+          {/* Full Width Carousel */}
+          <div className="w-full p-4 lg:p-2 bg-transparent relative overflow-hidden">
             {/* Carousel Container */}
             <div className="relative h-full">
               
-              {/* Carousel Track */}
+                            {/* Carousel Track */}
               <div 
                 ref={scrollContainerRef}
-                className="overflow-x-auto overflow-y-hidden scrollbar-hide h-full"
+                className="overflow-x-auto overflow-y-hidden scrollbar-hide h-full flex justify-center"
               >
-                <div className="flex gap-4 lg:gap-3 h-full pb-2" style={{ width: 'max-content' }}>
+                <div className="flex gap-3 lg:gap-4 h-full pb-2" style={{ width: 'max-content' }}>
                   {valueCards.map((card, index) => (
                     <div 
                       key={card.id} 
-                      className="flex-shrink-0 w-[260px] lg:w-[280px] h-[220px] lg:h-[280px]"
+                      className="flex-shrink-0 w-[220px] lg:w-[240px] h-[200px] lg:h-[260px]"
                     >
-                      <div className="relative overflow-hidden rounded-xl transition-all duration-300 hover:scale-105 cursor-pointer group bg-white/20 backdrop-blur-sm border border-white/30 h-full">
+                      <div className="relative overflow-hidden rounded-xl transition-all duration-300 cursor-pointer group bg-white/20 backdrop-blur-sm border border-white/30 h-full">
                         
-                        <div className="relative p-5 lg:p-6 text-white flex flex-col justify-between h-full">
+                        <div className="relative p-3 lg:p-4 text-white flex flex-col justify-between h-full">
                           
                           {/* Icon */}
                           <div className="flex justify-center lg:justify-start mb-3 lg:mb-1">
@@ -102,6 +80,8 @@ const EnhancedKalabahSection: React.FC = () => {
                               {index === 0 && <Grid3X3 className="w-7 h-7 lg:w-8 lg:h-8 text-white" />}
                               {index === 1 && <Shield className="w-7 h-7 lg:w-8 lg:h-8 text-white" />}
                               {index === 2 && <CreditCard className="w-7 h-7 lg:w-8 lg:h-8 text-white" />}
+                              {index === 3 && <Globe className="w-7 h-7 lg:w-8 lg:h-8 text-white" />}
+                              {index === 4 && <Lock className="w-7 h-7 lg:w-8 lg:h-8 text-white" />}
                             </div>
                           </div>
                           
@@ -139,6 +119,7 @@ const EnhancedKalabahSection: React.FC = () => {
 
             {/* Scroll Indicator Dots - Mobile only */}
             <div className="flex justify-center space-x-2 mt-4 lg:hidden">
+              
               {valueCards.map((_, index) => (
                 <div 
                   key={index}
