@@ -120,7 +120,7 @@ export default function InteractiveOrderingProcess() {
             </div>
 
             {/* Image Section */}
-            <div className="relative h-64 sm:h-80 md:h-96 lg:h-[500px] rounded-xl sm:rounded-2xl overflow-hidden shadow-xl mt-8 lg:mt-0 hidden lg:block">
+            <div className="relative h-64 sm:h-80 md:h-96 lg:h-[400px] mt-8 lg:mt-0 hidden lg:block">
               {steps.map((step) => (
                 <div
                   key={step.id}
@@ -128,21 +128,21 @@ export default function InteractiveOrderingProcess() {
                     activeStep === step.id ? 'opacity-100' : 'opacity-0'
                   }`}
                 >
-                  {/* Placeholder for illustration - Replace with actual images */}
-                  <div className="text-center p-4 sm:p-6 lg:p-8">
-                    <div className="w-20 h-20 sm:w-24 sm:h-24 lg:w-32 lg:h-32 mx-auto mb-4 sm:mb-6 bg-[#00C298]/20 rounded-full flex items-center justify-center">
-                      <div className="text-2xl sm:text-3xl lg:text-4xl">{step.imageText.split(' ')[0]}</div>
-                    </div>
-                    <div className="text-white text-sm sm:text-base lg:text-lg font-semibold mb-3 sm:mb-4">
-                      {step.imageText.split(' ').slice(1).join(' ')}
-                    </div>
-                    <div className="text-xs sm:text-sm text-gray-300">
-                      {/* Replace this div with your client's illustration images */}
-                      <div className="w-full h-32 sm:h-40 lg:h-48 bg-gradient-to-br from-[#00C298]/20 to-[#00C298]/10 rounded-lg flex items-center justify-center">
-                        <span className="text-[#00C298] font-medium text-sm sm:text-base">Illustration {step.id}</span>
-                      </div>
-                    </div>
-                  </div>
+                  <img 
+                    src={
+                      step.id === 1 
+                        ? "https://res.cloudinary.com/dqbbm0guw/image/upload/v1753604888/traditional-african-souvenir-and-craft-items-for-sale-at-flee-market-MT842D_u2lngt.jpg"
+                        : step.id === 2
+                        ? "https://res.cloudinary.com/dqbbm0guw/image/upload/v1753604886/green-cola_ug4qyn.jpg"
+                        : step.id === 3
+                        ? "https://res.cloudinary.com/dqbbm0guw/image/upload/v1753604888/traditional-african-souvenir-and-craft-items-for-sale-at-flee-market-MT842D_u2lngt.jpg"
+                        : step.id === 5
+                        ? "https://res.cloudinary.com/dqbbm0guw/image/upload/v1753604886/green-cola_ug4qyn.jpg"
+                        : "https://res.cloudinary.com/dqbbm0guw/image/upload/v1753604888/traditional-african-souvenir-and-craft-items-for-sale-at-flee-market-MT842D_u2lngt.jpg"
+                    }
+                    alt={`${step.title} - B2B Marketplace`}
+                    className="w-4/5 h-4/5 object-cover rounded-2xl"
+                  />
                 </div>
               ))}
             </div>
