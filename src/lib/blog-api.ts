@@ -126,9 +126,7 @@ export const blogApi = {
       // Use absolute URL for server-side rendering
       const absoluteUrl = typeof window !== 'undefined' 
         ? url 
-        : process.env.VERCEL_URL 
-          ? `https://${process.env.VERCEL_URL}${url}`
-          : `http://localhost:3000${url}`
+        : `https://kalabar-test1.vercel.app${url}`
       
       const response = await fetch(absoluteUrl, {
         method: 'GET',
@@ -165,9 +163,7 @@ export const blogApi = {
       // Use absolute URL for server-side rendering
       const absoluteUrl = typeof window !== 'undefined' 
         ? url 
-        : process.env.VERCEL_URL 
-          ? `https://${process.env.VERCEL_URL}${url}`
-          : `http://localhost:3000${url}`
+        : `https://kalabar-test1.vercel.app${url}`
       
       const response = await fetch(absoluteUrl, {
         method: 'GET',
@@ -211,9 +207,7 @@ export const blogApi = {
       // Use absolute URL for server-side rendering
       const absoluteUrl = typeof window !== 'undefined' 
         ? url 
-        : process.env.VERCEL_URL 
-          ? `https://${process.env.VERCEL_URL}${url}`
-          : `http://localhost:3000${url}`
+        : `https://kalabar-test1.vercel.app${url}`
       
       const response = await fetch(absoluteUrl, {
         method: 'GET',
@@ -311,9 +305,7 @@ export const blogApi = {
       // Use absolute URL for server-side rendering
       const absoluteUrl = typeof window !== 'undefined' 
         ? url 
-        : process.env.VERCEL_URL 
-          ? `https://${process.env.VERCEL_URL}${url}`
-          : `http://localhost:3000${url}`
+        : `https://kalabar-test1.vercel.app${url}`
       
       const response = await fetch(absoluteUrl, {
         method: 'GET',
