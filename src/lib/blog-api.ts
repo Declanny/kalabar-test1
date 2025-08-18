@@ -258,12 +258,12 @@ export const blogApi = {
       // Use absolute URL for server-side rendering
       const absoluteUrl = typeof window !== 'undefined' 
         ? url 
-        : process.env.VERCEL_URL 
-          ? `https://${process.env.VERCEL_URL}${url}`
-          : `http://localhost:3000${url}`
+        : `https://kalabar-test1.vercel.app${url}`
       
       console.log('Blog API: Absolute URL:', absoluteUrl)
       console.log('Blog API: VERCEL_URL:', process.env.VERCEL_URL)
+      console.log('Blog API: typeof window:', typeof window)
+      console.log('Blog API: NODE_ENV:', process.env.NODE_ENV)
       
       const response = await fetch(absoluteUrl, {
         method: 'GET',
